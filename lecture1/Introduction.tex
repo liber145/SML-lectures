@@ -11,6 +11,7 @@
 \usepackage{latexsym}
 \usepackage{algpseudocode}
 \usepackage{algorithm}
+\usepackage{enumerate}
 %\usepackage{algorithmic}
 \usepackage{multirow}
 \usepackage{xcolor}
@@ -177,9 +178,9 @@
 \begin{document}
 
 \ho{0}{2011.02.21}{Moses Liskov}{Name}{Lecture title}
-What's statistical machine learning? There is a quote from Jordan, ``A field that bridges computation and statistics with ties to information theory, signal processing, algorithms, control theory and optimization theory."
+What's statistical machine learning? Here is a quote from Jordan, ``A field that bridges computation and statistics with ties to information theory, signal processing, algorithms, control theory and optimization theory."
 
-Many data can be denoted as matrix. Suppose we have n samples, p variables (features). Then we have
+In machine learning, data is typically expressed in a matrix form. Suppose we have $n$ samples, $p$ variables (or features). Then we have
 \[X = \left(
        \begin{array}{cccc}
          x_{11} & x_{12} & \cdots & x_{1p} \\
@@ -189,65 +190,69 @@ Many data can be denoted as matrix. Suppose we have n samples, p variables (feat
        \end{array}
      \right)_{n \times p}
 \]
-We can denote the $i$th sample as $X_i = \left(\begin{matrix}
-        X_{11} \\
-        X_{12} \\
-        \vdots \\
-        X_{1p}
-        \end{matrix}\right)$.
+The $i$th sample can be denoted as $X_i = (X_{11}, X_{12}, \dots, X_{1p})^T$.
         
-Statistical machine learning is mainly to solve the following problems:
+Machine learning is mainly to solve the following problems:
+\begin{enumerate}[(1)]
+\item 
+\textbf{Dimension Reduction:}
+Dimension reduction is the process of reducing the number of random variables(or features) under consideration. Formally, let $X_i \in \BR^p$, we want to find $Z_i \in \BR^q (q < p)$ to present $X_i$.
 
-\textbf{Dimension Reduction: }
-$X_i \in \BR^p$, we want to find $Z_i \in \BR^q (p > q)$ to present $X_i$.
-If we want to use linear transformation, then our purpose is to find a matrix $A$ so that $Z_i = AX_i$.
-If we want to use nonlinear transformation, then we need to find a nonlinear function $f$ so that $f(X_i) = Z_i$.
+If we use linear transformation, then we need to find a matrix $A$ such that $Z_i = AX_i$. Note that $A$ should be full row rank.
 
-\textbf{Clustering: }
-We can view the n samples as n points, and cluster them to $k$ clusters, where $k$ is determined by us.
+If we use nonlinear transformation, then we need to find a nonlinear function $f$ such that $Z_i = f(X_i)$.
+\item 
+\textbf{Clustering:}
+Clustering is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar (in some sense or another) to each other than to those in other groups (clusters).We can view $n$ samples as $n$ points, and our object is to cluster them into $k$ clusters.
+\item 
+\textbf{Classification:}
+Classification is the problem of identifying to which of a set of categories a new observation belongs, on the basis of a training set of data containing observations (or instances) whose category membership is known. Formally, in the training set, we have a label $Y_i$ for each $X_i$, where $Y_i \in C$, $C$ is a non-empty finite set. If $Y_i \in \{-1, 1\}$ or $\{0, 1\}$, it's a binary classification problem. If $Y_i \in \{1, 2, \dots, k\}$, it's a multi-class classification problem. There are also problems that one observation belongs to more than one category and they are called multi-label or multi-output classification.
+\item 
+\textbf{Regression:}
+Regression is a particular classification problem in which the label $Y_i \in \BR$.
+\item 
+\textbf{Ranking:}
+also called isotonic regression(IR). Isotonic regression involves finding a weighted least-squares fit $x \in \BR^n $ to a vector $a \in \BR^n$ with weights vector $w \in \BR^n$ subject to a set of non-contradictory constraints of kind $x_i \geq x_j$.
+\end{enumerate}
 
-\textbf{Classification: }
-We have a label $Y_i$ for each $X_i$. And $Y = (Y_1, Y_2, \cdots, Y_n)^T$. And $Y_i \in C$, where $C$ is a finite set.
+Note that (1),(2) are unsupervised learning, (3),(4),(5) are supervised learning. Unsupervised learning is that of trying to find hidden structure in unlabeled data. Supervised learning is the machine learning task of inferring a function from labelled training data. 
 
-\textbf{Regression: }
-Like classification, but $Y_i \in \BR$.
-
-\textbf{Ranking: }
-Isotonic regression (IR) involves finding a weighted least-squares fit $x \in \BR^n $ to a vector $a \in \BR^n$ with weights vector $w \in \BR^n$ subject to a set of non-contradictory constraints of kind $x_i \geq x_j$.
-
-\textbf{Multi-task: }
-Like Classification, but $Y_i$ can have multi value.
-
+For supervised learning, the data is usually split into two or three parts.
+\begin{enumerate}[(1)]
+\item \textbf{Training data:} A set of examples used for learning, that is to fit the parameters (e.g., weights for neural networks) of the model. 
+\item \textbf{Validation data:}  Sometimes, we also need a validation set to tune the model, for example to choose the number of hidden units in a neural network or for pruning a decision tree. It is usually used to prevent overfitting and enhance the generalization ability.
+\item \textbf{Test data:} This data set is used only for testing the final solution in order to confirm the actual performance.  
+\end{enumerate}
 
 \section{Frequentist's view vs. Bayesian view}
 \subsection{Frequentist's view}
 The frequentistic approach views the model parameters as unknown constants and estimates them by matching the model to the training data using an appropriate metric.
 
 \begin{example}
-Assume we have n pairs of samples $\{(x_i, y_i)\}_{i=1}^{n}$, $x_i \in \BR^p$, $y_i \in \BR$.
-In the future, we want to predict $y_j$'s according to new $x_j$'s.
+Suppose we have n pairs of samples $\{(x_i, y_i)\}_{i=1}^{n}$, $x_i \in \BR^p$, $y_i \in \BR$ and we want to fit a linear function $x_i^Ta$(More strictly, it should be $x_i^T a+b$ or include a constant variable 1 in $x_i$) to predict $y_j$.
 
-Using least mean square, we will get object $L = \sum_{i=1}^n (y_i - x_i^T a)^2$, where $a$ is an unknown fixed parameter.
-Denote the object form as $L = l(y, f(x, a))$. Here $f(x,a) = x_i^T a$, $l(y, f(x, a)) = (y - f(x,a))^2$.
+Using least squares, we have loss function $L = \sum_{i=1}^n (y_i - x_i^T a)^2$, where $a$ is an unknown fixed parameter. We can solve $a$ by minimizing the loss function.
 
-We can add some restricts to the parameters, so we can update $L = l(y, f(x,a)) + \lambda r(a)$, where $r(a)$ is a restrict to $a$.
+Using maximum likelihood estimation, let $y_i \sim \MN(x_i^T a, \sigma^2)$, namely, $$p(x_i,y_i)=\frac{1}{(2\pi)^{\frac{1}{2}}\sigma}e^{-\frac{(y_i-x_i^Ta)^2}{2\sigma^2}}.$$ So the log likelihood is (assuming the samples are independent) $$l=log \prod_{i=1}^{n}p(x_i,y_i).$$We can solve $a$ by maximizing the joint likelihood.
+
+Under the above conditions, you can prove that maximum likelihood estimation is the same as least squares.
 \end{example}
 
 \subsection{Bayesian view}
 The Bayesian approach views the model parameters as a random variable and  estimates them by using Bayes' theorem.
 
 \begin{example}
-In example 1.1, assume $y \sim \MN(x^T a, \sigma^2)$. $a$ and $\sigma$ are random variables, let $a \sim \MN(0, \lambda^2)$, $\sigma^2 \sim \Gamma(\alpha, \beta)$.
-Our interest is posterior probability $P(a | (x_i, y_i))$
+Let's continue example 1.1, let $y_i \sim \MN(x_i^T a, \sigma^2)$ again. Here $a$ and $\sigma$ are random variables, not constants. Let $a \sim \MN(0, \lambda^2)$, $\sigma^2 \sim \Gamma(\alpha, \beta)$.
+Our interest is the posterior probability $P(a\mid x_i, y_i) \propto P(x_i, y_i\mid a)P(a)$. We can use maximum posterior estimation or bayesian estimation to solve $a$.
 \end{example}
 
 
-\section{Parametrical view vs. Nonparametrical view}
+\section{Parametrics vs. Nonparametrics}
 In a parametrical model, the number of parameters is fixed once and for all, independent to the number of the training data.
 In a nonparametrical model, the number of parameters can change according to the number of training data.
 
 \begin{example}
-In \textbf{Nearest Neighbor}, the number of parameters is the number of training samples. So this model is nonparametrical model.
+In \textbf{Nearest Neighbor} method, the number of parameters is the number of training samples. So this model is nonparametrical model.
 
 In \textbf{Logistic Regression}, the number of parameters is the dimension of the training samples. So this model is parametrical model.
 \end{example}
