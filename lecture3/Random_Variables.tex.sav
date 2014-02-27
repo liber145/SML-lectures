@@ -1,0 +1,404 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % more modern
+%\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{epsf}
+\usepackage{amsmath,amssymb,amsfonts,verbatim}
+\usepackage{subfigure}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+%\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{xcolor}
+
+\def\A{{\bf A}}
+\def\a{{\bf a}}
+\def\B{{\bf B}}
+\def\b{{\bf b}}
+\def\C{{\bf C}}
+\def\c{{\bf c}}
+\def\D{{\bf D}}
+\def\d{{\bf d}}
+\def\E{{\bf E}}
+\def\e{{\bf e}}
+\def\F{{\bf F}}
+\def\f{{\bf f}}
+\def\G{{\bf G}}
+\def\g{{\bf g}}
+\def\k{{\bf k}}
+\def\K{{\bf K}}
+\def\H{{\bf H}}
+\def\I{{\bf I}}
+\def\L{{\bf L}}
+\def\M{{\bf M}}
+\def\m{{\bf m}}
+\def\n{{\bf n}}
+\def\N{{\bf N}}
+\def\BP{{\bf P}}
+\def\R{{\bf R}}
+\def\BS{{\bf S}}
+\def\s{{\bf s}}
+\def\t{{\bf t}}
+\def\T{{\bf T}}
+\def\U{{\bf U}}
+\def\u{{\bf u}}
+\def\V{{\bf V}}
+\def\v{{\bf v}}
+\def\W{{\bf W}}
+\def\w{{\bf w}}
+\def\X{{\bf X}}
+\def\Y{{\bf Y}}
+\def\Q{{\bf Q}}
+\def\x{{\bf x}}
+\def\y{{\bf y}}
+\def\Z{{\bf Z}}
+\def\z{{\bf z}}
+\def\0{{\bf 0}}
+\def\1{{\bf 1}}
+
+
+\def\hx{\hat{\bf x}}
+\def\tx{\tilde{\bf x}}
+\def\ty{\tilde{\bf y}}
+\def\tz{\tilde{\bf z}}
+\def\hd{\hat{d}}
+\def\HD{\hat{\bf D}}
+
+\def\MA{{\mathcal A}}
+\def\MF{{\mathcal F}}
+\def\MG{{\mathcal G}}
+\def\MI{{\mathcal I}}
+\def\MN{{\mathcal N}}
+\def\MO{{\mathcal O}}
+\def\MT{{\mathcal T}}
+\def\MX{{\mathcal X}}
+\def\SW{{\mathcal {SW}}}
+\def\MW{{\mathcal W}}
+\def\MY{{\mathcal Y}}
+\def\BR{{\mathbb R}}
+\def\BP{{\mathbb P}}
+
+\def\bet{\mbox{\boldmath$\beta$\unboldmath}}
+\def\epsi{\mbox{\boldmath$\epsilon$}}
+
+\def\etal{{\em et al.\/}\,}
+\def\tr{\mathrm{tr}}
+\def\rk{\mathrm{rk}}
+\def\diag{\mathrm{diag}}
+\def\dg{\mathrm{dg}}
+\def\argmax{\mathop{\rm argmax}}
+\def\argmin{\mathop{\rm argmin}}
+\def\vecd{\mathrm{vec}}
+
+\def\ph{\mbox{\boldmath$\phi$\unboldmath}}
+\def\vp{\mbox{\boldmath$\varphi$\unboldmath}}
+\def\pii{\mbox{\boldmath$\pi$\unboldmath}}
+\def\Ph{\mbox{\boldmath$\Phi$\unboldmath}}
+\def\pss{\mbox{\boldmath$\psi$\unboldmath}}
+\def\Ps{\mbox{\boldmath$\Psi$\unboldmath}}
+\def\muu{\mbox{\boldmath$\mu$\unboldmath}}
+\def\Si{\mbox{\boldmath$\Sigma$\unboldmath}}
+\def\lam{\mbox{\boldmath$\lambda$\unboldmath}}
+\def\Lam{\mbox{\boldmath$\Lambda$\unboldmath}}
+\def\Gam{\mbox{\boldmath$\Gamma$\unboldmath}}
+\def\Oma{\mbox{\boldmath$\Omega$\unboldmath}}
+\def\De{\mbox{\boldmath$\Delta$\unboldmath}}
+\def\de{\mbox{\boldmath$\delta$\unboldmath}}
+\def\Tha{\mbox{\boldmath$\Theta$\unboldmath}}
+\def\tha{\mbox{\boldmath$\theta$\unboldmath}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{example}{Example}[section]
+
+
+\def\probin{\mbox{\rotatebox[origin=c]{90}{$\vDash$}}}
+
+\def\calA{{\cal A}}
+
+
+
+%this is a comment
+
+%use this as a template only... you may not need the subsections,
+%or lists however they are placed in the document to show you how
+%do it if needed.
+
+
+%THINGS TO REMEMBER
+%to compile a latex document - latex filename.tex
+%to view the document        - xdvi filename.dvi
+%to create a ps document     - dvips filename.dvi
+%to create a pdf document    - dvipdf filename.dvi
+%{\bf TEXT}                  - bold font TEXT
+%{\it TEXT}                  - italic TEXT
+%$ ... $                     - places ... in math mode on same line
+%$$ ... $$                   - places ... in math mode on new line
+%more info at www.cs.wm.edu/~mliskov/cs423_fall04/tex.html
+
+
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textwidth}{6in}
+\setlength{\topmargin}{-0.4in}
+\setlength{\textheight}{8.5in}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\notes}[5]{
+	\renewcommand{\thepage}{#1 - \arabic{page}}
+	\noindent
+	\begin{center}
+	\framebox{
+		\vbox{
+		\hbox to 5.78in { { \bf Statistical Machine Learning}
+		\hfill #2}
+		\vspace{4mm}
+		\hbox to 5.78in { {\Large \hfill #5 \hfill} }
+		\vspace{2mm}
+		\hbox to 5.78in { {\it #3 \hfill #4} }
+		}
+	}
+	\end{center}
+	\vspace*{4mm}
+}
+
+\newcommand{\ho}[5]{\notes{#1}{Random Variables}{Professor: Zhihua Zhang}{}{Lecture Notes #1: Random Variables}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%begins a LaTeX document
+\begin{document}
+
+\ho{2}{2011.02.21}{Moses Liskov}{Name}{Lecture title}
+
+\section{Random Variables}
+\begin{definition}
+A random variable $X$ is a measure map $X: \Omega \to  \BR$ that assigns a real number $X(\omega)$ to each and come as "measurable" means that for every $X$, $\{\omega: X(\omega) \leq x\} \in \MA$.
+\end{definition}
+
+\begin{example}
+Flip a coin ten times. Let $X(\omega)$ be a number of heads in the sequence $\omega$. 
+\end{example}
+
+\begin{example}
+Let $\Omega = \{(x, y) | x^2 + y^2 \leq 1\}$. Consider drawing a point at random from $|Omega$. 
+\end{example}
+
+\begin{definition}
+$A \in \BR$, $X^{-1} = \{\omega \in \Omega; X(\omega) \in A \} \in \MA$
+
+So $P(X \in A) \triangleq P(X^{-1}(A)) = P(\{\omega \in \Omega | X(\omega) \in A \})$
+
+$P(X = x) = P(X^{-1}(x)) = P(\{\omega \in \Omega | X(\omega) = x\})$
+\end{definition}
+
+\begin{example}
+Flip a coin twice and let $X$ be the number of heads.
+
+\begin{tabular}{|c|c|c|}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  $\omega$ & $P(\{\omega\})$ & $X(\omega)$ \\
+  TT & 1/4 & 0 \\
+  TH & 1/4 & 1 \\
+  HT & 1/4 & 1 \\
+  HH & 1/4 & 2 \\
+  \hline
+\end{tabular}
+
+\begin{tabular}{|c|c|}
+    \hline
+    0 & 1/4 \\
+    1 & 1/2 \\
+    2 & 1/4 \\
+    \hline
+\end{tabular}
+\end{example}
+
+\subsection{Distribution Function}
+Cumulative distribution function (or distribution function). CDF is the function $F_X : \BR \to [0, 1]$.
+
+$F_X(x) = P(X \leq x)$.
+
+\begin{example}
+$F_X(x) = \left\{\begin{array}{cc}
+             0 & x < 0 \\
+             1/4 & 0 \leq x < 1 \\
+             3/4 & 1 \leq x < 2 \\
+             1 & x \geq 2 
+           \end{array}
+           \right.
+$
+\end{example}
+
+\begin{theorem}
+Let $X$ have CDF $F$, $Y$ have CDF $G$.
+If $F(x) = G(x)$ for all $x$, then $P(X \in A) = P(Y \in Y)$ for all measurable $A$.
+\end{theorem}
+
+\begin{theorem}
+A function $F$ mapping $\BR \to [0, 1]$ is a CDF for probability iff
+\begin{enumerate}
+\item $F$ is non-deceasing, $x_1 < x_2 \implies F(x_1) \leq F(x_2)$.
+\item $F$ is normalized, i.e. $\lim\limits_{x \to -\infty} F(x) = 0$, $\lim\limits_{x \to +\infty} = 1$.
+\item $F$ is right-continuous. $F(x) = F(x^+)$, where $F(x^+) = \lim$
+\end{enumerate}
+\end{theorem}
+
+
+
+\subsection{Sample Space and Events}
+\begin{definition}
+The \textit{sample space} $\Omega$ is the set of possible outcomes of an experiment,
+$\omega \in \Omega$ are called sample outcomes, realizations or elements.
+The subsets of $\Omega$ are called \textit{events}.
+\end{definition}
+
+\begin{definition}
+Given an event, $A\subset \Omega$, let $A^c = \{\omega \in \Omega, \omega \notin A\}$
+denote the complement of $A$.
+\end{definition}
+
+\begin{definition}
+A sequence of sets $A_1, A_2, \cdots$ is \emph{monotone increasing},
+if $A_1 \subset A_2 \subset \cdots$, we define $\displaystyle\lim_{n\rightarrow \infty} A_n = \bigcup_{i = 1}^{\infty}A_i$.
+\end{definition}
+
+\begin{definition}
+A sequence of sets $A_1, A_2, \cdots$ is \emph{monotone decreasing},
+if $A_1 \supset A_2 \supset \cdots$, we define $\displaystyle\lim_{n\rightarrow \infty} A_n = \bigcap_{i = 1}^{\infty}A_i$.
+\end{definition}
+
+\begin{example}
+Let $\Omega = \R$ and $A_i = [0, 1/i)$ for $i = 1, 2\cdots$,then \\
+$\displaystyle \bigcup_{i = 1}^{\infty}A_i = [0, 1), \displaystyle \bigcap_{i = 1}^{\infty}A_i = \{0\}$.
+If $A_i = (0, 1/i)$, then $\displaystyle \bigcup_{i = 1}^{\infty}A_i = (0, 1), \displaystyle \bigcap_{i = 1}^{\infty}A_i = \emptyset$.
+\end{example}
+
+\subsection{$\sigma$-field and Measures}
+\begin{definition}
+Let $\MA$ be a collection of subsets of a sample space $\Omega$. $\MA$ is called $\sigma$-field (or $\sigma$-algebra).
+iff
+\begin{enumerate}
+\item The empty set $\emptyset \in \MA$.
+\item If $A \in \MA$, $A^c \in \MA$.
+\item If $A_i \in \MA$, $i \in \{1,2, ..., k\}$, then $\displaystyle\bigcup_{i=1}^k A_i \in \MA$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+A pair $(\Omega, \MA)$ is called a measurable space.
+\end{definition}
+
+\begin{example}
+Let $A$ be a nonempty proper subset of $\Omega$, i.e. $A \neq \emptyset$, $A\neq \Omega$,
+the smallest $\MA = \{\emptyset, \Omega, A, A^c\}$.
+\end{example}
+
+\begin{example}
+$\Omega = \BR$. The smallest $\sigma$-field that contains all the finite open sets of $\BR$  is called Borel $\sigma$-field.
+\end{example}
+
+\begin{definition}
+Let $(\Omega, \MA)$ be a measurable space. A set function $\nu$ defined on $\MA$ is called a measure iff
+\begin{enumerate}
+\item $0 \leq \nu(A) \leq \infty$ for any $A \in \MA$.
+\item $\nu(\empty) = 0$.
+\item If $A \in \MA$, and $A_i$ are disjoint, i.e. $A_i \cap A_j = \emptyset$ for $i \neq j$,
+then $\nu(\bigcup_{i=1}^\infty A_i) = \sum_{i=1}^\infty \nu(A_i)$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Tripe $(\Omega, \MA, \nu)$ is called a measure space.
+
+If $\nu(\Omega) = 1$, then $\nu$ is called a probability measure and denote it by $P$.
+$(\Omega, \MA, P)$ is called a probability space.
+\end{definition}
+
+\begin{example}
+Let $\Omega$ be a sample space, $\MA$ is a collection of all subsets, and $\nu(A)$ is the number of elements in $A$.
+\end{example}
+
+\begin{example}
+Lebesque measure
+\end{example}
+
+\begin{lemma}
+For any two events $A$ and $B$. $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+\end{lemma}
+
+\begin{theorem}[Continuity of Probability]
+If $A_n \rightarrow A$, then
+\[ P(A_n) \rightarrow P(A) \text{ as } n\rightarrow \infty. \]
+\end{theorem}
+{\bf Proof: } We first consider the case where $A_n$ is monotone increasing.\\
+Recall that $A_1\subset A_2\dots$ and let $A = \lim_{n\rightarrow \infty}A_n = \bigcup_{i = 1}^{\infty}A_i$.\\
+Define $B_1 = A_1$, $B_2 = \{ \omega \in \Omega : \omega \in A_2, \omega \notin A_1\}$,
+$B_3 = \{ \omega \in \Omega : \omega \in A_3, \omega \notin A_1, \omega \notin A_2\}$\dots.
+Then for each $n$, we have $A_n = \bigcup_{i=1}^{n}A_i = \bigcup_{i=1}^{n}B_i$.\\
+Thus, $\bigcup_{i=1}^{\infty}A_i = \bigcup_{i=1}^{\infty}B_i$. So that,
+\[P(A_n) = \sum_{i=1}^n P(B_i)\]
+Hence, we have,
+\begin{align}\nonumber
+\lim_{n\rightarrow\infty}P(A_n) & = \lim_{n\rightarrow\infty}\sum_{i=1}^n P(B_i) = \sum_{i=1}^{\infty}P(B_i)\\
+& = P(\bigcup_{i=1}^{\infty}B_i) = P(A)\nonumber
+\end{align}
+For arbitrary sequence $\{A_i\}$, we can define $\{C_i\}$ to construct a monotone increasing sequence.
+Specifically,
+$C_1 = A_1 \cap A$,
+$C_2 = C_1 \cap A$,
+$C_3 = (C_1 \cup C_2) \cap A$,\dots
+
+
+\subsection{Independent Events}
+\begin{definition}
+Two events $A$ and $B$ are independent if $P(A\cap B) = P(A)P(B)$.
+\end{definition}
+We write $A \probin B$ to denote independence. For a set of events $\{A_i, i\in I\}$ $A$, it is
+independent if $P(\bigcap_{i\in J}A_i) = \prod_{i\in J}P(A_i)$, for
+every finite subset $J$ of $I$.
+
+\subsection{Conditional Probability}
+\begin{definition}
+If $P(B) > 0$, the conditional probability of $A$ given $B$ is
+\[P(A|B) = \frac{P(A\cap B)}{P(B)}.\]
+\end{definition}
+
+\begin{lemma}
+If $A$ and $B$ are independent events, then $P(A|B) = P(A)$. Also, for any events $A$, $B$
+\[P(AB) = P(A|B)P(B) = P(B|A)P(A).\]
+\end{lemma}
+
+\subsection{Bayes Theorem}
+\begin{theorem}[The Law of Total Probability]
+Let $A_1, A_2, \dots, A_k$ be partition of $\Omega$. Then
+for any event $B$,
+\[P(B) = \sum_{i=1}^k P(B|A_i)P(A_i)\]
+\end{theorem}
+{\bf Proof: } Define $C_j = B\cap A_j$ for $j = 1, \dots, k$.
+Then we have $C_j \cap C_i = \emptyset$ and $B = \bigcup_{i = 1}^k C_i$.
+Thus,\[P(B) = \sum P(C_j) = \sum P(B\cap A_j) = \sum P(B|A_j)P(A_j)\]
+
+\begin{theorem}[Bayes Theorem]
+Let $A_1, \dots, A_k$ be a partition of $\Omega$, such that $P(A_i) > 0$ for each $i$.
+If $P(B) > 0$, then for each $i = 1, \dots, k$
+\[P(A_i|B) = \frac{\BP(B|A_i)P(A_i)}{\sum_{i=1}^kP(B|A_j)P(A_j)}\]
+\end{theorem}
+{\bf Remarks:} We usually call those probabilities as
+\begin{itemize}
+\item $P(A_i)$ - prior probability of $A_i$
+\item $P(A_i|B)$ - posterior probability of $A_i$
+\item $P(B|A_i)$ - likelihood
+\end{itemize}
+
+\end{document}
+
+
