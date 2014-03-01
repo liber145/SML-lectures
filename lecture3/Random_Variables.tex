@@ -177,26 +177,29 @@
 %begins a LaTeX document
 \begin{document}
 
+\setcounter{section}{1}
 \ho{2}{2011.02.21}{Moses Liskov}{Name}{Lecture title}
 
 \section{Random Variables}
 \begin{definition}
-A random variable $X$ is a measure map $X: \Omega \to  \BR$ that assigns a real number $X(\omega)$ to each and come as "measurable" means that for every $X$, $\{\omega: X(\omega) \leq x\} \in \MA$.
+A random variable $X$ is a measure map $X: \Omega \to  \BR$ that assigns a real number $X(\omega)$ to each out come  $\Omega$ and "measurable" means that for every $X$, $\{\omega: X(\omega) \leq x\} \in \MA$.
 \end{definition}
 
 \begin{example}
-Flip a coin ten times. Let $X(\omega)$ be a number of heads in the sequence $\omega$.
+Flip a coin ten times. Let $X(\omega)$ be a number of heads in the sequence $\omega$. If $w=HHHTTTHHTT$, $X(\omega)$=5. 
 \end{example}
 
 \begin{example}
-Let $\Omega = \{(x, y) | x^2 + y^2 \leq 1\}$. Consider drawing a point at random from $\Omega$.
+Let $\Omega = \{(x, y) | x^2 + y^2 \leq 1\}$. Consider drawing a point at random from $\Omega$. $\omega=(x,y) \in \Omega$, $X(\omega)=x, X(\omega)=y, X(\omega)=x+y$ are possible random variables.
 \end{example}
 
 \begin{definition}
-Let $A \subset \BR$, $X^{-1} = \{\omega \in \Omega; X(\omega) \in A \} \in \MA$. 
+Let $A \subset \BR$, $X^{-1} = \{\omega \in \Omega: X(\omega) \in A \} \in \MA$. 
 $P(X \in A) \triangleq P(X^{-1}(A)) = P(\{\omega \in \Omega | X(\omega) \in A \})$.
 $P(X = x) = P(X^{-1}(x)) = P(\{\omega \in \Omega | X(\omega) = x\})$
 \end{definition}
+
+Note for simplicity, we will use $\{X>0\}$ to denote $\{\omega \in \Omega : X(\omega)>0\}$, $P(X>0)$ to denote $P(\{X>0\})$.
 
 \begin{example}
 Flip a coin twice and let $X$ be the number of heads.
@@ -249,7 +252,7 @@ If $F(x) = G(x)$ for all $x$, then $P(X \in A) = P(Y \in A)$ for all measurable 
 A function $F$ mapping $\BR \to [0, 1]$ is a CDF for probability iff
 \begin{enumerate}
 \item $F$ is non-deceasing, $x_1 < x_2 \implies F(x_1) \leq F(x_2)$.
-\item $F$ is normalized, i.e. $\lim\limits_{x \to -\infty} F(x) = 0$, $\lim\limits_{x \to +\infty} = 1$.
+\item $F$ is normalized, i.e. $\lim\limits_{x \to -\infty} F(x) = 0$, $\lim\limits_{x \to +\infty}F(x) = 1$.
 \item $F$ is right-continuous. $F(x) = F(x^+)$, where $F(x^+) = \lim\limits_{y \to x, y > x} F(y)$.
 \end{enumerate}
 \end{theorem}
@@ -257,9 +260,9 @@ A function $F$ mapping $\BR \to [0, 1]$ is a CDF for probability iff
 Now we will get the proof of right-continuous.
 
 {\bf Proof: }
-Let $F(x_1) = P(X \leq x_1)$, $F(x_2) = P(X \leq x_2)$.
+Let $y_1 > y_2 > \cdots$, and $\lim_{n \to +\infty} y_n = x$.
 
-Let $X \in \BR$, $y_1 > y_2 > \cdots$, and $\lim_{n \to +\infty} y_n = x$.
+Then $F(y_1) = P(Y \leq y_1)$, $F(y_2) = P(Y \leq y_2)$, \dots
 
 Let $A_i = (-\infty, y_i]$ and $A = (-\infty, x]$.
 
