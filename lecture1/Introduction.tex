@@ -215,7 +215,7 @@ Regression is a particular classification problem in which the label $Y_i \in \B
 also called isotonic regression(IR). Isotonic regression involves finding a weighted least-squares fit $x \in \BR^n $ to a vector $a \in \BR^n$ with weights vector $w \in \BR^n$ subject to a set of non-contradictory constraints of kind $x_i \geq x_j$.
 \end{enumerate}
 
-Note that (1),(2) are unsupervised learning, (3),(4),(5) are supervised learning. Unsupervised learning is that of trying to find hidden structure in unlabeled data. Supervised learning is the machine learning task of inferring a function from labelled training data. 
+Note that (1),(2) are unsupervised learning, (3),(4),(5) are supervised learning. Unsupervised learning is that of trying to find hidden structure in unlabelled data. Supervised learning is the machine learning task of inferring a function from labelled training data. 
 
 For supervised learning, the data is usually split into two or three parts.
 \begin{enumerate}[(1)]
@@ -233,7 +233,7 @@ Suppose we have n pairs of samples $\{(x_i, y_i)\}_{i=1}^{n}$, $x_i \in \BR^p$, 
 
 Using least squares, we have loss function $L = \sum_{i=1}^n (y_i - x_i^T a)^2$, where $a$ is an unknown fixed parameter. We can solve $a$ by minimizing the loss function.
 
-Using maximum likelihood estimation, let $y_i \sim \MN(x_i^T a, \sigma^2)$, namely, $$p(x_i,y_i)=\frac{1}{(2\pi)^{\frac{1}{2}}\sigma}e^{-\frac{(y_i-x_i^Ta)^2}{2\sigma^2}}.$$ So the log likelihood is (assuming the samples are independent) $$l=log \prod_{i=1}^{n}p(x_i,y_i).$$We can solve $a$ by maximizing the joint likelihood.
+Using maximum likelihood estimation, let $y_i \sim \MN(x_i^T a, \sigma^2)$, namely, $$p(y_i \mid x_i)=\frac{1}{(2\pi)^{\frac{1}{2}}\sigma}e^{-\frac{(y_i-x_i^Ta)^2}{2\sigma^2}}.$$ So the log likelihood is (assuming the samples are independent) $$l=log \prod_{i=1}^{n}p(y_i \mid x_i).$$We can solve $a$ by maximizing the joint likelihood.
 
 Under the above conditions, you can prove that maximum likelihood estimation is the same as least squares.
 \end{example}
@@ -243,7 +243,7 @@ The Bayesian approach views the model parameters as a random variable and  estim
 
 \begin{example}
 Let's continue example 1.1, let $y_i \sim \MN(x_i^T a, \sigma^2)$ again. Here $a$ and $\sigma$ are random variables, not constants. Let $a \sim \MN(0, \lambda^2)$, $\sigma^2 \sim \Gamma(\alpha, \beta)$.
-Our interest is the posterior probability $P(a\mid x_i, y_i) \propto P(x_i, y_i\mid a)P(a)$. We can use maximum posterior estimation or bayesian estimation to solve $a$.
+Our interest is the posterior probability $P(a\mid x_i, y_i) \propto P(x_i, y_i\mid a)P(a)$. We can use maximum posterior estimation or Bayesian estimation to solve $a$.
 \end{example}
 
 
