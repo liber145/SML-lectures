@@ -69,6 +69,7 @@
 \def\hd{\hat{d}}
 \def\HD{\hat{\bf D}}
 
+\def\MA{{\mathcal A}}
 \def\MF{{\mathcal F}}
 \def\MR{{\mathcal R}}
 \def\MG{{\mathcal G}}
@@ -171,13 +172,14 @@
 	\vspace*{4mm}
 }
 
-\newcommand{\ho}[5]{\notes{#1}{Introduction}{Professor: Zhihua Zhang}{}{Lecture Notes #1: Introduction}}
+\newcommand{\ho}[5]{\notes{#1}{Basic Theory}{Professor: Zhihua Zhang}{}{Lecture Notes #1: Basic Theory}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %begins a LaTeX document
 \begin{document}
 
-\ho{0}{2011.02.21}{Moses Liskov}{Name}{Lecture title}
+\ho{1}{2014.03.02}{Moses Liskov}{Name}{Lecture title}
+\section{Introduction}
 What's statistical machine learning? Here is a quote from Jordan, ``A field that bridges computation and statistics with ties to information theory, signal processing, algorithms, control theory and optimization theory."
 
 In machine learning, data is typically expressed in a matrix form. Suppose we have $n$ samples, $p$ variables (or features). Then we have
@@ -224,8 +226,8 @@ For supervised learning, the data is usually split into two or three parts.
 \item \textbf{Test data:} This data set is used only for testing the final solution in order to confirm the actual performance.  
 \end{enumerate}
 
-\section{Frequentist's view vs. Bayesian view}
-\subsection{Frequentist's view}
+\subsection{Frequentist's view vs. Bayesian view}
+\subsubsection{Frequentist's view}
 The frequentistic approach views the model parameters as unknown constants and estimates them by matching the model to the training data using an appropriate metric.
 
 \begin{example}
@@ -238,7 +240,7 @@ Using maximum likelihood estimation, let $y_i \sim \MN(x_i^T a, \sigma^2)$, name
 Under the above conditions, you can prove that maximum likelihood estimation is the same as least squares.
 \end{example}
 
-\subsection{Bayesian view}
+\subsubsection{Bayesian view}
 The Bayesian approach views the model parameters as a random variable and  estimates them by using Bayes' theorem.
 
 \begin{example}
@@ -247,7 +249,7 @@ Our interest is the posterior probability $P(a\mid x_i, y_i) \propto P(x_i, y_i\
 \end{example}
 
 
-\section{Parametrics vs. Nonparametrics}
+\subsection{Parametrics vs. Nonparametrics}
 In a parametrical model, the number of parameters is fixed once and for all, independent to the number of the training data.
 In a nonparametrical model, the number of parameters can change according to the number of training data.
 
@@ -256,6 +258,238 @@ In \textbf{Nearest Neighbor} method, the number of parameters is the number of t
 
 In \textbf{Logistic Regression}, the number of parameters is the dimension of the training samples. So this model is parametrical model.
 \end{example}
+\section{Probability Theory Basics}
+\subsection{Sample Space and Events}
+\begin{definition}
+The \textit{sample space} $\Omega$ is the set of possible outcomes of an experiment,
+$\omega \in \Omega$ are called sample outcomes, realizations or elements.
+The subsets of $\Omega$ are called \textit{events}.
+\end{definition}
+
+\begin{definition}
+Given an event, $A\subset \Omega$, let $A^c = \{\omega \in \Omega, \omega \notin A\}$
+denote the complement of $A$.
+\end{definition}
+
+\begin{definition}
+A sequence of sets $A_1, A_2, \cdots$ is \emph{monotone increasing},
+if $A_1 \subset A_2 \subset \cdots$, we define $\displaystyle\lim_{n\rightarrow \infty} A_n = \bigcup_{i = 1}^{\infty}A_i$.
+\end{definition}
+
+\begin{definition}
+A sequence of sets $A_1, A_2, \cdots$ is \emph{monotone decreasing},
+if $A_1 \supset A_2 \supset \cdots$, we define $\displaystyle\lim_{n\rightarrow \infty} A_n = \bigcap_{i = 1}^{\infty}A_i$.
+\end{definition}
+
+\begin{example}
+Let $\Omega = \R$ and $A_i = [0, 1/i)$ for $i = 1, 2\cdots$,then \\
+$\displaystyle \bigcup_{i = 1}^{\infty}A_i = [0, 1), \displaystyle \bigcap_{i = 1}^{\infty}A_i = \{0\}$.
+If $A_i = (0, 1/i)$, then $\displaystyle \bigcup_{i = 1}^{\infty}A_i = (0, 1), \displaystyle \bigcap_{i = 1}^{\infty}A_i = \emptyset$.
+\end{example}
+
+\subsection{$\sigma$-field and Measures}
+\begin{definition}
+Let $\MA$ be a collection of subsets of a sample space $\Omega$. $\MA$ is called $\sigma$-field (or $\sigma$-algebra).
+iff
+\begin{enumerate}
+\item The empty set $\emptyset \in \MA$.
+\item If $A \in \MA$, $A^c \in \MA$.
+\item If $A_i \in \MA$, $i \in \{1,2, ..., k\}$, then $\displaystyle\bigcup_{i=1}^k A_i \in \MA$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+A pair $(\Omega, \MA)$ is called a measurable space.
+\end{definition}
+
+\begin{example}
+Let $A$ be a nonempty proper subset of $\Omega$, i.e. $A \neq \emptyset$, $A\neq \Omega$,
+the smallest $\MA = \{\emptyset, \Omega, A, A^c\}$.
+\end{example}
+
+\begin{example}
+$\Omega = \BR$. The smallest $\sigma$-field that contains all the finite open sets of $\BR$  is called Borel $\sigma$-field.
+\end{example}
+
+\begin{definition}
+Let $(\Omega, \MA)$ be a measurable space. A set function $\nu$ defined on $\MA$ is called a measure iff
+\begin{enumerate}
+\item $0 \leq \nu(A) \leq \infty$ for any $A \in \MA$.
+\item $\nu(\emptyset) = 0$.
+\item If $A \in \MA$, and $A_i$ are disjoint, i.e. $A_i \cap A_j = \emptyset$ for $i \neq j$,
+then $\nu(\bigcup_{i=1}^\infty A_i) = \sum_{i=1}^\infty \nu(A_i)$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Tripe $(\Omega, \MA, \nu)$ is called a measure space.
+
+If $\nu(\Omega) = 1$, then $\nu$ is called a probability measure and denote it by $P$.
+$(\Omega, \MA, P)$ is called a probability space.
+\end{definition}
+
+\begin{example}
+Let $\Omega$ be a sample space, $\MA$ is a collection of all subsets, and $\nu(A)$ is the number of elements in $A$.
+\end{example}
+
+\begin{lemma}
+For any two events $A$ and $B$. $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+\end{lemma}
+
+\begin{theorem}[Continuity of Probability]
+If $A_n \rightarrow A$, then
+\[ P(A_n) \rightarrow P(A) \text{ as } n\rightarrow \infty. \]
+\end{theorem}
+{\bf Proof: } We first consider the case where $A_n$ is monotone increasing.\\
+Recall that $A_1\subset A_2\dots$ and let $A = \lim_{n\rightarrow \infty}A_n = \bigcup_{i = 1}^{\infty}A_i$.\\
+Define $B_1 = A_1$, $B_2 = \{ \omega \in \Omega : \omega \in A_2, \omega \notin A_1\}$,
+$B_3 = \{ \omega \in \Omega : \omega \in A_3, \omega \notin A_2\}$\dots.
+Then for each $n$, we have $A_n = \bigcup_{i=1}^{n}A_i = \bigcup_{i=1}^{n}B_i$.\\
+Thus, $\bigcup_{i=1}^{\infty}A_i = \bigcup_{i=1}^{\infty}B_i$. So that,
+\[P(A_n) = \sum_{i=1}^n P(B_i)\]
+Hence, we have,
+\begin{align}\nonumber
+\lim_{n\rightarrow\infty}P(A_n) & = \lim_{n\rightarrow\infty}\sum_{i=1}^n P(B_i) = \sum_{i=1}^{\infty}P(B_i)\\
+& = P(\bigcup_{i=1}^{\infty}B_i) = P(A)\nonumber
+\end{align}
+For arbitrary sequence $\{A_i\}$, we can define $\{C_i\}$ to construct a monotone increasing sequence.
+Specifically,
+$C_1 = A_1 \cap A$,
+$C_2 = (A_1 \cup A_2) \cap A$,
+$C_3 = (A_1 \cup A_2 \cup A_3) \cap A$,\dots
+
+
+\subsection{Independent Events}
+\begin{definition}
+Two events $A$ and $B$ are independent if $P(A\cap B) = P(A)P(B)$.
+\end{definition}
+We write $A \probin B$ to denote independence. For a set of events $\{A_i, i\in I\}$ $A$, it is
+independent if $P(\bigcap_{i\in J}A_i) = \prod_{i\in J}P(A_i)$, for
+every finite subset $J$ of $I$.
+
+\subsection{Conditional Probability}
+\begin{definition}
+If $P(B) > 0$, the conditional probability of $A$ given $B$ is
+\[P(A|B) = \frac{P(A\cap B)}{P(B)}.\]
+\end{definition}
+
+\begin{lemma}
+If $A$ and $B$ are independent events, then $P(A|B) = P(A)$. Also, for any events $A$, $B$
+\[P(AB) = P(A|B)P(B) = P(B|A)P(A).\]
+\end{lemma}
+
+\subsection{Bayes Theorem}
+\begin{theorem}[The Law of Total Probability]
+Let $A_1, A_2, \dots, A_k$ be partition of $\Omega$. Then
+for any event $B$,
+\[P(B) = \sum_{i=1}^k P(B|A_i)P(A_i)\]
+\end{theorem}
+{\bf Proof: } Define $C_j = B\cap A_j$ for $j = 1, \dots, k$.
+Then we have $C_j \cap C_i = \emptyset$ and $B = \bigcup_{i = 1}^k C_i$.
+Thus,\[P(B) = \sum P(C_j) = \sum P(B\cap A_j) = \sum P(B|A_j)P(A_j)\]
+
+\begin{theorem}[Bayes Theorem]
+Let $A_1, \dots, A_k$ be a partition of $\Omega$, such that $P(A_i) > 0$ for each $i$.
+If $P(B) > 0$, then for each $i = 1, \dots, k$
+\[P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum_{i=1}^kP(B|A_j)P(A_j)}\]
+\end{theorem}
+{\bf Remarks:} We usually call those probabilities as
+\begin{itemize}
+\item $P(A_i)$ - prior probability of $A_i$
+\item $P(A_i|B)$ - posterior probability of $A_i$
+\item $P(B|A_i)$ - likelihood
+\end{itemize}
+\section{Random Variables}
+\begin{definition}
+A random variable $X$ is a measure map $X: \Omega \to  \BR$ that assigns a real number $X(\omega)$ to each out come  $\Omega$ and "measurable" means that for every $X$, $\{\omega: X(\omega) \leq x\} \in \MA$.
+\end{definition}
+
+\begin{example}
+Flip a coin ten times. Let $X(\omega)$ be a number of heads in the sequence $\omega$. If $w=HHHTTTHHTT$, $X(\omega)$=5. 
+\end{example}
+
+\begin{example}
+Let $\Omega = \{(x, y) | x^2 + y^2 \leq 1\}$. Consider drawing a point at random from $\Omega$. $\omega=(x,y) \in \Omega$, $X(\omega)=x, X(\omega)=y, X(\omega)=x+y$ are possible random variables.
+\end{example}
+
+\begin{definition}
+Let $A \subset \BR$, $X^{-1} = \{\omega \in \Omega: X(\omega) \in A \} \in \MA$. 
+$P(X \in A) \triangleq P(X^{-1}(A)) = P(\{\omega \in \Omega | X(\omega) \in A \})$.
+$P(X = x) = P(X^{-1}(x)) = P(\{\omega \in \Omega | X(\omega) = x\})$
+\end{definition}
+
+Note for simplicity, we will use $\{X>0\}$ to denote $\{\omega \in \Omega : X(\omega)>0\}$, $P(X>0)$ to denote $P(\{X>0\})$.
+
+\begin{example}
+Flip a coin twice and let $X$ be the number of heads.
+
+\begin{tabular}{|c|c|c|}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  $\omega$ & $P(\{\omega\})$ & $X(\omega)$ \\
+  TT & 1/4 & 0 \\
+  TH & 1/4 & 1 \\
+  HT & 1/4 & 1 \\
+  HH & 1/4 & 2 \\
+  \hline
+\end{tabular}
+
+\begin{tabular}{|c|c|}
+    \hline
+    X & P(X) \\
+    0 & 1/4 \\
+    1 & 1/2 \\
+    2 & 1/4 \\
+    \hline
+\end{tabular}
+\end{example}
+
+\subsection{Distribution Function}
+Cumulative distribution function (or distribution function). CDF is the function $F_X : \BR \to [0, 1]$.
+
+$F_X(x) = P(X \leq x)$.
+
+\begin{example}
+From example 1.3, we can get
+
+$F_X(x) = \left\{\begin{array}{cc}
+             0 & x < 0 \\
+             1/4 & 0 \leq x < 1 \\
+             3/4 & 1 \leq x < 2 \\
+             1 & x \geq 2
+           \end{array}
+           \right.
+$
+\end{example}
+
+\begin{theorem}
+Let $X$ have CDF $F$, $Y$ have CDF $G$.
+If $F(x) = G(x)$ for all $x$, then $P(X \in A) = P(Y \in A)$ for all measurable $A$.
+\end{theorem}
+
+\begin{theorem}
+A function $F$ mapping $\BR \to [0, 1]$ is a CDF for probability iff
+\begin{enumerate}
+\item $F$ is non-deceasing, $x_1 < x_2 \implies F(x_1) \leq F(x_2)$.
+\item $F$ is normalized, i.e. $\lim\limits_{x \to -\infty} F(x) = 0$, $\lim\limits_{x \to +\infty}F(x) = 1$.
+\item $F$ is right-continuous. $F(x) = F(x^+)$, where $F(x^+) = \lim\limits_{y \to x, y > x} F(y)$.
+\end{enumerate}
+\end{theorem}
+
+Now we will get the proof of right-continuous.
+
+{\bf Proof: }
+Let $y_1 > y_2 > \cdots$, and $\lim_{n \to +\infty} y_n = x$.
+
+Then $F(y_1) = P(Y \leq y_1)$, $F(y_2) = P(Y \leq y_2)$, \dots
+
+Let $A_i = (-\infty, y_i]$ and $A = (-\infty, x]$.
+
+Note that $A = \cap_{i=1}^\infty A_i$ and $A_1 \supset A_2 \supset \cdots$
+
+$\lim_{i \to \infty} P(A_i) = P(\cap_{i=1}^\infty A_i)$.
+
+$F(x) = P(A) = P(\cap_{i=1}^\infty A_i) = \lim_{i\to\infty} P(A_i) = \lim_{i \to \infty} F(y_i) = F(x^+)$.
 
 \end{document}
 
