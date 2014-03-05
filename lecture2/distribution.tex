@@ -1,0 +1,275 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % more modern
+%\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{epsf}
+\usepackage{amsmath,amssymb,amsfonts,verbatim}
+\usepackage{subfigure}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{enumerate}
+%\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{xcolor}
+
+\def\A{{\bf A}}
+\def\a{{\bf a}}
+\def\B{{\bf B}}
+\def\b{{\bf b}}
+\def\C{{\bf C}}
+\def\c{{\bf c}}
+\def\D{{\bf D}}
+\def\d{{\bf d}}
+\def\E{{\bf E}}
+\def\e{{\bf e}}
+\def\F{{\bf F}}
+\def\f{{\bf f}}
+\def\G{{\bf G}}
+\def\g{{\bf g}}
+\def\k{{\bf k}}
+\def\K{{\bf K}}
+\def\H{{\bf H}}
+\def\I{{\bf I}}
+\def\L{{\bf L}}
+\def\M{{\bf M}}
+\def\m{{\bf m}}
+\def\n{{\bf n}}
+\def\N{{\bf N}}
+\def\BP{{\bf P}}
+\def\R{{\bf R}}
+\def\BS{{\bf S}}
+\def\s{{\bf s}}
+\def\t{{\bf t}}
+\def\T{{\bf T}}
+\def\U{{\bf U}}
+\def\u{{\bf u}}
+\def\V{{\bf V}}
+\def\v{{\bf v}}
+\def\W{{\bf W}}
+\def\w{{\bf w}}
+\def\X{{\bf X}}
+\def\Y{{\bf Y}}
+\def\Q{{\bf Q}}
+\def\x{{\bf x}}
+\def\y{{\bf y}}
+\def\Z{{\bf Z}}
+\def\z{{\bf z}}
+\def\0{{\bf 0}}
+\def\1{{\bf 1}}
+
+
+\def\hx{\hat{\bf x}}
+\def\tx{\tilde{\bf x}}
+\def\ty{\tilde{\bf y}}
+\def\tz{\tilde{\bf z}}
+\def\hd{\hat{d}}
+\def\HD{\hat{\bf D}}
+
+\def\MA{{\mathcal A}}
+\def\MF{{\mathcal F}}
+\def\MR{{\mathcal R}}
+\def\MG{{\mathcal G}}
+\def\MI{{\mathcal I}}
+\def\MN{{\mathcal N}}
+\def\MO{{\mathcal O}}
+\def\MT{{\mathcal T}}
+\def\MX{{\mathcal X}}
+\def\SW{{\mathcal {SW}}}
+\def\MW{{\mathcal W}}
+\def\MY{{\mathcal Y}}
+\def\BR{{\mathbb R}}
+\def\BP{{\mathbb P}}
+
+\def\bet{\mbox{\boldmath$\beta$\unboldmath}}
+\def\epsi{\mbox{\boldmath$\epsilon$}}
+
+\def\etal{{\em et al.\/}\,}
+\def\tr{\mathrm{tr}}
+\def\rk{\mathrm{rk}}
+\def\diag{\mathrm{diag}}
+\def\dg{\mathrm{dg}}
+\def\argmax{\mathop{\rm argmax}}
+\def\argmin{\mathop{\rm argmin}}
+\def\vecd{\mathrm{vec}}
+
+\def\ph{\mbox{\boldmath$\phi$\unboldmath}}
+\def\vp{\mbox{\boldmath$\varphi$\unboldmath}}
+\def\pii{\mbox{\boldmath$\pi$\unboldmath}}
+\def\Ph{\mbox{\boldmath$\Phi$\unboldmath}}
+\def\pss{\mbox{\boldmath$\psi$\unboldmath}}
+\def\Ps{\mbox{\boldmath$\Psi$\unboldmath}}
+\def\muu{\mbox{\boldmath$\mu$\unboldmath}}
+\def\Si{\mbox{\boldmath$\Sigma$\unboldmath}}
+\def\lam{\mbox{\boldmath$\lambda$\unboldmath}}
+\def\Lam{\mbox{\boldmath$\Lambda$\unboldmath}}
+\def\Gam{\mbox{\boldmath$\Gamma$\unboldmath}}
+\def\Oma{\mbox{\boldmath$\Omega$\unboldmath}}
+\def\De{\mbox{\boldmath$\Delta$\unboldmath}}
+\def\de{\mbox{\boldmath$\delta$\unboldmath}}
+\def\Tha{\mbox{\boldmath$\Theta$\unboldmath}}
+\def\tha{\mbox{\boldmath$\theta$\unboldmath}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{example}{Example}[section]
+
+
+\def\probin{\mbox{\rotatebox[origin=c]{90}{$\vDash$}}}
+
+\def\calA{{\cal A}}
+
+
+
+%this is a comment
+
+%use this as a template only... you may not need the subsections,
+%or lists however they are placed in the document to show you how
+%do it if needed.
+
+
+%THINGS TO REMEMBER
+%to compile a latex document - latex filename.tex
+%to view the document        - xdvi filename.dvi
+%to create a ps document     - dvips filename.dvi
+%to create a pdf document    - dvipdf filename.dvi
+%{\bf TEXT}                  - bold font TEXT
+%{\it TEXT}                  - italic TEXT
+%$ ... $                     - places ... in math mode on same line
+%$$ ... $$                   - places ... in math mode on new line
+%more info at www.cs.wm.edu/~mliskov/cs423_fall04/tex.html
+
+
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textwidth}{6in}
+\setlength{\topmargin}{-0.4in}
+\setlength{\textheight}{8.5in}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\notes}[5]{
+	\renewcommand{\thepage}{#1 - \arabic{page}}
+	\noindent
+	\begin{center}
+	\framebox{
+		\vbox{
+		\hbox to 5.78in { { \bf Statistical Machine Learning}
+		\hfill #2}
+		\vspace{4mm}
+		\hbox to 5.78in { {\Large \hfill #5 \hfill} }
+		\vspace{2mm}
+		\hbox to 5.78in { {\it #3 \hfill #4} }
+		}
+	}
+	\end{center}
+	\vspace*{4mm}
+}
+
+\newcommand{\ho}[5]{\notes{#1}{Distribution}{Professor: Zhihua Zhang}{}{Lecture Notes #1: Distribution}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%begins a LaTeX document
+\begin{document}
+
+\ho{2}{2014.03.02}{Moses Liskov}{Name}{Lecture title}
+
+\section{A}
+
+\section{Discrete Distribution Examples}
+\subsection{Uniform Discrete Distribution}
+Random variable $\X \in \{x_1, x_2, ..., x_n\}$ has a uniform discrete distribution pmf $f$ if 
+\[f(x) = \left\{\begin{array}{cc}
+\frac{1}{n}  &  x = x_i, i = 1, 2, ..., n \\
+0                &  \text{otherwise}
+\end{array}
+\right.\] 
+
+\subsection{Point Mass Distribution}
+Random variable $\X$ has a point mass distribution pmf $f$ if 
+\[f(x) = \left\{\begin{array}{cc}
+1 & x= a \\
+0 & \text{otherwise}
+\end{array}
+\right.
+\]
+
+\subsection{Bernoulli Distribution}
+Random variable $\X$ has a bernoulli distribution pmf $f$ if 
+\[f(x) = \left\{\begin{array}{cc}
+p & x= a \\
+1-p & \text{otherwise}
+\end{array}
+\right.
+\]
+where $p \in [0,1]$.
+
+\subsection{Poisson Distribution}
+A discrete random variable $\X$ is said to have a Poisson distribution with parameter $\lambda > 0$, 
+if, for $k = 0, 1, 2, ...$, the probability mass function of $\X$ is given by:
+\[f(k; \lambda) = \Pr(X=k)= \frac{\lambda^k e^{-\lambda}}{k!}\].
+
+{\bf Remark}: If $\X_1 \sim Poisson(\lambda_1)$, $\X_2 \sim Poisson(\lambda_2)$, 
+then $\X_1 + \X_2 \sim Poisson(\lambda_1 + \lambda_2)$.
+
+\subsection{Binomial Distribution}
+A discrete random variable $\X$ is said to have a binomial distribution with parameter $n$ and $p$, we write $\X \sim Binomial(n,p))$. The probability mass function is given by:
+\[f(k;n,p) = \Pr(\X = k) = {n\choose k}p^k(1-p)^{n-k}\]
+for $k=0,1,2,...,n$, where ${n \choose k} = \frac{n!}{k!(n-k)!}$ is the binomial coefficient. It can be interpreted that the probability of exact $k$ successes after $n$ trials.
+
+[ need to add more ... ]
+
+\subsection{Negative Binomial Distribution}
+Suppose there is a sequence of independent Bernoulli trials, each trial having two potential outcomes called ``success" and ``failure". In each trial the probability of success is $p$ and of failure is $1 − p$. We are observing this sequence until a predefined number $r$ of failures has occurred. Then the random number of successes we have seen, $\X$, will have the negative binomial (or Pascal) distribution:
+\[\X \sim NB(r, p).\]
+
+The probability mass function of the negative binomial distribution is:
+\[f(k; r,p) = Pr(\X = k) = {k+r-1 \choose k} p^k (1-p)^r\]
+for $k = 0, 1, 2, ...$
+
+\subsection{Geometric Distribution}
+
+
+\section{Continuous Distribution Examples}
+\subsection{Continuous Uniform Distribution}
+A continuous random variable $\X$ is said to have a uniform distribution in $[a,b]$, 
+if the probability density function is given by:
+\[ f(x)=\begin{cases}
+  \frac{1}{b - a} &  a \leq x \leq b \\
+  0 & \mathrm{otherwise}
+  \end{cases} \]
+  
+\subsection{Normal(Gaussian) Distribution}
+A continuous random variable $\X$ is said to have a Gaussian distribution with parameter $\mu$ and $\sigma$, if the probability density function of $\X$ is given by:
+\[f(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}\]
+The cumulative distribution function of Gaussian random variable $\X$ with parameter $\mu = 0$ and $\sigma = 1$ is:
+\[\Phi(z) = Pr(\X < z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}} dt\]
+
+\subsection{Disac Distribution}
+
+\subsection{Exponential Power Distribution}
+
+\subsection{Generalized Inverse Gaussian Distribution}
+A continuous random variable $\X$ is said to have generalized inverse Gaussian distribution with parameters $\alpha$, $\beta$, $r$, if the probability density function of $\X$ is given by:
+\[f(x) = \frac{(\alpha / \beta)^{r/2}}{2 K_r(\sqrt{\alpha\beta})} x^{r-1} e^{-(\alpha x + b/x)/2}, x > 0\]
+where $K_r$ is a modified Bessel function of third kind with index $r$, $\alpha > 0$, $\beta > 0$.
+
+\subsection{Chi-Squared Distribution}
+A continuous random variable $\X$ is said to have chi-squared distribution, if the probability density function of $\X$ is given by:
+\[f(x) = \frac{1}{\Gamma(\frac{p}{2})2^{\frac{p}{2}}} x^{\frac{p}{2} - 1} e^{-\frac{x}{2}}\]
+
+\subsection{Beta Distribution}
+A continuous random variable $\X$ is said to have beta distribution, if the probability density function of $\X$ is given by:
+\[f(x) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)} x^{\alpha - 1} (1-x)^{\beta - 1}\]
+
+\end{document}
+
+
+
+
