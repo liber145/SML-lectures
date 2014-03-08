@@ -183,18 +183,18 @@
 \ho{2}{2014.03.08}{Moses Liskov}{Name}{Lecture title}
 \subsection{Distribution Function}
 The CDF of a discrete random variable X can be expressed as the sum of its probability mass function(pmf) $f_X(x)$ as follows:$$F(x) = \sum_{x_i\le x}f_X(x_i)$$
-The CDF of a continuous random variable X can be expressed as the integral of its probability density function(pdf) $f_X(x)$ as follows:$$F(x) = \int_{-\infty}^{x}f_X(t)dt$$ and $$F'(x) = f_X(x)$$
+The CDF of a continuous random variable X can be expressed as the integral of its probability density function(pdf) $f_X(x)$ as follows:$$F(x) = \int_{-\infty}^{x}f_X(t)\mathrm dt$$ and $$F'(x) = f_X(x)$$
 \begin{lemma}
 Let $F$ be the CDF for a random variable X, then we have
 \begin{enumerate}[(1)]
 \item
-$Pr(X=x)=F(x)-F(x^{-})$
+$\Pr(X=x)=F(x)-F(x^{-})$
 \item
-$Pr(x<X\le y)=F(y)-F(x)$
+$\Pr(x<X\le y)=F(y)-F(x)$
 \item
-$Pr(X>x)=1-F(x)$
+$\Pr(X>x)=1-F(x)$
 \item
-If $X$ is continuous, then $$F(b)-F(a)=Pr(a<X<b)=Pr(a\le X<b)=Pr(a<X\le b)=Pr(a\le X\le b)$$
+If $X$ is continuous, then $$F(b)-F(a)=\Pr(a<X<b)=\Pr(a\le X<b)=\Pr(a<X\le b)=\Pr(a\le X\le b)$$
 \end{enumerate}
 \end{lemma}
 \begin{theorem}
@@ -208,9 +208,9 @@ The \textbf{mode} of a discrete probability distribution is the value at which i
 \item
 The pmf is always less than or equal to 1, but the pdf can be greater than 1. For example, the uniform distribution on $[0,1/5]$, the pdf is $f(x)=5$. The pdf also can be infinite, e.g., $f(x) = \frac{2}{3}x^{-\frac{1}{3}}$.
 \item
-$\sum{f(x)}=1$ or $\int{f(x)}=1$ sometimes is written as $\int{dF(x)}=1$ or $\int{F(dx)}=1$. 
+$\sum{f(x)}=1$ or $\int{f(x)}=1$ sometimes is written as $\int{\mathrm dF(x)}=1$ or $\int{F(\mathrm dx)}=1$. 
 \item
-We call $X$ and $Y$ are equal in distribution iff $F_{X}(x)=F_{Y}(x)$ for any $x$. Notice that it is \textbf{not} equal to $X=Y$. For example,  $Pr(X=1)=Pr(X=-1)=\frac{1}{2}$. Let $Y=-X$, then $X$ and $Y$ are equal in distribution but $X\neq Y$.
+We call $X$ and $Y$ are equal in distribution iff $F_{X}(x)=F_{Y}(x)$ for any $x$. Notice that it is \textbf{not} equal to $X=Y$. For example,  $\Pr(X=1)=\Pr(X=-1)=\frac{1}{2}$. Let $Y=-X$, then $X$ and $Y$ are equal in distribution but $X\neq Y$.
 \end{enumerate}
 \subsection{Discrete Distribution Examples}
 \subsubsection{Uniform Discrete Distribution}
@@ -277,16 +277,51 @@ Also, we can define ${n\choose k}$ when n is a real number and k is a integer:
 \]
 Then we can get a new binomial theorem:$(1+z)^n = \sum_{k}{n \choose k}z^k$, $|z|<1$. It can be proved by Taylor expansion also.
 \subsubsection{Negative Binomial Distribution}
-Suppose there is a sequence of independent Bernoulli trials, each trial having two potential outcomes called ``success" and ``failure". In each trial the probability of success is $p$ and of failure is $1 − p$. We are observing this sequence until a predefined number $r$ of failures has occurred. Then the random number of successes we have seen, $X$, will have the negative binomial (or Pascal) distribution:
+Suppose there is a sequence of independent Bernoulli trials, each trial having two potential outcomes called ``success" and ``failure". In each trial the probability of success is $p$ and of failure is $1-p$. We are observing this sequence until a predefined number $r$ of failures has occurred. Then the random number of successes we have seen, $X$, will have the negative binomial (or Pascal) distribution:
 \[X \sim NB(r, p).\]
 
 The probability mass function of the negative binomial distribution is:
-\[f(k; r,p) = Pr(X = k) = {k+r-1 \choose k} p^k (1-p)^r\]
+\[f(k; r,p) = \Pr(X = k) = {k+r-1 \choose k} p^k (1-p)^r\]
 for $k = 0, 1, 2, ...$
 
-\subsubsection{Geometric Distribution}
+Note that \begin{eqnarray*}
+{r-1 \choose k}&=&\frac{(k+r-1)(k+r-2)\dots r}{k!} \\
+&=&\frac{(-1)^{k}(-r)(-r-1)\dots(-r-k-+1)}{k!}\\
+&=&(-1)^k{-r \choose k}\\
+\end{eqnarray*}
+Hence, $$\sum{\Pr(X=k)}=(1-p)^r\sum{(-1)^k{-r \choose k}p^k}=(1-p)^r(1-p)^{-r}=1$$
 
+When $r=1$, the negative binomial distribution is \textbf{geometric distribution}:$\Pr(X = k) = (1-p)^{k-1}\,p$.
 
+Let $p=\frac{\lambda}{\lambda+r}$. If $r \rightarrow \infty$, then $p \rightarrow \infty$. We can get Poisson distribution:
+\begin{eqnarray*}
+\lim_{r\rightarrow\infty}f(\lambda) &=& \lim_{r\rightarrow\infty}\frac{(k+r-1)\dots r}{k!}\left(\frac{\lambda}{r+\lambda}\right)^k\left(\frac{r}{r+\lambda}\right)^r \\
+&=&\lim_{r\rightarrow\infty}\lambda^k\frac{(k+r-1)\dots r}{k!}\left(\frac{1}{r+\lambda}\right)^k\left(\frac{1}{\frac{\lambda}{r}+1}\right)^r \\
+&=&\lim_{r\rightarrow\infty}\frac{\lambda^k}{k!}\frac{(k+r-1)\dots r}{(\lambda+r)^k}\frac{1}{\left(1+\frac{\lambda}{r}\right)^r} \\
+&=&\frac{\lambda^k}{k!}e^{-\lambda} \\
+\end{eqnarray*} 
+
+\textbf{Bernoulli Distribution and Measure}
+Let $\Omega=[0, 1]$, $P([a,b])=b-a$, $0\le a\le b\le 1$(Lebesgue measure).
+Fix $P \in (0,1)$ and let \[X(\omega) = \left\{\begin{array}{cc}
+1 & \omega\le p \\
+0 & \omega > p \\
+\end{array}
+\right.
+\]
+Hence, $\Pr(X=1)=\Pr(\omega\le p)=\Pr([0,p])=p$, $\Pr(X=1)=\Pr(\omega> p)=\Pr((p,1])=1-p$.
+
+\textbf{HomeWork}:
+\begin{enumerate}[(1)]
+\item
+If $\lim \limits_{n\rightarrow\infty}a_n=a$, show that $\lim \limits_{n\rightarrow\infty}\left(1+\frac{a_n}{n}\right)^n=e^{a}$.
+\item
+Prove the Stirling Formula.
+\begin{eqnarray*}
+\lim_{p\rightarrow\infty}\frac{\ln\Gamma(p)}{\frac{1}{2}\ln(2\pi)+(p-\frac{1}{2})\ln{p}-p}&=&1\\
+\lim_{p\rightarrow\infty}\frac{\Gamma(p)}{(2\pi)^{\frac{1}{2}}p^{p-\frac{1}{2}}e^{-p}}&=&1
+\end{eqnarray*}
+\end{enumerate}
 \subsection{Continuous Distribution Examples}
 \subsubsection{Continuous Uniform Distribution}
 A continuous random variable $X$ is said to have a uniform distribution in $[a,b]$, 
@@ -295,20 +330,39 @@ if the probability density function is given by:
   \frac{1}{b - a} &  a \leq x \leq b \\
   0 & \mathrm{otherwise}
   \end{cases} \]
-  
+
 \subsubsection{Normal(Gaussian) Distribution}
 A continuous random variable $X$ is said to have a Gaussian distribution with parameter $\mu$ and $\sigma$, if the probability density function of $X$ is given by:
 \[f(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}\]
-The cumulative distribution function of Gaussian random variable $X$ with parameter $\mu = 0$ and $\sigma = 1$ is:
-\[\Phi(z) = Pr(X < z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}} dt\]
+denoted as $X\sim \MN(\mu, \sigma^2)$. The cumulative distribution function of Gaussian random variable $X$ with parameter $\mu = 0$ and $\sigma = 1$ ($X\sim \MN(0,1)$)is:
+\[\Phi(z) = \Pr(X < z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}} \mathrm dt\]
 
-\subsubsection{Disac Distribution}
-
+\subsubsection{Dirac Distribution}
+The Dirac function, or $\delta$ function can be loosely thought of as a function on the real line which is zero everywhere except at the origin, where it is infinite,
+$$\delta(x) = \begin{cases} +\infty, & x = 0 \\ 0, & x \ne 0 \end{cases}$$
+and which is also constrained to satisfy the identity
+$$\int_{-\infty}^\infty \delta(x) \, \mathrm dx = 1$$
 \subsubsection{Exponential Power Distribution}
+$$
+f(x)=\frac{1}{2^{\frac{q+1}{q}}\Gamma(\frac{q+1}{q})\sigma} \; e^{\left(-\frac{1}{2}|\frac{x-\mu}{\sigma}|^q\right)}
+$$
+This family includes the normal distribution when $q=2$ and it includes the Laplace distribution when $q=1$: $f(x)=\frac{1}{4\sigma} e^{-\frac{|x-\mu|}{2\sigma}}$
 
+To validate $\int{f(x)}=1$, the following formulas may help. For $a>0, p>0$,
+\begin{eqnarray*}
+\int_{0}^{\infty}x^{p-1}e^{-ax}\mathrm dx &=& a^{-p}\Gamma(p) \\
+\int_{0}^{\infty}x^{-(p+1)}e^{-ax^{-1}}\mathrm dx &=& a^{-p}\Gamma(p) \\
+\int_{0}^{\infty}x^{p-1}e^{-ax^2}\mathrm dx &=& \frac{1}{2}a^{-\frac{p}{2}}\Gamma(\frac{p}{2}) \\
+\int_{0}^{\infty}x^{-(p+1)}e^{-ax^{-2}}\mathrm dx &=& \frac{1}{2}a^{-\frac{p}{2}}\Gamma(\frac{p}{2}) \\
+\end{eqnarray*}
+More generally, for $a>0, p>0$,
+\begin{eqnarray*}
+\int_{0}^{\infty}x^{p-1}e^{-ax^q}\mathrm dx &=& \frac{1}{q}a^{-\frac{p}{q}}\Gamma(\frac{p}{q}) \\
+\int_{0}^{\infty}x^{-(p+1)}e^{-ax^{-q}}\mathrm dx &=& \frac{1}{q}a^{-\frac{p}{q}}\Gamma(\frac{p}{q}) \\
+\end{eqnarray*}
 \subsubsection{Generalized Inverse Gaussian Distribution}
-A continuous random variable $X$ is said to have generalized inverse Gaussian distribution with parameters $\alpha$, $\beta$, $r$, if the probability density function of $X$ is given by:
-\[f(x) = \frac{(\alpha / \beta)^{r/2}}{2 K_r(\sqrt{\alpha\beta})} x^{r-1} e^{-(\alpha x + b/x)/2}, x > 0\]
+A continuous random variable $X$ is said to have generalized inverse Gaussian distribution(GIG) with parameters $\alpha$, $\beta$, $r$, if the probability density function of $X$ is given by:
+\[f(x) = \frac{(\alpha / \beta)^{r/2}}{2 K_r(\sqrt{\alpha\beta})} x^{r-1} e^{-(\alpha x + \beta/x)/2}, x > 0\]
 where $K_r$ is a modified Bessel function of third kind with index $r$, $\alpha > 0$, $\beta > 0$.
 
 \subsubsection{Chi-Squared Distribution}
