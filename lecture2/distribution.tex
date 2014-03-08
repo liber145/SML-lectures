@@ -172,27 +172,57 @@
 	\vspace*{4mm}
 }
 
-\newcommand{\ho}[5]{\notes{#1}{Distribution}{Professor: Zhihua Zhang}{}{Lecture Notes #1: Distribution}}
+\newcommand{\ho}[5]{\notes{#1}{Distributions}{Professor: Zhihua Zhang}{}{Lecture Notes #1: Distributions}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %begins a LaTeX document
+\setcounter{section}{2}
+\setcounter{subsection}{0}
+\setcounter{theorem}{2}
 \begin{document}
-
-\ho{2}{2014.03.02}{Moses Liskov}{Name}{Lecture title}
-
-\section{A}
-
-\section{Discrete Distribution Examples}
-\subsection{Uniform Discrete Distribution}
-Random variable $\X \in \{x_1, x_2, ..., x_n\}$ has a uniform discrete distribution pmf $f$ if 
+\ho{2}{2014.03.08}{Moses Liskov}{Name}{Lecture title}
+\subsection{Distribution Function}
+The CDF of a discrete random variable X can be expressed as the sum of its probability mass function(pmf) $f_X(x)$ as follows:$$F(x) = \sum_{x_i\le x}f_X(x_i)$$
+The CDF of a continuous random variable X can be expressed as the integral of its probability density function(pdf) $f_X(x)$ as follows:$$F(x) = \int_{-\infty}^{x}f_X(t)dt$$ and $$F'(x) = f_X(x)$$
+\begin{lemma}
+Let $F$ be the CDF for a random variable X, then we have
+\begin{enumerate}[(1)]
+\item
+$Pr(X=x)=F(x)-F(x^{-})$
+\item
+$Pr(x<X\le y)=F(y)-F(x)$
+\item
+$Pr(X>x)=1-F(x)$
+\item
+If $X$ is continuous, then $$F(b)-F(a)=Pr(a<X<b)=Pr(a\le X<b)=Pr(a<X\le b)=Pr(a\le X\le b)$$
+\end{enumerate}
+\end{lemma}
+\begin{theorem}
+Suppose X is a random variable with CDF $F(x)$. The inverse CDF is defined by: $$F^{-1}(q)=inf\{x:F(x)>q\}$$ for $q \in [0,1]$. It's is also called \textbf{quantile function}.
+\end{theorem}
+\begin{theorem}
+The \textbf{mode} of a discrete probability distribution is the value at which its pmf takes its maximum value. The mode of a continuous probability distribution is the value x at which its probability density function has its maximum value, so, informally speaking, the mode is at the peak.
+\end{theorem}
+{\bf Remarks:}
+\begin{enumerate}[(1)]
+\item
+The pmf is always less than or equal to 1, but the pdf can be greater than 1. For example, the uniform distribution on $[0,1/5]$, the pdf is $f(x)=5$. The pdf also can be infinite, e.g., $f(x) = \frac{2}{3}x^{-\frac{1}{3}}$.
+\item
+$\sum{f(x)}=1$ or $\int{f(x)}=1$ sometimes is written as $\int{dF(x)}=1$ or $\int{F(dx)}=1$. 
+\item
+We call $X$ and $Y$ are equal in distribution iff $F_{X}(x)=F_{Y}(x)$ for any $x$. Notice that it is \textbf{not} equal to $X=Y$. For example,  $Pr(X=1)=Pr(X=-1)=\frac{1}{2}$. Let $Y=-X$, then $X$ and $Y$ are equal in distribution but $X\neq Y$.
+\end{enumerate}
+\subsection{Discrete Distribution Examples}
+\subsubsection{Uniform Discrete Distribution}
+Random variable $X \in \{x_1, x_2, ..., x_n\}$ has a uniform discrete distribution pmf $f$ if 
 \[f(x) = \left\{\begin{array}{cc}
 \frac{1}{n}  &  x = x_i, i = 1, 2, ..., n \\
 0                &  \text{otherwise}
 \end{array}
 \right.\] 
 
-\subsection{Point Mass Distribution}
-Random variable $\X$ has a point mass distribution pmf $f$ if 
+\subsubsection{Point Mass Distribution}
+Random variable $X$ has a point mass distribution pmf $f$ if 
 \[f(x) = \left\{\begin{array}{cc}
 1 & x= a \\
 0 & \text{otherwise}
@@ -200,72 +230,93 @@ Random variable $\X$ has a point mass distribution pmf $f$ if
 \right.
 \]
 
-\subsection{Bernoulli Distribution}
-Random variable $\X$ has a bernoulli distribution pmf $f$ if 
+\subsubsection{Bernoulli Distribution}
+Random variable $X$ has a bernoulli distribution pmf $f$ if 
 \[f(x) = \left\{\begin{array}{cc}
 p & x= a \\
 1-p & \text{otherwise}
 \end{array}
 \right.
 \]
-where $p \in [0,1]$.
+where $p \in [0,1]$. It can be written as $f(x)=p^x(1-p)^{1-x}$ also. In binary classification problem, Bernoulli distribution is always used to model the category $y$.
 
-\subsection{Poisson Distribution}
-A discrete random variable $\X$ is said to have a Poisson distribution with parameter $\lambda > 0$, 
-if, for $k = 0, 1, 2, ...$, the probability mass function of $\X$ is given by:
-\[f(k; \lambda) = \Pr(X=k)= \frac{\lambda^k e^{-\lambda}}{k!}\].
+\subsubsection{Poisson Distribution}
+A discrete random variable $X$ is said to have a Poisson distribution with parameter $\lambda > 0$, 
+if, for $k = 0, 1, 2, ...$, the probability mass function of $X$ is given by:
+\[f(x; \lambda) = \Pr(X=x)= e^{-\lambda} \frac{\lambda^x }{x!},\quad x\ge 0\].
 
-{\bf Remark}: If $\X_1 \sim Poisson(\lambda_1)$, $\X_2 \sim Poisson(\lambda_2)$, 
-then $\X_1 + \X_2 \sim Poisson(\lambda_1 + \lambda_2)$.
+It is easy to validate $\sum{f(x)}=1$ by the Taylor expansion of $e^\lambda$.
 
-\subsection{Binomial Distribution}
-A discrete random variable $\X$ is said to have a binomial distribution with parameter $n$ and $p$, we write $\X \sim Binomial(n,p))$. The probability mass function is given by:
-\[f(k;n,p) = \Pr(\X = k) = {n\choose k}p^k(1-p)^{n-k}\]
+{\bf Remark}: If $X_1 \sim Poisson(\lambda_1)$, $X_2 \sim Poisson(\lambda_2)$, 
+then $X_1 + X_2 \sim Poisson(\lambda_1 + \lambda_2)$.
+
+\subsubsection{Binomial Distribution}
+A discrete random variable $X$ is said to have a binomial distribution with parameter $n$ and $p$, we write $X \sim Binomial(n,p)$. The probability mass function is given by:
+\[f(x;n,p) = \Pr(X = x) = {n\choose x}p^x(1-p)^{n-x}\]
 for $k=0,1,2,...,n$, where ${n \choose k} = \frac{n!}{k!(n-k)!}$ is the binomial coefficient. It can be interpreted that the probability of exact $k$ successes after $n$ trials.
 
-[ need to add more ... ]
+{\bf Remark}: If $X_1 \sim Binomial(n_1,p)$, $X_2 \sim Binomial(n_2,p)$, 
+then $X_1 + X_2 \sim Binomial(n_1+n_2,p)$.
 
-\subsection{Negative Binomial Distribution}
-Suppose there is a sequence of independent Bernoulli trials, each trial having two potential outcomes called ``success" and ``failure". In each trial the probability of success is $p$ and of failure is $1 − p$. We are observing this sequence until a predefined number $r$ of failures has occurred. Then the random number of successes we have seen, $\X$, will have the negative binomial (or Pascal) distribution:
-\[\X \sim NB(r, p).\]
+By the way, we introduce something about gamma function and a generalization form of ${n\choose k}$.
+
+The gamma function (represented by the capital Greek letter $\Gamma$) is an extension of the factorial function, with its argument shifted down by 1, to real and complex numbers. That is, if $n$ is a positive integer:
+$$\Gamma(n)=(n-1)!$$
+
+The gamma function is defined for all complex numbers except the negative integers and zero. For complex numbers with a positive real part, it is defined via a convergent improper integral:
+$$\Gamma(x) = \int_0^\infty t^{x-1} e^{-t}\,{\rm d}t$$.
+
+As a generalization of factorial function, $\Gamma(x+1)=x\Gamma(x)$, $\Gamma(1)=0!=1$ and $ \Gamma(\frac{1}{2})=\sqrt{\pi}$.
+
+Also, we can define ${n\choose k}$ when n is a real number and k is a integer:
+\[{n\choose k} = \left\{\begin{array}{cc}
+\frac{n(n-1)\dots(n-k+1)}{k!} & k\ge 0 \\
+0 & k<0
+\end{array}
+\right.
+\]
+Then we can get a new binomial theorem:$(1+z)^n = \sum_{k}{n \choose k}z^k$, $|z|<1$. It can be proved by Taylor expansion also.
+\subsubsection{Negative Binomial Distribution}
+Suppose there is a sequence of independent Bernoulli trials, each trial having two potential outcomes called ``success" and ``failure". In each trial the probability of success is $p$ and of failure is $1 − p$. We are observing this sequence until a predefined number $r$ of failures has occurred. Then the random number of successes we have seen, $X$, will have the negative binomial (or Pascal) distribution:
+\[X \sim NB(r, p).\]
 
 The probability mass function of the negative binomial distribution is:
-\[f(k; r,p) = Pr(\X = k) = {k+r-1 \choose k} p^k (1-p)^r\]
+\[f(k; r,p) = Pr(X = k) = {k+r-1 \choose k} p^k (1-p)^r\]
 for $k = 0, 1, 2, ...$
 
-\subsection{Geometric Distribution}
+\subsubsection{Geometric Distribution}
 
 
-\section{Continuous Distribution Examples}
-\subsection{Continuous Uniform Distribution}
-A continuous random variable $\X$ is said to have a uniform distribution in $[a,b]$, 
+\subsection{Continuous Distribution Examples}
+\subsubsection{Continuous Uniform Distribution}
+A continuous random variable $X$ is said to have a uniform distribution in $[a,b]$, 
 if the probability density function is given by:
 \[ f(x)=\begin{cases}
   \frac{1}{b - a} &  a \leq x \leq b \\
   0 & \mathrm{otherwise}
   \end{cases} \]
   
-\subsection{Normal(Gaussian) Distribution}
-A continuous random variable $\X$ is said to have a Gaussian distribution with parameter $\mu$ and $\sigma$, if the probability density function of $\X$ is given by:
+\subsubsection{Normal(Gaussian) Distribution}
+A continuous random variable $X$ is said to have a Gaussian distribution with parameter $\mu$ and $\sigma$, if the probability density function of $X$ is given by:
 \[f(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}\]
-The cumulative distribution function of Gaussian random variable $\X$ with parameter $\mu = 0$ and $\sigma = 1$ is:
-\[\Phi(z) = Pr(\X < z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}} dt\]
+The cumulative distribution function of Gaussian random variable $X$ with parameter $\mu = 0$ and $\sigma = 1$ is:
+\[\Phi(z) = Pr(X < z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}} dt\]
 
-\subsection{Disac Distribution}
+\subsubsection{Disac Distribution}
 
-\subsection{Exponential Power Distribution}
+\subsubsection{Exponential Power Distribution}
 
-\subsection{Generalized Inverse Gaussian Distribution}
-A continuous random variable $\X$ is said to have generalized inverse Gaussian distribution with parameters $\alpha$, $\beta$, $r$, if the probability density function of $\X$ is given by:
+\subsubsection{Generalized Inverse Gaussian Distribution}
+A continuous random variable $X$ is said to have generalized inverse Gaussian distribution with parameters $\alpha$, $\beta$, $r$, if the probability density function of $X$ is given by:
 \[f(x) = \frac{(\alpha / \beta)^{r/2}}{2 K_r(\sqrt{\alpha\beta})} x^{r-1} e^{-(\alpha x + b/x)/2}, x > 0\]
 where $K_r$ is a modified Bessel function of third kind with index $r$, $\alpha > 0$, $\beta > 0$.
 
-\subsection{Chi-Squared Distribution}
-A continuous random variable $\X$ is said to have chi-squared distribution, if the probability density function of $\X$ is given by:
+\subsubsection{Chi-Squared Distribution}
+A continuous random variable $X$ is said to have chi-squared distribution, if the probability density function of $X$ is given by:
 \[f(x) = \frac{1}{\Gamma(\frac{p}{2})2^{\frac{p}{2}}} x^{\frac{p}{2} - 1} e^{-\frac{x}{2}}\]
 
-\subsection{Beta Distribution}
-A continuous random variable $\X$ is said to have beta distribution, if the probability density function of $\X$ is given by:
+\subsubsection{Beta Distribution}
+A continuous random variable $X$ is said to have beta distribution, if the probability density function of $X$ is given by:
 \[f(x) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)} x^{\alpha - 1} (1-x)^{\beta - 1}\]
 
 \end{document}
