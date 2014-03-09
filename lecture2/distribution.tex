@@ -179,6 +179,8 @@
 \setcounter{section}{2}
 \setcounter{subsection}{0}
 \setcounter{theorem}{2}
+\setcounter{definition}{2}
+\setcounter{example}{4}
 \begin{document}
 \ho{2}{2014.03.08}{Moses Liskov}{Name}{Lecture title}
 \subsection{Distribution Function}
@@ -197,12 +199,12 @@ $\Pr(X>x)=1-F(x)$
 If $X$ is continuous, then $$F(b)-F(a)=\Pr(a<X<b)=\Pr(a\le X<b)=\Pr(a<X\le b)=\Pr(a\le X\le b)$$
 \end{enumerate}
 \end{lemma}
-\begin{theorem}
+\begin{definition}
 Suppose X is a random variable with CDF $F(x)$. The inverse CDF is defined by: $$F^{-1}(q)=inf\{x:F(x)>q\}$$ for $q \in [0,1]$. It's is also called \textbf{quantile function}.
-\end{theorem}
-\begin{theorem}
+\end{definition}
+\begin{definition}
 The \textbf{mode} of a discrete probability distribution is the value at which its pmf takes its maximum value. The mode of a continuous probability distribution is the value x at which its probability density function has its maximum value, so, informally speaking, the mode is at the peak.
-\end{theorem}
+\end{definition}
 {\bf Remarks:}
 \begin{enumerate}[(1)]
 \item
@@ -210,7 +212,7 @@ The pmf is always less than or equal to 1, but the pdf can be greater than 1. Fo
 \item
 $\sum{f(x)}=1$ or $\int{f(x)}=1$ sometimes is written as $\int{\mathrm dF(x)}=1$ or $\int{F(\mathrm dx)}=1$. 
 \item
-We call $X$ and $Y$ are equal in distribution iff $F_{X}(x)=F_{Y}(x)$ for any $x$. Notice that it is \textbf{not} equal to $X=Y$. For example,  $\Pr(X=1)=\Pr(X=-1)=\frac{1}{2}$. Let $Y=-X$, then $X$ and $Y$ are equal in distribution but $X\neq Y$.
+We call $X$ and $Y$ are equal in distribution iff $F_{X}(x)=F_{Y}(x)$ for any $x$. Notice that it is \textbf{not} the same as $X=Y$. For example,  $\Pr(X=1)=\Pr(X=-1)=\frac{1}{2}$. Let $Y=-X$, then $X$ and $Y$ are equal in distribution but $X\neq Y$.
 \end{enumerate}
 \subsection{Discrete Distribution Examples}
 \subsubsection{Uniform Discrete Distribution}
@@ -231,7 +233,7 @@ Random variable $X$ has a point mass distribution pmf $f$ if
 \]
 
 \subsubsection{Bernoulli Distribution}
-Random variable $X$ has a bernoulli distribution pmf $f$ if 
+Random variable $X$ has a Bernoulli distribution pmf $f$ if 
 \[f(x) = \left\{\begin{array}{cc}
 p & x= a \\
 1-p & \text{otherwise}
@@ -247,16 +249,16 @@ if, for $k = 0, 1, 2, ...$, the probability mass function of $X$ is given by:
 
 It is easy to validate $\sum{f(x)}=1$ by the Taylor expansion of $e^\lambda$.
 
-{\bf Remark}: If $X_1 \sim Poisson(\lambda_1)$, $X_2 \sim Poisson(\lambda_2)$, 
-then $X_1 + X_2 \sim Poisson(\lambda_1 + \lambda_2)$.
+{\bf Remark}: If $X_1 \sim \mbox{Poisson}(\lambda_1)$, $X_2 \sim \mbox{Poisson}(\lambda_2)$, 
+then $X_1 + X_2 \sim \mbox{Poisson}(\lambda_1 + \lambda_2)$.
 
 \subsubsection{Binomial Distribution}
-A discrete random variable $X$ is said to have a binomial distribution with parameter $n$ and $p$, we write $X \sim Binomial(n,p)$. The probability mass function is given by:
+A discrete random variable $X$ is said to have a binomial distribution with parameter $n$ and $p$, we write $X \sim \mbox{Binomial}s(n,p)$. The probability mass function is given by:
 \[f(x;n,p) = \Pr(X = x) = {n\choose x}p^x(1-p)^{n-x}\]
 for $k=0,1,2,...,n$, where ${n \choose k} = \frac{n!}{k!(n-k)!}$ is the binomial coefficient. It can be interpreted that the probability of exact $k$ successes after $n$ trials.
 
-{\bf Remark}: If $X_1 \sim Binomial(n_1,p)$, $X_2 \sim Binomial(n_2,p)$, 
-then $X_1 + X_2 \sim Binomial(n_1+n_2,p)$.
+{\bf Remark}: If $X_1 \sim \mbox{Binomial}(n_1,p)$, $X_2 \sim \mbox{Binomial}(n_2,p)$, 
+then $X_1 + X_2 \sim \mbox{Binomial}(n_1+n_2,p)$.
 
 By the way, we introduce something about gamma function and a generalization form of ${n\choose k}$.
 
@@ -278,7 +280,7 @@ Also, we can define ${n\choose k}$ when n is a real number and k is a integer:
 Then we can get a new binomial theorem:$(1+z)^n = \sum_{k}{n \choose k}z^k$, $|z|<1$. It can be proved by Taylor expansion also.
 \subsubsection{Negative Binomial Distribution}
 Suppose there is a sequence of independent Bernoulli trials, each trial having two potential outcomes called ``success" and ``failure". In each trial the probability of success is $p$ and of failure is $1-p$. We are observing this sequence until a predefined number $r$ of failures has occurred. Then the random number of successes we have seen, $X$, will have the negative binomial (or Pascal) distribution:
-\[X \sim NB(r, p).\]
+\[X \sim \mbox{NB}(r, p).\]
 
 The probability mass function of the negative binomial distribution is:
 \[f(k; r,p) = \Pr(X = k) = {k+r-1 \choose k} p^k (1-p)^r\]
@@ -311,7 +313,7 @@ Fix $P \in (0,1)$ and let \[X(\omega) = \left\{\begin{array}{cc}
 \]
 Hence, $\Pr(X=1)=\Pr(\omega\le p)=\Pr([0,p])=p$, $\Pr(X=1)=\Pr(\omega> p)=\Pr((p,1])=1-p$.
 
-\textbf{HomeWork}:
+\textbf{Homework}:
 \begin{enumerate}[(1)]
 \item
 If $\lim \limits_{n\rightarrow\infty}a_n=a$, show that $\lim \limits_{n\rightarrow\infty}\left(1+\frac{a_n}{n}\right)^n=e^{a}$.
@@ -328,7 +330,7 @@ A continuous random variable $X$ is said to have a uniform distribution in $[a,b
 if the probability density function is given by:
 \[ f(x)=\begin{cases}
   \frac{1}{b - a} &  a \leq x \leq b \\
-  0 & \mathrm{otherwise}
+  0 & \mbox{otherwise}
   \end{cases} \]
 
 \subsubsection{Normal(Gaussian) Distribution}
@@ -363,16 +365,110 @@ More generally, for $a>0, p>0$,
 \subsubsection{Generalized Inverse Gaussian Distribution}
 A continuous random variable $X$ is said to have generalized inverse Gaussian distribution(GIG) with parameters $\alpha$, $\beta$, $r$, if the probability density function of $X$ is given by:
 \[f(x) = \frac{(\alpha / \beta)^{r/2}}{2 K_r(\sqrt{\alpha\beta})} x^{r-1} e^{-(\alpha x + \beta/x)/2}, x > 0\]
-where $K_r$ is a modified Bessel function of third kind with index $r$, $\alpha > 0$, $\beta > 0$.
+where $K_r$ is a modified Bessel function of second kind with index $r$, $\alpha > 0$, $\beta > 0$.
+
+\textbf{Properties of Bessel Function}
+\begin{enumerate}[(1)]
+\item
+$K_r(u)=K_{-r}(u)$
+\item
+$K_{r+1}(u)=2\frac{r}{u}K_{r}(u)+K_{r-1}(u)$
+\item
+$K_{1/2}(u)=K_{-1/2}(u)=\sqrt{\frac{\pi}{2u}}e^{-u}$
+\item
+$u\rightarrow0 \,\, \begin{cases}
+  K_r(u) \sim \frac{1}{2}\Gamma(r)\left(\frac{u}{2}\right)^{-r} \\
+  K_0(u) \sim \ln{u}
+  \end{cases}$
+\item
+$u\rightarrow\infty, K_r(u)\sim\sqrt{\frac{\pi}{2u}}e^{-u}$
+\end{enumerate}
+
+\textbf{Gamma Distribution}
+
+Specially, when $\beta=0, \alpha>0, r>0$, $X\sim \mbox{Gamma}(r,\frac{\alpha}{2})$,
+$$
+f(x) = \frac{\alpha^r}{2^r\Gamma(r)} x^{r-1} e^{- \frac{\alpha x}{2} }
+$$
+when $r=1$, it's exponential distribution. If $X_i\sim  \mbox{Gamma}(r_i,\alpha)$, then $\sum_{i=1}^{n}X_i\sim \mbox{Gamma}({\sum_{i=1}^n{r_i},\alpha})$.
+
+\textbf{Inverse Gamma Distribution}
+
+Specially, when $\alpha=0, r<0, \beta>0$, $X\sim \mbox{Inv-Gamma}(r,\frac{\beta}{2})$,
+$$
+f(x) = \frac{\beta^\tau}{2^\tau\Gamma(\tau)} x^{-(\tau+1)} e^{- \frac{\beta}{2x} },\tau=-r
+$$
+
+\textbf{Inverse Gaussian}
+
+Specially, when $r=-\frac{1}{2}$,
+\begin{eqnarray*}
+f(x) &=& \left(\frac{\beta}{2\pi}\right)^{\frac{1}{2}}\exp({\sqrt{2\beta}})x^{-\frac{3}{2}}\exp(-\frac{\alpha x+x^{-1}\beta}{2})\\
+&=& \left[\frac{\lambda}{2 \pi x^3}\right]^{1/2} \exp{\frac{-\lambda (x-\mu)^2}{2 \mu^2 x}} 
+\end{eqnarray*}
+where $\alpha = \lambda/\mu^2, \beta = \lambda$.
 
 \subsubsection{Chi-Squared Distribution}
 A continuous random variable $X$ is said to have chi-squared distribution, if the probability density function of $X$ is given by:
-\[f(x) = \frac{1}{\Gamma(\frac{p}{2})2^{\frac{p}{2}}} x^{\frac{p}{2} - 1} e^{-\frac{x}{2}}\]
+\[f(x) = \frac{1}{\Gamma(\frac{p}{2})2^{\frac{p}{2}}} x^{\frac{p}{2} - 1} e^{-\frac{x}{2}}, x>0\]
+Note that $\|\boldsymbol{N}_{i=1,...,k}{(0,1)}\|^2 \sim \chi^2_k$ (The squared norm of k standard normally distributed variables is a chi-squared distribution with $k$ degrees of freedom)
 
 \subsubsection{Beta Distribution}
 A continuous random variable $X$ is said to have beta distribution, if the probability density function of $X$ is given by:
 \[f(x) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)} x^{\alpha - 1} (1-x)^{\beta - 1}\]
+The beta function is defined as:
+$$
+\mbox{Beta}(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}
+$$
+When $\alpha=0,\beta=0$, it is uniform distribution on $[0,1]$.
 
+\subsubsection{Student's t-distribution}
+A continuous random variable $X$ is said to have Student's t-distribution($X\sim t_\nu$), if the probability density function of $X$ is given by:
+$$
+f(t) = \frac{\Gamma(\frac{\nu+1}{2})}{\Gamma(\frac{\nu}{2})} \frac{1}{\left(1+\frac{(x-\mu)^2}{\nu\sigma^2}\right)^{\frac{\nu+1}{2}}} \frac{1}{\sqrt{\nu\pi}/\sigma}
+$$
+When $\nu=1$, it is Cauchy distribution and when $\nu\rightarrow\infty$, $t\rightarrow\MN$.
+
+It can be shown that the t-distribution is like an infinite sum of Gaussians, where each Gaussian has a different variance:
+$$
+\int_{0}^{\infty}\MN(x\mid\mu,(\lambda\tau)^{-1})\mbox{Gamma}(\tau\mid\frac{\nu}{2},\frac{\nu}{2})=t_\nu(x\mid\mu,\lambda^{-1})
+$$
+This means t-distribution is a scale mixture of normal distribution.It results from compounding a Gaussian distribution with mean $\mu$ and unknown precision (the reciprocal of the variance), with a gamma distribution placed over the precision with parameters $r = \nu/2$ and $\alpha/2 = \nu/2$. In other words, the random variable $X$ is assumed to have a normal distribution with an unknown precision distributed as gamma, and then this is marginalized over the gamma distribution.
+
+\begin{example}
+Suppose $X\sim Bernoulli(\theta)$, $\theta\sim Beta(\alpha,\beta)$.
+\begin{eqnarray*}
+p(\theta\mid x)&\propto& p(x\mid\theta)p(\theta\mid\alpha,\beta)\\
+&\propto& \theta^x(1-\theta)^{1-x}\theta^{\alpha-1}(1-\theta)^{\beta-1} \\
+&\propto& \theta^{x+\alpha-1}(1-\theta)^{\beta-x} \\
+&\sim& Beta(x+\alpha, \beta-x+1) \\
+\end{eqnarray*}
+We say that beta distribution is the conjugate prior for the Bernoulli distribution. Generally, if the posterior distributions $p(\theta\mid x)$ are in the same family as the prior probability distribution $p(\theta)$, the prior and posterior are then called conjugate distributions, and the prior is called a conjugate prior for the likelihood function.
+\end{example}
+
+\begin{example}
+Suppose $X\sim \MN(0,\lambda)$.
+$$
+f(x) = \frac{1}{\sqrt{2\pi}}\lambda^{-\frac{1}{2}}\exp(-\frac{x^2}{2\lambda})
+$$
+
+If $\lambda\sim \mbox{Gamma}(r,\alpha/2)$,
+\begin{eqnarray*}
+p(\lambda\mid x)&\propto& p(x\mid\lambda)p(\lambda\mid r,\alpha/2)\\
+&\propto& \lambda^{-\frac{1}{2}}\exp({-\frac{x^2}{2\lambda}})\lambda^{r-1}\exp(-\frac{\alpha\lambda}{2}) \\
+&\propto& \lambda^{r-3/2}\exp(-\frac{1}{2}(\frac{x^2}{\lambda}+\alpha\lambda)) \\
+\end{eqnarray*}
+It is generalized inverse Gaussian distribution, but the prior and posterior are not conjugate distributions. 
+
+If $\lambda\sim \mbox{Inv-Gamma}(\tau,\beta/2)$,
+\begin{eqnarray*}
+p(\lambda\mid x)&\propto& p(x\mid\lambda)p(\lambda\mid \tau,\beta/2)\\
+&\propto& \lambda^{-\frac{1}{2}}\exp({-\frac{x^2}{2\lambda}})\lambda^{-(\tau+1)}\exp(-\frac{\beta}{2\lambda}) \\
+&\propto& \lambda^{-(\tau+1)-1/2}\exp(-\frac{1}{2}(\frac{x^2}{\lambda}+\frac{\beta}{\lambda})) \\
+&\sim&\mbox{Inv-Gamma}(\tau+1/2,\beta+x^2) \\
+\end{eqnarray*}
+Hence, Inv-Gamma is a conjugate prior for the Gaussian distribution with known mean.
+\end{example}
 \end{document}
 
 
