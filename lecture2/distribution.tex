@@ -288,7 +288,7 @@ for $k = 0, 1, 2, ...$
 
 Note that \begin{eqnarray*}
 {k+r-1 \choose k}&=&\frac{(k+r-1)(k+r-2)\dots r}{k!} \\
-&=&\frac{(-1)^{k}(-r)(-r-1)\dots(-r-k-+1)}{k!}\\
+&=&\frac{(-1)^{k}(-r)(-r-1)\dots(-r-k+1)}{k!}\\
 &=&(-1)^k{-r \choose k}\\
 \end{eqnarray*}
 That's why it's called negative binomial distribution. Hence, $$\sum{\Pr(X=k)}=(1-p)^r\sum{(-1)^k{-r \choose k}p^k}=(1-p)^r(1-p)^{-r}=1$$
