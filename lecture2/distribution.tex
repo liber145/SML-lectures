@@ -237,12 +237,12 @@ Random variable $X$ has a point mass distribution pmf $f$ if
 \subsubsection{Bernoulli Distribution}
 Random variable $X$ has a Bernoulli distribution pmf $f$ if 
 \[f(x) = \left\{\begin{array}{cc}
-p & x= a \\
-1-p & \text{otherwise}
+p & x=1 \\
+1-p & x=0
 \end{array}
 \right.
 \]
-where $p \in [0,1]$. It can be written as $f(x)=p^x(1-p)^{1-x}$ also. In binary classification problem, Bernoulli distribution is always used to model the category $y = f(x)$. If $y>0.5$, it's in class 1, else in class 2.
+where $p \in [0,1]$. It can be written as $f(x)=p^x(1-p)^{1-x},x\in\{0,1\}$ also. In binary classification problem, Bernoulli distribution is always used to model the category $y = f(x)$. If $y>0.5$, it's in class 1, else in class 2.
 
 \subsubsection{Poisson Distribution}
 A discrete random variable $X$ is said to have a Poisson distribution with parameter $\lambda > 0$, 
@@ -430,7 +430,7 @@ When $\alpha=1,\beta=1$, it is uniform distribution on $[0,1]$.
 \subsubsection{Student's t-distribution}
 A continuous random variable $X$ is said to have Student's t-distribution($X\sim t_\nu$), if the probability density function of $X$ is given by:
 $$
-f(t) = \frac{\Gamma(\frac{\nu+1}{2})}{\Gamma(\frac{\nu}{2})} \frac{1}{\left(1+\frac{(x-\mu)^2}{\nu\sigma^2}\right)^{\frac{\nu+1}{2}}} \frac{1}{\sqrt{\nu\pi}/\sigma}
+f(t) = \frac{\Gamma(\frac{\nu+1}{2})}{\Gamma(\frac{\nu}{2})} \left(1+\frac{(x-\mu)^2}{\nu\sigma^2}\right)^{-\frac{\nu+1}{2}} \frac{1}{\sqrt{\nu\pi}\sigma}
 $$
 When $\nu=1$, it is Cauchy distribution and when $\nu\rightarrow\infty$, $t\rightarrow\MN$.
 
