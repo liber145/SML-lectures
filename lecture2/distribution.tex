@@ -172,7 +172,7 @@
 	\vspace*{4mm}
 }
 
-\newcommand{\ho}[5]{\notes{#1}{Distributions}{Professor: Zhihua Zhang}{}{Lecture Notes #1: Distributions}}
+\newcommand{\ho}[5]{\notes{#1}{Distributions}{Professor: Zhihua Zhang}{}{Lecture Notes #1: Scale Mixture Distribution}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %begins a LaTeX document
@@ -183,6 +183,8 @@
 \setcounter{example}{4}
 \begin{document}
 \ho{2}{2014.03.08}{Moses Liskov}{Name}{Lecture title}
+
+
 \subsection{Distribution Function}
 The CDF of a discrete random variable X can be expressed as the sum of its probability mass function(pmf) $f_X(x)$ as follows:$$F(x) = \sum_{x_i\le x}f_X(x_i)$$
 The CDF of a continuous random variable X can be expressed as the integral of its probability density function(pdf) $f_X(x)$ as follows:$$F(x) = \int_{-\infty}^{x}f_X(t)\mathrm dt$$ and $$F'(x) = f_X(x)$$
@@ -423,7 +425,7 @@ The beta function is defined as:
 $$
 \mbox{Beta}(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}
 $$
-When $\alpha=0,\beta=0$, it is uniform distribution on $[0,1]$.
+When $\alpha=1,\beta=1$, it is uniform distribution on $[0,1]$.
 
 \subsubsection{Student's t-distribution}
 A continuous random variable $X$ is said to have Student's t-distribution($X\sim t_\nu$), if the probability density function of $X$ is given by:
