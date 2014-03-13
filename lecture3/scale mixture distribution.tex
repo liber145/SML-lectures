@@ -226,7 +226,7 @@ Let $K \sim Poisson(\lambda)$, $\lambda \sim Gamma(r, \frac{1-p}{p})$, then we c
  = & {k+r-1 \choose k} p^k (1-p)^r
 \end{split}\]
 
-Homework 1.   $\sum\limits_{k=0}^\infty Gamma(x | k, \beta) Poisson (k | \lambda)$.
+\textbf{Homework 1.}   $\sum\limits_{k=0}^\infty Gamma(x | k, \beta) Poisson (k | \lambda)$.
 
 \subsection{Statistical Inference (I)}
 
@@ -262,17 +262,159 @@ Now let we go to see Jeffrey prior. When we do MAP(maximum a posteriori), we usu
 Usually $\BP(X | \theta)$ is easy to get, but $\BP(\theta)$ (prior) needs our hypothesis. How to choose hypothesis? If we set a prior with hyper-parameter, the training process will be difficult. Jeffrey prior tells us how to choose hypothesis:
 \[ \BP(\theta) \propto \sqrt{I(\theta)}\]
 
-\textbf{Remark:} Jeffrey prior has property called \textbf{ invariant under reparameterization}, which means if we replace $\theta$ with $\varphi$, and there is a one to one rejection between $\theta$ and $\varphi$. Then we can get:
+\textbf{Remark:} Jeffrey prior has a property called \textbf{ invariant under reparameterization}, which means if we replace $\theta$ with $\varphi$, and there is a one to one rejection between $\theta$ and $\varphi$. Then we can get:
 \[\begin{split} \BP(\varphi) & = \BP(\theta) \left| \frac{\partial \theta}{\partial \varphi} \right| \\
 & \propto \sqrt{ I (\theta) \left(\frac{\partial \theta}{\partial \varphi}\right)^2} \\
 & = \sqrt{\BE\left[ \left(\frac{\partial \log f}{\partial \theta}\right)^2\right]\left(\frac{\partial \theta}{\partial \varphi}\right)^2} \\
 & = \sqrt{\BE\left[ \left( \frac{\partial \log f}{\partial \varphi} \right)^2 \right]}
 \end{split}\]
 
-Assume $X \sim N(\mu, \sigma^2)$.
+\begin{example}
+$X \sim N(\mu, \sigma^2)$.
+\end{example}
 
-\textbf{Case 1:}
+\textbf{Case 1:} Fix $\sigma$, the only parameter is $\mu$. So we can get:
+\[\begin{split} 
+I(\mu) &= \BE\left[ \left( \frac{(x - \mu)^2}{\sigma^2} \right)^2 \right] \\
+&= \frac{\BE(x - \mu)^2}{\sigma^4} \\
+&= \frac{1}{\sigma^2}
+\end{split}\]
+So we can get Jeffrey prior $\BP(\mu) \propto \sqrt{I(\mu)} = \frac{1}{\sigma}$. As $\sigma$ is fixed, then $\BP(\mu) \propto 1$.
+
+\textbf{Remark:} Although $\BP(\mu) = 1$ is a improper prior, as $\int_{-\infty}^\infty 1 dx = \infty$, the posteriori is proper. 
+The prior is also called \textbf{uninformative prior}.
+
+\textbf{Case 2:} Fix $\mu$, the only parameter is $\sigma$. For convenience, let $\tau = \frac{1}{\sigma^2}$. So $f(x) = \frac{\tau^{\frac{1}{2}}}{\sqrt{2\pi}} e^{-\frac{\tau(x-\mu)^2}{2}}$. Then we can get Fisher information:
+\[\begin{split}
+I(\tau) &= \BE\left[\left( \frac{\partial \log f}{\partial \tau} \right)\right]  \\
+&= \BE\left[ \frac{1}{4} \left( \frac{1}{\tau} - (x-\mu)^2 \right)^2  \right] \\
+&= \BE\left[ \frac{1}{4\tau^2} - \frac{(x - \mu)^2}{2\tau} + \frac{(x-\mu)^4}{4} \right] \\
+&= \frac{1}{4\tau^2} - \frac{1}{2\tau^2} + \frac{1}{4}\BE(x-\mu)^4 \\
+&= \frac{1}{2\tau^2}
+\end{split}\]
+
+So Jeffrey prior is $\BP(\tau) \propto \sqrt{I(\tau)}$.
+\newline
+
+\textbf{Homework 2:} Compute the following integrals:
+\begin{enumerate}
+\item $m_0 = \int_{-\infty}^{\infty} \Phi(x) N(x|\mu, \sigma^2) dx$
+\item $m_1 = \int_{-\infty}^{\infty} \Phi(x) N(x|\mu, \sigma^2)x dx$
+\item $m_2 = \int_{-\infty}^{\infty} \Phi(x) N(x|\mu, \sigma^2)(x-m_1) dx$
+
+where $\Phi(x) = \int_{-\infty}^{x} \frac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}} dt$
+\end{enumerate}
+
+\begin{example}
+$X \sim Poisson(\lambda)$
+\end{example}
+Fisher information is:
+\[\begin{split}
+I(\lambda) &= \BE\left[ \left( \frac{n}{\lambda} - 1\right)^2 \right] \\
+&= 1 + \frac{\BE(n^2)}{\lambda^2} - 2 \\
+&= \frac{\lambda + 1}{\lambda} - 1 \\
+&= \frac{1}{\lambda}
+\end{split}\]
+So Jeffrey prior is:
+\[\begin{split}
+\BP(\lambda) \propto \sqrt{\frac{1}{\lambda}}.
+\end{split}\]
+ 
+\textbf{Homework 3.} $f(x, \theta) = \theta^x(1-\theta)^{1-x}$, $0 < \theta < 1$.
+\begin{enumerate}
+\item Compute Jeffrey prior about $\theta$.
+\item If $\theta = \sin^2 \alpha$, compute Jeffrey prior about $\alpha$.
+\end{enumerate}
+ 
 \subsubsection{Problem: $X = \theta + \epsilon$}
+Assume we have a model $X = \theta + \epsilon$, where $X$ is data which we observed or predict, $\theta$ is the parameters, $\epsilon \sim N(0, \tau)$ is the error. So given $\theta$, $X \sim N(\theta, \tau)$. When we use MAP(maximum a posteriori) to estimate parameter $\theta$, we will get $\BP(\theta | X) \propto \BP(X | \theta)\BP(\theta)$. 
+We will discuss this problem under several different conditions in the following.
+
+\textbf{Case 1.} Fix $\tau$, or let it be hyper-parameter. The only parameter is $\theta$. And we set the prior about $\theta$ is $N(\theta | 0, \lambda)$. So
+\[\begin{split} 
+\BP(\theta | x) &\propto \BP(x | \theta) \BP(\theta) \\
+&= \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(x - \theta)^2}{2\tau}} 
+\frac{1}{\sqrt{2\pi\lambda}} e^{-\frac{\theta^2}{2\lambda}} \\
+&= \frac{1}{2\pi \sqrt{\tau\lambda}} e^{-\frac{1}{2} [(\frac{1}{\tau} + \frac{1}{\lambda})( \theta - \frac{\lambda x}{\tau + \lambda} )^2 + \frac{x^2}{\tau + \lambda}] }
+\end{split}\].
+Then we can get the estimate about $\theta$ from MAP, $\hat{\theta} = \frac{\lambda x}{\lambda + \tau}$.
+
+\textbf{Case 2.} Let $\theta$ and $\tau$ both be parameters. In order to get MAP, we can make three hypothesis.
+
+\textbf{case 2.1.} Assume $\theta$ and $\tau$ are independent, then 
+$\BP(\theta, \tau) = \BP(\theta)\BP(\tau)$. Let $\theta$'s prior be $\theta \sim N(0, \lambda)$, $\tau$'s prior be $\tau \sim Gamma(\alpha, \beta)$. So
+\[\begin{split}
+\BP(\theta, \tau | X) &\propto \BP(X | \theta, \tau) \BP(\theta) \BP(\tau) \\
+&= \frac{\tau^{-\frac{1}{2}}}{\sqrt{2\pi}} e^{-\frac{(x - \theta)^2}{2\tau}}
+\frac{1}{\sqrt{2\pi\lambda}} e^{-\frac{\theta^2}{2\lambda}} 
+\frac{\beta^\alpha}{\Gamma(\alpha)} \tau^{\alpha-1} e^{-\beta\tau}
+\end{split}\] 
+
+In order to get the maximum, it's equivalent to compute the minimum $\log$. Let $L = \log \BP(X|\theta, \tau)\BP(\theta)\BP(\tau)$, remove the constant, we can get:
+\[ L = \beta\tau + \frac{1}{2}\left[ \frac{(x-\theta)^2}{\tau} + \frac{\theta^2}{\lambda} \right] - (\alpha-\frac{3}{2})\log \tau
+\]
+To get the estimate of $\theta$ and $\tau$, we need to solve:
+\[
+\begin{cases}
+\frac{\partial L}{\partial \theta} = 0 \\
+\frac{\partial L}{\partial \tau} = 0
+\end{cases}
+\]
+Then we will get:
+\[\begin{cases}
+(\frac{1}{\lambda} + \frac{1}{\tau})\theta - \frac{x}{\tau} = 0 \\
+\beta - \frac{(x-\theta)^2}{2\tau^2} - (\alpha - \frac{3}{2})\frac{1}{\tau} = 0.
+\end{cases}\]
+It is a difficult problem to solve, especially when $\theta$ is a vector.
+
+\textbf{Remark :} One way to solve the problem above is to compute one parameter, for example $\theta$, when fixing the other parameter, i.e. $\tau$. Then fix $\theta$, compute $\theta$. Hold on until they get convergent. Well, then we need to think about the convergence problem.
+
+\textbf{case 2.2.} Assume the conditional prior of $\theta | \tau$ is $\theta | \tau \sim N(0, \lambda\tau)$, the prior of $\tau$ is $\tau \sim \Gamma(\alpha, \beta)$ as case 2.1. So
+\[\begin{split}
+\BP(\theta, \tau | X) &\propto \BP(X | \theta, \tau) \BP(\theta | \tau) \BP(\tau) \\
+&= \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(x-\theta)^2}{2\tau}}
+\frac{1}{\sqrt{2\pi\lambda \tau}} e^{-\frac{\theta^2}{2\lambda\tau}}
+\frac{\beta^\alpha}{\Gamma(\alpha)} \tau^{\alpha - 1} e^{-\beta\tau}
+\end{split}
+\]
+Then the corresponding $L$ is given by:
+\[ L = \beta\tau - (a-2)\ln \tau + \frac{(x-\theta)^2}{2\tau} + \frac{\theta^2}{2\lambda \tau}
+\].
+To get the estimate of $\theta$ and $\tau$, we need to solve:
+\[\begin{cases}
+\frac{\partial L}{\partial \theta} = 0 \\
+\frac{\partial L}{\partial \tau} = 0
+\end{cases}
+\]
+Then we will get:
+\begin{equation*} \begin{cases}
+\frac{1}{\tau}(\frac{\theta}{\lambda} + \theta - x) = 0 \hfill (1) \\
+\beta - \frac{\alpha - 2}{\tau} - \frac{1}{\tau^2}\left(\frac{(x-\theta)^2}{2} + \frac{\theta^2}{2\lambda} \right) = 0 \hfill(2)
+\end{cases}
+\end{equation*}
+Form (1), we can easily get $\theta$. It is called \textbf{decouple}.
+
+\textbf{case 2.3.} From the two subcases above, we can find the major problem is computing complexity. Another problem will occurs if there are too many hyper-parameters. As we need to search the best hyper-parameters in grids. So if there are 2 hyper-parameters, the search space is 2-dimension. If there are 3 hyper-parameters, the search space is 3-dimension... It will cost much time when the search space is high dimension.
+
+Simply, we can give an uninformative prior to $\tau$, $\BP(\tau) \propto 1$. Or we can consider Jeffrey prior for $\tau$. According to $\theta | \tau \sim N(0, \lambda\tau)$. Then we can get Fisher information:
+\[\begin{split}
+I(\tau) &= \BE[ (\frac{\partial \ln f}{\partial \tau}) ]  \\
+&= \frac{1}{2\tau^2}
+\end{split}\],
+where $f = \frac{1}{\sqrt{2\pi\lambda\tau}} e^{-\frac{\theta^2}{2\lambda\tau}}$. So we can get the prior for $\tau$, $\BP(\tau) \propto \frac{1}{\tau}$. Then we will get:
+\[\begin{split}
+\BP(\theta, \tau | x) &\propto \BP(x | \theta, \tau) \BP(\theta | \tau) \BP(\tau) \\
+&= \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(x-\theta)^2}{2\tau}} \frac{1}{\sqrt{2\pi\lambda\tau}} e^{-\frac{\theta^2}{2\lambda\tau}} \frac{1}{\tau} \\
+\end{split}\]
+After $-\ln$ operation and remove constants, we will get:
+\[ L = 2\ln\tau + \frac{(x-\theta)^2}{2\tau} + \frac{\theta^2}{2\lambda\tau} \].
+Then accoring to $\frac{\partial L}{\partial \theta} = 0$ and $\frac{\partial L}{\partial \tau} = 0$, we will get the followings:
+\[\begin{cases}
+\frac{1}{\tau} \left[\frac{\theta}{\lambda} - \theta\right] = 0 \\
+\frac{2}{\tau} - \frac{1}{\tau^2}\left(\frac{(x-\theta)^2}{2} + \frac{\theta^2}{2\lambda}\right) = 0
+\end{cases}\].
+We can see it is easy to solve.
+
 \end{document}
 
 
