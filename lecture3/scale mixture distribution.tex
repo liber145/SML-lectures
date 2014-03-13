@@ -1,0 +1,280 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % more modern
+%\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{epsf}
+\usepackage{amsmath,amssymb,amsfonts,verbatim}
+\usepackage{subfigure}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{enumerate}
+%\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{xcolor}
+
+\def\A{{\bf A}}
+\def\a{{\bf a}}
+\def\B{{\bf B}}
+\def\b{{\bf b}}
+\def\C{{\bf C}}
+\def\c{{\bf c}}
+\def\D{{\bf D}}
+\def\d{{\bf d}}
+\def\E{{\bf E}}
+\def\e{{\bf e}}
+\def\F{{\bf F}}
+\def\f{{\bf f}}
+\def\G{{\bf G}}
+\def\g{{\bf g}}
+\def\k{{\bf k}}
+\def\K{{\bf K}}
+\def\H{{\bf H}}
+\def\I{{\bf I}}
+\def\L{{\bf L}}
+\def\M{{\bf M}}
+\def\m{{\bf m}}
+\def\n{{\bf n}}
+\def\N{{\bf N}}
+\def\BP{{\bf P}}
+\def\R{{\bf R}}
+\def\BS{{\bf S}}
+\def\s{{\bf s}}
+\def\t{{\bf t}}
+\def\T{{\bf T}}
+\def\U{{\bf U}}
+\def\u{{\bf u}}
+\def\V{{\bf V}}
+\def\v{{\bf v}}
+\def\W{{\bf W}}
+\def\w{{\bf w}}
+\def\X{{\bf X}}
+\def\Y{{\bf Y}}
+\def\Q{{\bf Q}}
+\def\x{{\bf x}}
+\def\y{{\bf y}}
+\def\Z{{\bf Z}}
+\def\z{{\bf z}}
+\def\0{{\bf 0}}
+\def\1{{\bf 1}}
+
+
+\def\hx{\hat{\bf x}}
+\def\tx{\tilde{\bf x}}
+\def\ty{\tilde{\bf y}}
+\def\tz{\tilde{\bf z}}
+\def\hd{\hat{d}}
+\def\HD{\hat{\bf D}}
+
+\def\MA{{\mathcal A}}
+\def\MF{{\mathcal F}}
+\def\MR{{\mathcal R}}
+\def\MG{{\mathcal G}}
+\def\MI{{\mathcal I}}
+\def\MN{{\mathcal N}}
+\def\MO{{\mathcal O}}
+\def\MT{{\mathcal T}}
+\def\MX{{\mathcal X}}
+\def\SW{{\mathcal {SW}}}
+\def\MW{{\mathcal W}}
+\def\MY{{\mathcal Y}}
+\def\BR{{\mathbb R}}
+\def\BP{{\mathbb P}}
+\def\BE{{\mathbb E}}
+
+\def\bet{\mbox{\boldmath$\beta$\unboldmath}}
+\def\epsi{\mbox{\boldmath$\epsilon$}}
+
+\def\etal{{\em et al.\/}\,}
+\def\tr{\mathrm{tr}}
+\def\rk{\mathrm{rk}}
+\def\diag{\mathrm{diag}}
+\def\dg{\mathrm{dg}}
+\def\argmax{\mathop{\rm argmax}}
+\def\argmin{\mathop{\rm argmin}}
+\def\vecd{\mathrm{vec}}
+
+\def\ph{\mbox{\boldmath$\phi$\unboldmath}}
+\def\vp{\mbox{\boldmath$\varphi$\unboldmath}}
+\def\pii{\mbox{\boldmath$\pi$\unboldmath}}
+\def\Ph{\mbox{\boldmath$\Phi$\unboldmath}}
+\def\pss{\mbox{\boldmath$\psi$\unboldmath}}
+\def\Ps{\mbox{\boldmath$\Psi$\unboldmath}}
+\def\muu{\mbox{\boldmath$\mu$\unboldmath}}
+\def\Si{\mbox{\boldmath$\Sigma$\unboldmath}}
+\def\lam{\mbox{\boldmath$\lambda$\unboldmath}}
+\def\Lam{\mbox{\boldmath$\Lambda$\unboldmath}}
+\def\Gam{\mbox{\boldmath$\Gamma$\unboldmath}}
+\def\Oma{\mbox{\boldmath$\Omega$\unboldmath}}
+\def\De{\mbox{\boldmath$\Delta$\unboldmath}}
+\def\de{\mbox{\boldmath$\delta$\unboldmath}}
+\def\Tha{\mbox{\boldmath$\Theta$\unboldmath}}
+\def\tha{\mbox{\boldmath$\theta$\unboldmath}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{example}{Example}[section]
+
+
+\def\probin{\mbox{\rotatebox[origin=c]{90}{$\vDash$}}}
+
+\def\calA{{\cal A}}
+
+
+
+%this is a comment
+
+%use this as a template only... you may not need the subsections,
+%or lists however they are placed in the document to show you how
+%do it if needed.
+
+
+%THINGS TO REMEMBER
+%to compile a latex document - latex filename.tex
+%to view the document        - xdvi filename.dvi
+%to create a ps document     - dvips filename.dvi
+%to create a pdf document    - dvipdf filename.dvi
+%{\bf TEXT}                  - bold font TEXT
+%{\it TEXT}                  - italic TEXT
+%$ ... $                     - places ... in math mode on same line
+%$$ ... $$                   - places ... in math mode on new line
+%more info at www.cs.wm.edu/~mliskov/cs423_fall04/tex.html
+
+
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textwidth}{6in}
+\setlength{\topmargin}{-0.4in}
+\setlength{\textheight}{8.5in}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\notes}[5]{
+	\renewcommand{\thepage}{#1 - \arabic{page}}
+	\noindent
+	\begin{center}
+	\framebox{
+		\vbox{
+		\hbox to 5.78in { { \bf Statistical Machine Learning}
+		\hfill #2}
+		\vspace{4mm}
+		\hbox to 5.78in { {\Large \hfill #5 \hfill} }
+		\vspace{2mm}
+		\hbox to 5.78in { {\it #3 \hfill #4} }
+		}
+	}
+	\end{center}
+	\vspace*{4mm}
+}
+
+\newcommand{\ho}[5]{\notes{#1}{Distributions}{Professor: Zhihua Zhang}{}{Lecture Notes #1: Scale Mixture Distribution}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%begins a LaTeX document
+\setcounter{section}{3}
+\setcounter{subsection}{0}
+\begin{document}
+\ho{3}{2014.03.08}{Moses Liskov}{Name}{Lecture title}
+\subsection{Scale Mixture Distribution}
+We will show several distributions can be seen as the scale mixture of distribution, which is defined as follows,
+\[\begin{split}
+  X \sim F(\theta) \\
+  \theta \sim G(\lambda)
+\end{split}\],
+So, $T(x) = \int_{\theta} F(\theta) G(\lambda) d\theta$ can be seen as a scale mixture of $F$, where the scale has distribution $G$.
+
+\subsubsection{Student's t-distribution}
+The Student's t-distribution is a scale of Gaussian distribution, where the scale has a Gamma distribution. 
+Let $X \sim N(\mu, \frac{\sigma^2}{r})$, $r \sim Gamma(\frac{\nu}{2},\frac{\nu}{2})$, then the integral will be:
+\[\begin{split}  &  \int_0^{\infty} \frac{r^{-1/2}}{\sqrt{2\pi}\sigma} e^{-\frac{r(x-\mu)^2}{2\sigma^2}}  
+\frac{(\frac{\nu}{2})^{\frac{\nu}{2}}}{\Gamma{(\frac{\nu}{2}})} r^{\frac{\nu}{2}-1} e^{-\frac{\nu}{2}r} dr \\
+= & \frac{(\frac{\nu}{2})^{\frac{\nu}{2}}}{\Gamma{(\frac{\nu}{2})}\sigma\sqrt{2\pi}}
+\int_0^\infty r^{\frac{\nu}{2} - \frac{3}{2}} 
+e^{-\frac{r}{2}(\frac{(x-\mu)^2}{\sigma^2} + \frac{\nu}{2})}  dr \\
+= & \frac{\nu^{\frac{\nu}{2}}\Gamma{(\frac{\nu+1}{2})}}{\sigma\sqrt{\pi}\Gamma{(\frac{\nu}{2})}} 
+\left[\frac{(x-\mu)^2}{\sigma^2} + \frac{\nu}{2}\right]^{\frac{\nu+1}{2}}
+\end{split}\]
+
+Note that during the integral, we use a math trick. Since we know $\int_0^\infty \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha - 1} e^{-\beta x} dx = 1$ from Gamma distribution, so we can get 
+$\int_0^\infty x^{\alpha - 1} e^{-\beta x} dx = \frac{\Gamma(\alpha)}{\beta^\alpha}$. 
+This trick will be often used in the follows.
+
+\subsubsection{Laplace Distribution}
+The Laplace distribution is a scale of Gaussian distribution, where the scale has a exponential distribution.
+Let $X \sim N(\mu, r)$, $r \sim Exponential(\frac{1}{2\sigma^2})$, then we can get the mixture distribution:
+\[\begin{split} &
+\int_0^\infty \frac{1}{\sqrt{2\pi r}} e^{-\frac{(x-\mu)^2}{2r}}
+\frac{1}{2\sigma^2} e^{-\frac{r}{2\sigma^2}} dr  \\
+ = & \frac{1}{2\sigma^2 \sqrt{2\pi}}  \int_0^\infty
+ r^{\frac{1}{2} - 1} e^{-\frac{1}{2} \left( \frac{(x-\mu)^2}{r} + \frac{r}{\sigma^2}\right)} dr  \\
+ = &\frac{1}{2\sigma} e^{\frac{|x-\mu|}{\sigma}}
+\end{split}\]
+
+\subsubsection{Negative Binomial Distribution}
+Negative Binomial Distribution is a scale of Poisson distribution, where the scale has a Gamma distribution.
+Let $K \sim Poisson(\lambda)$, $\lambda \sim Gamma(r, \frac{1-p}{p})$, then we can get the mixture distribution:
+\[\begin{split}
+&  \int_0^\infty \frac{\lambda^k}{k!} e^{-\lambda}
+\frac{\lambda^{r-1} e^{-\frac{1-p}{p} \lambda}}{\Gamma(r) (\frac{p}{1-p})^r} d\lambda \\
+= & \frac{1}{k! \Gamma(r) (\frac{p}{1-p})^r}  \int_0^\infty  \lambda^{k+r-1}  e^{-\frac{\lambda}{p}} d\lambda \\
+ = & {k+r-1 \choose k} p^k (1-p)^r
+\end{split}\]
+
+Homework 1.   $\sum\limits_{k=0}^\infty Gamma(x | k, \beta) Poisson (k | \lambda)$.
+
+\subsection{Statistical Inference (I)}
+
+\subsubsection{Jeffrey Prior}
+In order to show Jeffrey prior, we first introduce \textbf{Fisher information}. In mathematical statistics, the Fisher information is a way of measuring the amount of information that an observable random variable $X$ carries about an unknown parameter $\theta$ upon which the probability of $X$ depends.
+
+Assume we have a model for random variable $X$, for example $\BP(X| \theta)$. $\BP(X | \theta)$ can be seen as a joint function of $x$ and $\theta$. Let $f(x, \theta) = \BP(X| \theta)$. Then Fisher information of $X$ about $\theta$ is given by:
+\[\begin{split} I(\theta)  = &  \BE [(\frac{\partial \log f(x, \theta)}{\partial \theta})^2] \\
+ = & \int \left( \frac{\partial \log f(x, \theta)}{\partial \theta} \right)^2 f(x,\theta) d\theta
+\end{split}\]
+
+\begin{lemma}
+  Under certain condition, \[ I(\theta) = -\BE[\frac{\partial^2 \log f}{\partial \theta^2}]\]
+\end{lemma}
+
+\textit{Proof}.
+  \begin{equation*}
+    \begin{split}
+      \frac{\partial^2 \log f}{\partial \theta^2} = & \frac{\partial}{\partial \theta} \left( \frac{f'}{f}\right) \\
+       = & \frac{f''}{f} - \left(\frac{f'}{f}\right)^2 \\
+       = & \frac{f''}{f} - \left(\frac{\partial \log f}{\partial \theta}\right)^2 
+    \end{split}
+  \end{equation*}
+  So, \[\begin{split}
+  \BE[\frac{\partial^2 \log f}{\partial \theta^2}] & = \int \frac{\partial^2 \log f}{\partial \theta^2} f dx \\
+  & = \int \frac{\partial^2 f}{\partial \theta^2} dx - I(\theta) \\
+  & = \frac{\partial^2}{\partial \theta^2} \int f dx - I(\theta)  \\
+  & = - I(\theta)
+  \end{split}\]
+\hfill$\Box$
+  
+Now let we go to see Jeffrey prior. When we do MAP(maximum a posteriori), we usually meet $\BP(\theta | X) \propto \BP(X | \theta) BP(\theta)$. 
+Usually $\BP(X | \theta)$ is easy to get, but $\BP(\theta)$ (prior) needs our hypothesis. How to choose hypothesis? If we set a prior with hyper-parameter, the training process will be difficult. Jeffrey prior tells us how to choose hypothesis:
+\[ \BP(\theta) \propto \sqrt{I(\theta)}\]
+
+\textbf{Remark:} Jeffrey prior has property called \textbf{ invariant under reparameterization}, which means if we replace $\theta$ with $\varphi$, and there is a one to one rejection between $\theta$ and $\varphi$. Then we can get:
+\[\begin{split} \BP(\varphi) & = \BP(\theta) \left| \frac{\partial \theta}{\partial \varphi} \right| \\
+& \propto \sqrt{ I (\theta) \left(\frac{\partial \theta}{\partial \varphi}\right)^2} \\
+& = \sqrt{\BE\left[ \left(\frac{\partial \log f}{\partial \theta}\right)^2\right]\left(\frac{\partial \theta}{\partial \varphi}\right)^2} \\
+& = \sqrt{\BE\left[ \left( \frac{\partial \log f}{\partial \varphi} \right)^2 \right]}
+\end{split}\]
+
+Assume $X \sim N(\mu, \sigma^2)$.
+
+\textbf{Case 1:}
+\subsubsection{Problem: $X = \theta + \epsilon$}
+\end{document}
+
+
+
+
