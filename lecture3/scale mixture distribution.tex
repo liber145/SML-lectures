@@ -8,6 +8,7 @@
 \usepackage{subfigure}
 \usepackage{amsfonts}
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{latexsym}
 \usepackage{algpseudocode}
 \usepackage{algorithm}
@@ -177,12 +178,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %begins a LaTeX document
-\setcounter{section}{3}
-\setcounter{subsection}{0}
+\setcounter{section}{2}
+\setcounter{subsection}{3}
 \begin{document}
 \ho{3}{2014.03.08}{Moses Liskov}{Name}{Lecture title}
+\textbf{Notice:} In this lecture note, $X \sim \MN(a,b)$ means that $\mu=a,\sigma^2=b$. Prof.Zhang sometimes means $\mu=a,\sigma=b$ in the class. So the notation or results may be a little different with your notes.
+
 \subsection{Scale Mixture Distribution}
-We will show several distributions can be seen as the scale mixture of distribution, which is defined as follows,
+We will show several distributions can be seen as the scale mixture of distributions, which is defined as follows,
 \[\begin{split}
   X \sim F(\theta) \\
   \theta \sim G(\lambda)
@@ -190,124 +193,177 @@ We will show several distributions can be seen as the scale mixture of distribut
 So, $T(x) = \int_{\theta} F(\theta) G(\lambda) d\theta$ can be seen as a scale mixture of $F$, where the scale has distribution $G$.
 
 \subsubsection{Student's t-distribution}
-The Student's t-distribution is a scale of Gaussian distribution, where the scale has a Gamma distribution. 
-Let $X \sim N(\mu, \frac{\sigma^2}{r})$, $r \sim Gamma(\frac{\nu}{2},\frac{\nu}{2})$, then the integral will be:
-\[\begin{split}  &  \int_0^{\infty} \frac{r^{-1/2}}{\sqrt{2\pi}\sigma} e^{-\frac{r(x-\mu)^2}{2\sigma^2}}  
-\frac{(\frac{\nu}{2})^{\frac{\nu}{2}}}{\Gamma{(\frac{\nu}{2}})} r^{\frac{\nu}{2}-1} e^{-\frac{\nu}{2}r} dr \\
+The Student's t-distribution is a scale mixture of Gaussian distribution, where the scale has a Gamma distribution. 
+Let $X \sim \MN(\mu, \frac{\sigma^2}{r})$, $r \sim\mbox{Gamma}(\frac{\nu}{2},\frac{\nu}{2})$, then the integral will be:
+\[\begin{split}  &  \int_0^{\infty} \frac{r^{1/2}}{\sqrt{2\pi}\sigma} e^{-\frac{r(x-\mu)^2}{2\sigma^2}}  
+\frac{(\frac{\nu}{2})^{\frac{\nu}{2}}}{\Gamma{(\frac{\nu}{2}})} r^{\frac{\nu}{2}-1} e^{-\frac{\nu}{2}r} \mathrm{d}r \\
 = & \frac{(\frac{\nu}{2})^{\frac{\nu}{2}}}{\Gamma{(\frac{\nu}{2})}\sigma\sqrt{2\pi}}
-\int_0^\infty r^{\frac{\nu}{2} - \frac{3}{2}} 
-e^{-\frac{r}{2}(\frac{(x-\mu)^2}{\sigma^2} + \frac{\nu}{2})}  dr \\
-= & \frac{\nu^{\frac{\nu}{2}}\Gamma{(\frac{\nu+1}{2})}}{\sigma\sqrt{\pi}\Gamma{(\frac{\nu}{2})}} 
-\left[\frac{(x-\mu)^2}{\sigma^2} + \frac{\nu}{2}\right]^{\frac{\nu+1}{2}}
+\int_0^\infty r^{\frac{\nu+1}{2} - 1} 
+e^{-\frac{r}{2}(\frac{(x-\mu)^2}{\sigma^2} + \nu)}  \mathrm{d}r \\
+= & \frac{(\frac{\nu}{2})^{\frac{\nu}{2}}\Gamma{(\frac{\nu+1}{2})}}{\sigma\sqrt{2\pi}\Gamma{(\frac{\nu}{2})}} 
+\left[\frac{(x-\mu)^2}{\sigma^2} + \nu\right]^{-\frac{\nu+1}{2}} \\
+= & \frac{\Gamma{(\frac{\nu+1}{2})}}{\sigma\sqrt{\nu\pi}\Gamma{(\frac{\nu}{2})}} 
+\left[\frac{(x-\mu)^2}{\nu\sigma^2} + 1\right]^{-\frac{\nu+1}{2}} \\
+= & t_\nu(\mu,\sigma^2)
 \end{split}\]
 
-Note that during the integral, we use a math trick. Since we know $\int_0^\infty \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha - 1} e^{-\beta x} dx = 1$ from Gamma distribution, so we can get 
+Note that during the integral, we use a mathematical trick. Since we have $$\int_0^\infty \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha - 1} e^{-\beta x} dx = 1$$ from Gamma distribution, so we can get 
 $\int_0^\infty x^{\alpha - 1} e^{-\beta x} dx = \frac{\Gamma(\alpha)}{\beta^\alpha}$. 
 This trick will be often used in the follows.
 
 \subsubsection{Laplace Distribution}
-The Laplace distribution is a scale of Gaussian distribution, where the scale has a exponential distribution.
-Let $X \sim N(\mu, r)$, $r \sim Exponential(\frac{1}{2\sigma^2})$, then we can get the mixture distribution:
+Laplace distribution is:
+$$f(x) = \frac{1}{4\sigma}\exp(-\frac{|x-\mu|}{2\sigma})$$
+Let we see $2\sigma$ as $\sigma$ for convenience, that is:
+$$f(x) = \frac{1}{2\sigma}\exp(-\frac{|x-\mu|}{\sigma})$$
+The Laplace distribution is a scale mixture of Gaussian distribution, where the scale has a exponential distribution.
+Let $X \sim \MN(\mu, r)$, $r \sim \mbox{Exponential}(\frac{1}{2\sigma^2})$, then we can get the mixture distribution:
 \[\begin{split} &
 \int_0^\infty \frac{1}{\sqrt{2\pi r}} e^{-\frac{(x-\mu)^2}{2r}}
-\frac{1}{2\sigma^2} e^{-\frac{r}{2\sigma^2}} dr  \\
+\frac{1}{2\sigma^2} e^{-\frac{r}{2\sigma^2}} \mathrm{d}r  \\
  = & \frac{1}{2\sigma^2 \sqrt{2\pi}}  \int_0^\infty
- r^{\frac{1}{2} - 1} e^{-\frac{1}{2} \left( \frac{(x-\mu)^2}{r} + \frac{r}{\sigma^2}\right)} dr  \\
+ r^{\frac{1}{2} - 1} e^{-\frac{1}{2} \left( \frac{(x-\mu)^2}{r} + \frac{r}{\sigma^2}\right)} \mathrm{d}r  \\
+ = & \frac{1}{2\sigma^2 \sqrt{2\pi}} \frac{2K_{1/2}\left(\sqrt{(\frac{1}{\sigma^2}(x-\mu)^2)}\right)}{(\frac{1}{\sigma^2(x-\mu)^2})^{\frac{1}{4}}} \\
  = &\frac{1}{2\sigma} e^{\frac{|x-\mu|}{\sigma}}
 \end{split}\]
+The integral term is a integral of generalized inverse Gaussian distribution, $\mbox{GIG}(\frac{1}{2},\frac{1}{\sigma^2},(x-\mu)^2)$.
 
 \subsubsection{Negative Binomial Distribution}
 Negative Binomial Distribution is a scale of Poisson distribution, where the scale has a Gamma distribution.
-Let $K \sim Poisson(\lambda)$, $\lambda \sim Gamma(r, \frac{1-p}{p})$, then we can get the mixture distribution:
+Let $K \sim \mbox{Poisson}(\lambda)$, $\lambda \sim \mbox{Gamma}(r, \frac{1-p}{p})$, then we can get the mixture distribution:
 \[\begin{split}
 &  \int_0^\infty \frac{\lambda^k}{k!} e^{-\lambda}
-\frac{\lambda^{r-1} e^{-\frac{1-p}{p} \lambda}}{\Gamma(r) (\frac{p}{1-p})^r} d\lambda \\
-= & \frac{1}{k! \Gamma(r) (\frac{p}{1-p})^r}  \int_0^\infty  \lambda^{k+r-1}  e^{-\frac{\lambda}{p}} d\lambda \\
- = & {k+r-1 \choose k} p^k (1-p)^r
+\frac{\lambda^{r-1} e^{-\frac{1-p}{p} \lambda}}{\Gamma(r) (\frac{p}{1-p})^r} \mathrm{d}\lambda \\
+= & \frac{1}{k! \Gamma(r) (\frac{p}{1-p})^r}  \int_0^\infty  \lambda^{k+r-1}  e^{-\frac{\lambda}{p}} \mathrm{d}\lambda \\
+=&\frac{\Gamma(r+k)p^k(1-p)^r}{\Gamma(k)\Gamma(r)}\\
+= & {k+r-1 \choose k} p^k (1-p)^r
 \end{split}\]
 
-\textbf{Homework 1.}   $\sum\limits_{k=0}^\infty Gamma(x | k, \beta) Poisson (k | \lambda)$.
+\textbf{Homework 1:}   $\sum\limits_{k=0}^\infty \mbox{Gamma}(x | k+p, \beta) \mbox{Poisson} (k | \lambda),  p\mbox{ is a postive constant}$.
 
-\subsection{Statistical Inference (I)}
+\section{Statistical Inference (I)}
 
-\subsubsection{Jeffrey Prior}
+\subsection{Jeffreys Prior}
 In order to show Jeffrey prior, we first introduce \textbf{Fisher information}. In mathematical statistics, the Fisher information is a way of measuring the amount of information that an observable random variable $X$ carries about an unknown parameter $\theta$ upon which the probability of $X$ depends.
 
-Assume we have a model for random variable $X$, for example $\BP(X| \theta)$. $\BP(X | \theta)$ can be seen as a joint function of $x$ and $\theta$. Let $f(x, \theta) = \BP(X| \theta)$. Then Fisher information of $X$ about $\theta$ is given by:
-\[\begin{split} I(\theta)  = &  \BE [(\frac{\partial \log f(x, \theta)}{\partial \theta})^2] \\
- = & \int \left( \frac{\partial \log f(x, \theta)}{\partial \theta} \right)^2 f(x,\theta) d\theta
-\end{split}\]
+The probability function for $X$, which is also the likelihood function for $\theta$, is a function $f(X; \theta)$; it is the probability mass (or probability density) of the random variable $X$ conditional on the value of $\theta$. Then we define Fisher information:
+\begin{definition}
+Fisher Information:
+$$I(\theta)=\BE((\frac{\partial\log f(x; \theta)}{\partial\theta})^2)$$
+\end{definition}
 
 \begin{lemma}
-  Under certain condition, \[ I(\theta) = -\BE[\frac{\partial^2 \log f}{\partial \theta^2}]\]
+If $\log f(x; \theta)$ is twice differentiable with respect to $\theta$ and under certain regularity conditions, then
+$$I(\theta) = -\BE(\frac{\partial^2\log f}{\partial\theta ^ 2})$$
 \end{lemma}
 
-\textit{Proof}.
-  \begin{equation*}
-    \begin{split}
-      \frac{\partial^2 \log f}{\partial \theta^2} = & \frac{\partial}{\partial \theta} \left( \frac{f'}{f}\right) \\
-       = & \frac{f''}{f} - \left(\frac{f'}{f}\right)^2 \\
-       = & \frac{f''}{f} - \left(\frac{\partial \log f}{\partial \theta}\right)^2 
-    \end{split}
-  \end{equation*}
-  So, \[\begin{split}
-  \BE[\frac{\partial^2 \log f}{\partial \theta^2}] & = \int \frac{\partial^2 \log f}{\partial \theta^2} f dx \\
-  & = \int \frac{\partial^2 f}{\partial \theta^2} dx - I(\theta) \\
-  & = \frac{\partial^2}{\partial \theta^2} \int f dx - I(\theta)  \\
-  & = - I(\theta)
-  \end{split}\]
-\hfill$\Box$
-  
-Now let we go to see Jeffrey prior. When we do MAP(maximum a posteriori), we usually meet $\BP(\theta | X) \propto \BP(X | \theta) BP(\theta)$. 
-Usually $\BP(X | \theta)$ is easy to get, but $\BP(\theta)$ (prior) needs our hypothesis. How to choose hypothesis? If we set a prior with hyper-parameter, the training process will be difficult. Jeffrey prior tells us how to choose hypothesis:
-\[ \BP(\theta) \propto \sqrt{I(\theta)}\]
-
-\textbf{Remark:} Jeffrey prior has a property called \textbf{ invariant under reparameterization}, which means if we replace $\theta$ with $\varphi$, and there is a one to one rejection between $\theta$ and $\varphi$. Then we can get:
-\[\begin{split} \BP(\varphi) & = \BP(\theta) \left| \frac{\partial \theta}{\partial \varphi} \right| \\
-& \propto \sqrt{ I (\theta) \left(\frac{\partial \theta}{\partial \varphi}\right)^2} \\
-& = \sqrt{\BE\left[ \left(\frac{\partial \log f}{\partial \theta}\right)^2\right]\left(\frac{\partial \theta}{\partial \varphi}\right)^2} \\
-& = \sqrt{\BE\left[ \left( \frac{\partial \log f}{\partial \varphi} \right)^2 \right]}
-\end{split}\]
+\begin{proof}
+first
+\begin{align}
+\nonumber
+\frac{\partial^2\log f}{\partial\theta ^ 2} &= \frac{\partial}{\partial\theta}(\frac{\frac{\partial f}{\partial\theta}}{f}) \\
+\nonumber
+&= \frac{\frac{\partial^2f}{\partial\theta^2}}{f} - \frac{(\frac{\partial f}{\partial\theta})^2}{f^2}\\
+\nonumber
+&= \frac{\frac{\partial^2f}{\partial\theta^2}}{f} - (\frac{\partial\log f}{\partial\theta}) ^ 2
+\end{align}
+then
+\begin{align}
+\nonumber
+\BE(\frac{\partial^2\log f}{\partial\theta ^ 2}) &= \int\frac{\partial^2\log f}{\partial\theta^2}f \mathrm{d}x\\
+\nonumber
+&= \int \frac{\partial^2f}{\partial\theta^2}\mathrm{d}x - I(\theta)
+\end{align}
+if $\int \frac{\partial^2f}{\partial\theta^2}\mathrm{d}x = \frac{\partial^2}{d\theta^2}\int f\mathrm{d}x = \frac{\partial^2}{\partial\theta}1 = 0$(the certain condition),then we had proved the lemma.
+\end{proof}
+\begin{definition}
+Jeffreys prior is defined in terms of Fisher information
+$$p(\theta) \propto \sqrt{I(\theta)}$$
+\end{definition}
+\textbf{Remark:} It has the key feature that it is \textbf{invariant under reparametrization} of parameter $\theta$. For an alternate parametrization $\varphi$ we can derive
+$$p(\varphi) \propto \sqrt{I(\varphi)}$$
+from
+$$p(\theta) \propto \sqrt{I(\theta)}$$
+where $\theta$ and $\varphi$ exist a one-to-one mapping.
+\begin{proof}
+\begin{align}
+\nonumber
+p(\varphi) &= p(\theta)|\frac{d\theta}{d\varphi}| \propto \sqrt{I(\theta)(\frac{d\theta}{d\varphi})^2}
+\propto\sqrt{\BE((\frac{d\log f}{d\theta})^2)(\frac{d\theta}{d\varphi})^2} \\
+\nonumber
+&\propto \sqrt{\BE((\frac{d\log f}{d\theta}\frac{d\theta}{d\varphi})^2)} = \sqrt{\BE((\frac{d\log f}{d\varphi})^2)} \propto \sqrt{I(\varphi)}
+\end{align}
+\end{proof}
 
 \begin{example}
-$X \sim N(\mu, \sigma^2)$.
+$X \sim \MN(\mu, \sigma^2)$.
 \end{example}
-
-\textbf{Case 1:} Fix $\sigma$, the only parameter is $\mu$. So we can get:
+\begin{description}
+\item[Case 1:] Fix $\sigma$, the only parameter is $\mu$. The likelihood is:
+$$f(X|\mu) \propto \exp(-\frac{1}{2\sigma^2}(x - \mu)^2)$$
+so
+$$\log f \propto -(\frac{x-\mu}{\sigma})^2$$So we can get:
 \[\begin{split} 
 I(\mu) &= \BE\left[ \left( \frac{(x - \mu)^2}{\sigma^2} \right)^2 \right] \\
 &= \frac{\BE(x - \mu)^2}{\sigma^4} \\
 &= \frac{1}{\sigma^2}
 \end{split}\]
-So we can get Jeffrey prior $\BP(\mu) \propto \sqrt{I(\mu)} = \frac{1}{\sigma}$. As $\sigma$ is fixed, then $\BP(\mu) \propto 1$.
+Thus the Jeffreys prior $p(\mu) \propto \sqrt{I(\mu)} = \frac{1}{\sigma}$. As $\sigma$ is fixed, so $p(\mu) \propto 1$.
 
-\textbf{Remark:} Although $\BP(\mu) = 1$ is a improper prior, as $\int_{-\infty}^\infty 1 dx = \infty$, the posteriori is proper. 
+\textbf{Remark:} Although $p(\mu) = 1$ is a improper prior, as $\int_{-\infty}^\infty 1 dx = \infty$, the posterior is proper. 
 The prior is also called \textbf{uninformative prior}.
 
-\textbf{Case 2:} Fix $\mu$, the only parameter is $\sigma$. For convenience, let $\tau = \frac{1}{\sigma^2}$. So $f(x) = \frac{\tau^{\frac{1}{2}}}{\sqrt{2\pi}} e^{-\frac{\tau(x-\mu)^2}{2}}$. Then we can get Fisher information:
+\item[Case 2:] Fix $\mu$, the only parameter is $\sigma$. For convenience, let $\tau = \frac{1}{\sigma^2}$. So $f(x) = \frac{\tau^{\frac{1}{2}}}{\sqrt{2\pi}} e^{-\frac{\tau(x-\mu)^2}{2}}$.
+The likelihood is denoted by $f(\tau)$:
+\begin{eqnarray*}
+&f(\tau) = \frac{\tau^{\frac{1}{2}}}{\sqrt{2\pi}}\exp(-\frac{\tau(x-\mu)^2}{2})\\
+\Longrightarrow & \log f \propto \frac{1}{2}\log\tau - \frac{\tau}{2}(x - \mu)^2\\
+\Longrightarrow & \frac{\partial\log f}{\partial\tau} \propto \frac{1}{2\tau} - \frac{(x-\mu)^2}{2}\\
+\end{eqnarray*}
+
+Hence, 
 \[\begin{split}
-I(\tau) &= \BE\left[\left( \frac{\partial \log f}{\partial \tau} \right)\right]  \\
+I(\tau) &= \BE\left[\left( \frac{\partial \log f}{\partial \tau} \right)^2\right]  \\
 &= \BE\left[ \frac{1}{4} \left( \frac{1}{\tau} - (x-\mu)^2 \right)^2  \right] \\
 &= \BE\left[ \frac{1}{4\tau^2} - \frac{(x - \mu)^2}{2\tau} + \frac{(x-\mu)^4}{4} \right] \\
 &= \frac{1}{4\tau^2} - \frac{1}{2\tau^2} + \frac{1}{4}\BE(x-\mu)^4 \\
+&= \frac{1}{4\tau^2}-\frac{1}{2\tau^2} + \int^\infty_{-\infty} \frac{1}{4}(x - \mu)^4\MN(x|\mu, \tau^{-1})dx \\
 &= \frac{1}{2\tau^2}
 \end{split}\]
+where the integral can be computed from variance :
+\[\begin{split}
+& \int (x-\mu)^2\frac{\tau^{\frac{1}{2}}}{\sqrt{2\pi}}\exp(-\frac{\tau(x-\mu)^2}{2})dx =  \tau^{-1} \\
+\Longrightarrow & \int (x-\mu)^2\frac{1}{\sqrt{2\pi}}\exp(-\frac{\tau(x-\mu)^2}{2})dx =  \tau^{-\frac{3}{2}} \\ 
+& \mbox{(taking the derivate of both side)} \\
+\Longrightarrow & \int (x-\mu)^4\frac{1}{\sqrt{2\pi}}\exp(-\frac{\tau(x-\mu)^2}{2})dx =  3\tau^{-\frac{5}{2}} \\ 
+\Longrightarrow & \int (x-\mu)^4\frac{\tau^{\frac{1}{2}}}{\sqrt{2\pi}}\exp(-\frac{\tau(x-\mu)^2}{2})dx =  3\tau^{-2} \\ 
+\Longrightarrow & \BE\left((x-\mu)^4\right) = \frac{3}{4\tau^2} \\
+\end{split}\]
 
-So Jeffrey prior is $\BP(\tau) \propto \sqrt{I(\tau)}$.
-\newline
-
+So Jeffreys prior is $\pi(\tau) \propto\frac{1}{\tau}$.
+Note that $p(\sigma)=\pi(\tau)|d\tau/d\theta|$, hence, 
+\begin{eqnarray*}
+p(\sigma)
+\propto &\frac{1}{\tau}|-2\sigma^{-3}|\\
+\propto & \sigma^2|-2\sigma^{-3}| \\
+\propto & \frac{1}{\sigma} \\
+\end{eqnarray*}
+\end{description}
 \textbf{Homework 2:} Compute the following integrals:
 \begin{enumerate}
-\item $m_0 = \int_{-\infty}^{\infty} \Phi(x) N(x|\mu, \sigma^2) dx$
-\item $m_1 = \int_{-\infty}^{\infty} \Phi(x) N(x|\mu, \sigma^2)x dx$
-\item $m_2 = \int_{-\infty}^{\infty} \Phi(x) N(x|\mu, \sigma^2)(x-m_1) dx$
+\item $u_0 = \int_{-\infty}^{\infty} \Phi(x) \MN(x|\mu, \sigma^2) dx$
+\item $u_1 = \int_{-\infty}^{\infty} \Phi(x) \MN(x|\mu, \sigma^2)x dx$
+\item $u_2 = \int_{-\infty}^{\infty} \Phi(x) \MN(x|\mu, \sigma^2)(x-m_1) dx$
 
 where $\Phi(x) = \int_{-\infty}^{x} \frac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}} dt$
 \end{enumerate}
 
 \begin{example}
-$X \sim Poisson(\lambda)$
+$X \sim \mbox{Poisson}(n;\lambda)$
 \end{example}
+$$
+\log f = -\lambda + n\log\lambda
+$$
 Fisher information is:
 \[\begin{split}
 I(\lambda) &= \BE\left[ \left( \frac{n}{\lambda} - 1\right)^2 \right] \\
@@ -315,106 +371,102 @@ I(\lambda) &= \BE\left[ \left( \frac{n}{\lambda} - 1\right)^2 \right] \\
 &= \frac{\lambda + 1}{\lambda} - 1 \\
 &= \frac{1}{\lambda}
 \end{split}\]
-So Jeffrey prior is:
+So Jeffreys prior is:
 \[\begin{split}
-\BP(\lambda) \propto \sqrt{\frac{1}{\lambda}}.
+p(\lambda) \propto \sqrt{\frac{1}{\lambda}}.
 \end{split}\]
  
-\textbf{Homework 3.} $f(x, \theta) = \theta^x(1-\theta)^{1-x}$, $0 < \theta < 1$.
+\textbf{Homework 3:} $f(x; \theta) = \theta^x(1-\theta)^{1-x}$, $0 < \theta < 1$.
 \begin{enumerate}
-\item Compute Jeffrey prior about $\theta$.
-\item If $\theta = \sin^2 \alpha$, compute Jeffrey prior about $\alpha$.
+\item Compute Jeffreys prior about $\theta$.
+\item If $\theta = \sin^2 \alpha$, compute Jeffreys prior about $\alpha$.
 \end{enumerate}
  
-\subsubsection{Problem: $X = \theta + \epsilon$}
-Assume we have a model $X = \theta + \epsilon$, where $X$ is data which we observed or predict, $\theta$ is the parameters, $\epsilon \sim N(0, \tau)$ is the error. So given $\theta$, $X \sim N(\theta, \tau)$. When we use MAP(maximum a posteriori) to estimate parameter $\theta$, we will get $\BP(\theta | X) \propto \BP(X | \theta)\BP(\theta)$. 
+\subsection{Compute Posterior Probability}
+Assume we have a model $x = \theta + \epsilon$, where $x$ is data which we observed or predict, $\theta$ is the parameters, $\epsilon \sim \MN(0, \tau)$ is the error term. So given $\theta$, $X \sim \MN(\theta, \tau)$. When we use MAP(maximum a posteriori) to estimate parameter $\theta$, we will get $p(\theta | x) \propto p(x | \theta)p(\theta)$. 
 We will discuss this problem under several different conditions in the following.
-
-\textbf{Case 1.} Fix $\tau$, or let it be hyper-parameter. The only parameter is $\theta$. And we set the prior about $\theta$ is $N(\theta | 0, \lambda)$. So
+\begin{description}
+\item[Case 1] Fix $\tau$. The only parameter is $\theta$. And we set the prior about $\theta$ is $\MN(\theta | 0, \lambda)$. So
 \[\begin{split} 
-\BP(\theta | x) &\propto \BP(x | \theta) \BP(\theta) \\
-&= \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(x - \theta)^2}{2\tau}} 
+p(\theta | x) &\propto p(x | \theta) p(\theta) \\
+&\propto \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(x - \theta)^2}{2\tau}} 
 \frac{1}{\sqrt{2\pi\lambda}} e^{-\frac{\theta^2}{2\lambda}} \\
-&= \frac{1}{2\pi \sqrt{\tau\lambda}} e^{-\frac{1}{2} [(\frac{1}{\tau} + \frac{1}{\lambda})( \theta - \frac{\lambda x}{\tau + \lambda} )^2 + \frac{x^2}{\tau + \lambda}] }
-\end{split}\].
-Then we can get the estimate about $\theta$ from MAP, $\hat{\theta} = \frac{\lambda x}{\lambda + \tau}$.
+&\propto \frac{1}{2\pi \sqrt{\tau\lambda}} e^{-\frac{1}{2} [(\frac{1}{\tau} + \frac{1}{\lambda})( \theta - \frac{\lambda x}{\tau + \lambda} )^2 + \frac{x^2}{\tau + \lambda}] } \\
+&\propto \MN(\frac{\lambda x}{\lambda+\tau},\frac{\lambda\tau}{\lambda+\tau})
+\end{split}\]
+Then we can get the estimation about $\theta$ from MAP, $\hat{\theta} = \frac{\lambda x}{\lambda + \tau}$.
 
-\textbf{Case 2.} Let $\theta$ and $\tau$ both be parameters. In order to get MAP, we can make three hypothesis.
+\item[Case 2] Let $\theta$ and $\tau$ both be parameters. In order to get MAP, we may make three solutions.
 
-\textbf{case 2.1.} Assume $\theta$ and $\tau$ are independent, then 
-$\BP(\theta, \tau) = \BP(\theta)\BP(\tau)$. Let $\theta$'s prior be $\theta \sim N(0, \lambda)$, $\tau$'s prior be $\tau \sim Gamma(\alpha, \beta)$. So
-\[\begin{split}
-\BP(\theta, \tau | X) &\propto \BP(X | \theta, \tau) \BP(\theta) \BP(\tau) \\
-&= \frac{\tau^{-\frac{1}{2}}}{\sqrt{2\pi}} e^{-\frac{(x - \theta)^2}{2\tau}}
-\frac{1}{\sqrt{2\pi\lambda}} e^{-\frac{\theta^2}{2\lambda}} 
-\frac{\beta^\alpha}{\Gamma(\alpha)} \tau^{\alpha-1} e^{-\beta\tau}
-\end{split}\] 
-
-In order to get the maximum, it's equivalent to compute the minimum $\log$. Let $L = \log \BP(X|\theta, \tau)\BP(\theta)\BP(\tau)$, remove the constant, we can get:
-\[ L = \beta\tau + \frac{1}{2}\left[ \frac{(x-\theta)^2}{\tau} + \frac{\theta^2}{\lambda} \right] - (\alpha-\frac{3}{2})\log \tau
-\]
-To get the estimate of $\theta$ and $\tau$, we need to solve:
-\[
-\begin{cases}
-\frac{\partial L}{\partial \theta} = 0 \\
-\frac{\partial L}{\partial \tau} = 0
-\end{cases}
-\]
-Then we will get:
-\[\begin{cases}
-(\frac{1}{\lambda} + \frac{1}{\tau})\theta - \frac{x}{\tau} = 0 \\
-\beta - \frac{(x-\theta)^2}{2\tau^2} - (\alpha - \frac{3}{2})\frac{1}{\tau} = 0.
-\end{cases}\]
+\begin{description}
+    \item[Solution 1]Assume that $\tau$, $\lambda$ are independent. $p(\theta, \tau) = p(\theta)p(\tau)$
+    and we use a new $\tau$ here, $\tau = \tau_{old}^{-1}$ for convenience of computing(It is different with the $\tau$ used in case 1). Suppose $\tau \thicksim \mbox{Gamma}(\alpha/2, \beta/2)$
+    \begin{eqnarray*}
+    p(\theta, \tau|x) &\propto p(x| \theta, \tau) p(\theta, \tau) = p(x|\theta, \tau)p(\theta)p(\tau)
+    \nonumber\\
+    &\propto \frac{1}{\sqrt{2\pi}}\tau^\frac{1}{2}\exp(-\frac{\tau(x-\theta)^2}{2})\frac{\lambda^\frac{1}{2}}{\sqrt{2\pi}}
+    \exp(-\frac{\lambda\theta^2}{2})(\frac{\beta}{2})^\frac{\alpha}{2}\exp(-\frac{\beta \tau}{2})\frac{\tau ^{\frac{\alpha}{2} - 1}}{\Gamma(\alpha/2)}
+    \end{eqnarray*}
+    To get maximum posterior, let
+    $$L = \tau^{\frac{\alpha+1}{2}-1}\lambda^\frac{1}{2}\exp(-\frac{\tau}{2}((x-\theta)^2+\beta)-\frac{\lambda\theta^2}{2})$$
+    then
+    $$\ln L = (\frac{\alpha+1}{2}-1)\ln\tau - \frac{\tau}{2}((x-\theta)^2+\beta) + \frac{1}{2}\ln\lambda -\frac{\lambda\theta^2}{2}$$
+    Let
+    $$Q = -2\ln L = -(\alpha - 1)\ln\tau + \tau((x-\theta)^2+\beta) - \ln\lambda + \lambda\theta^2$$
+    We need to solve equations:
+    \begin{equation*}
+      \begin{cases}
+        \frac{\partial Q}{\partial\theta} &= -2\tau(x-\theta) + 2\lambda\theta = 0 \\
+        \frac{\partial Q}{\partial\tau} &= \frac{1-\alpha}{\tau} + (x -\theta)^2 + \beta = 0
+      \end{cases}
+    \end{equation*}
 It is a difficult problem to solve, especially when $\theta$ is a vector.
 
-\textbf{Remark :} One way to solve the problem above is to compute one parameter, for example $\theta$, when fixing the other parameter, i.e. $\tau$. Then fix $\theta$, compute $\theta$. Hold on until they get convergent. Well, then we need to think about the convergence problem.
+\textbf{Remark :} One way to solve the problem above is to compute one parameter, for example $\theta$, while fixing the other parameter, i.e. $\tau$. Then fix $\theta$, compute $\theta$. Hold on until they get convergent. Well, then we need to think about the convergence problem.
 
-\textbf{case 2.2.} Assume the conditional prior of $\theta | \tau$ is $\theta | \tau \sim N(0, \lambda\tau)$, the prior of $\tau$ is $\tau \sim \Gamma(\alpha, \beta)$ as case 2.1. So
+\item[Solution 2] Assume $p(\theta, \tau)=p(\theta|\tau)p(\tau)$, and $p(\theta |\tau) \sim \MN(0, (\lambda\tau)^{-1})$, suppose $\tau \thicksim \mbox{Gamma}(\alpha/2, \beta/2)$, follow the same steps in solution 1, we get:
 \[\begin{split}
-\BP(\theta, \tau | X) &\propto \BP(X | \theta, \tau) \BP(\theta | \tau) \BP(\tau) \\
-&= \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(x-\theta)^2}{2\tau}}
-\frac{1}{\sqrt{2\pi\lambda \tau}} e^{-\frac{\theta^2}{2\lambda\tau}}
-\frac{\beta^\alpha}{\Gamma(\alpha)} \tau^{\alpha - 1} e^{-\beta\tau}
+p(\theta, \tau | x) &\propto p(x | \theta, \tau) p(\theta | \tau) p(\tau) \\
+&\propto \frac{\tau^{\frac{1}{2}}}{\sqrt{2\pi}} e^{-\frac{\tau(x-\theta)^2}{2}}
+\frac{(\lambda \tau)^{\frac{1}{2}}}{\sqrt{2\pi}} e^{-\frac{\lambda\tau\theta^2}{2}}
+(\frac{\beta}{2})^\frac{\alpha}{2}e^{(-\frac{\beta \tau}{2})}\frac{\tau ^{\frac{\alpha}{2} - 1}}{\Gamma(\alpha/2)}
 \end{split}
 \]
 Then the corresponding $L$ is given by:
-\[ L = \beta\tau - (a-2)\ln \tau + \frac{(x-\theta)^2}{2\tau} + \frac{\theta^2}{2\lambda \tau}
-\].
-To get the estimate of $\theta$ and $\tau$, we need to solve:
+    $$L = \tau^{\frac{\alpha+1}{2}-1}(\lambda\tau)^\frac{1}{2}\exp(-\frac{\tau}{2}((x-\theta)^2+\beta)-\frac{\lambda\tau\theta^2}{2}).$$
+Then the $Q$ is
+$$Q = -2\ln L = -(\alpha - 1)\ln\tau + \tau((x-\theta)^2+\beta) - \ln(\lambda\tau) + \lambda\tau\theta^2$$
+To get the estimation of $\theta$ and $\tau$, we need to solve:
 \[\begin{cases}
-\frac{\partial L}{\partial \theta} = 0 \\
-\frac{\partial L}{\partial \tau} = 0
+\frac{\partial Q}{\partial \theta} = 0 \\
+\frac{\partial Q}{\partial \tau} = 0
 \end{cases}
 \]
 Then we will get:
 \begin{equation*} \begin{cases}
-\frac{1}{\tau}(\frac{\theta}{\lambda} + \theta - x) = 0 \hfill (1) \\
-\beta - \frac{\alpha - 2}{\tau} - \frac{1}{\tau^2}\left(\frac{(x-\theta)^2}{2} + \frac{\theta^2}{2\lambda} \right) = 0 \hfill(2)
+-\tau(x-\theta)+\tau\lambda = 0  \\
+\beta - \frac{\alpha - 1}{\tau} - \frac{1}{\tau}+(x-\theta)^2 + \lambda\theta^2= 0 \\
 \end{cases}
 \end{equation*}
-Form (1), we can easily get $\theta$. It is called \textbf{decouple}.
+We can easily solve $\theta$ and $\tau$. It is called \textbf{decouple}.
 
-\textbf{case 2.3.} From the two subcases above, we can find the major problem is computing complexity. Another problem will occurs if there are too many hyper-parameters. As we need to search the best hyper-parameters in grids. So if there are 2 hyper-parameters, the search space is 2-dimension. If there are 3 hyper-parameters, the search space is 3-dimension... It will cost much time when the search space is high dimension.
+\item[Solution 3] From the two sub-cases above, we can find the major problem is computing complexity. Another problem will occurs if there are too many hyper-parameters. As we need to search the best hyper-parameters by grid search. So if there are 2 hyper-parameters, the search space is 2-dimensional. If there are 3 hyper-parameters, the search space is 3-dimensional... It will cost too much time when the search space is high dimensional.
 
-Simply, we can give an uninformative prior to $\tau$, $\BP(\tau) \propto 1$. Or we can consider Jeffrey prior for $\tau$. According to $\theta | \tau \sim N(0, \lambda\tau)$. Then we can get Fisher information:
+Simply, we can give an uninformative prior to $\tau$, $p(\tau) \propto 1$. Or we can consider Jeffreys prior for $\tau$. According to Example 3.1, case 2,we get $p(\tau)\propto \frac{1}{\tau}$. So we will have:
 \[\begin{split}
-I(\tau) &= \BE[ (\frac{\partial \ln f}{\partial \tau}) ]  \\
-&= \frac{1}{2\tau^2}
-\end{split}\],
-where $f = \frac{1}{\sqrt{2\pi\lambda\tau}} e^{-\frac{\theta^2}{2\lambda\tau}}$. So we can get the prior for $\tau$, $\BP(\tau) \propto \frac{1}{\tau}$. Then we will get:
-\[\begin{split}
-\BP(\theta, \tau | x) &\propto \BP(x | \theta, \tau) \BP(\theta | \tau) \BP(\tau) \\
-&= \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(x-\theta)^2}{2\tau}} \frac{1}{\sqrt{2\pi\lambda\tau}} e^{-\frac{\theta^2}{2\lambda\tau}} \frac{1}{\tau} \\
+p(\theta, \tau | x) &\propto p(x | \theta, \tau) p(\theta | \tau) p(\tau) \\
+&\propto \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(x-\theta)^2}{2\tau}} \frac{1}{\sqrt{2\pi\lambda\tau}} e^{-\frac{\theta^2}{2\lambda\tau}} \frac{1}{\tau}=L \\
 \end{split}\]
-After $-\ln$ operation and remove constants, we will get:
-\[ L = 2\ln\tau + \frac{(x-\theta)^2}{2\tau} + \frac{\theta^2}{2\lambda\tau} \].
-Then accoring to $\frac{\partial L}{\partial \theta} = 0$ and $\frac{\partial L}{\partial \tau} = 0$, we will get the followings:
+Removing constants, we will get:
+\[ Q = -2\ln L = 3\ln\tau + \ln(\lambda\tau) + \frac{(x-\theta)^2}{\tau} + \frac{\theta^2}{\lambda\tau} \]
+Then according to $\frac{\partial Q}{\partial \theta} = 0$ and $\frac{\partial Q}{\partial \tau} = 0$, we will get the followings:
 \[\begin{cases}
-\frac{1}{\tau} \left[\frac{\theta}{\lambda} - \theta\right] = 0 \\
-\frac{2}{\tau} - \frac{1}{\tau^2}\left(\frac{(x-\theta)^2}{2} + \frac{\theta^2}{2\lambda}\right) = 0
-\end{cases}\].
-We can see it is easy to solve.
-
+-2(x-\theta)+\frac{2\theta}{\lambda} = 0 \\
+\frac{3}{\tau}+\frac{1}{\tau}-\frac{1}{\tau^2}\left(\frac{(x-\theta)^2}{2}+\frac{\theta^2}{\lambda}\right) = 0 \\
+\end{cases}\]
+We can see it is easy to solve and there is no extra parameter.(Solution 2 has two new parameters, $\alpha$ and $\beta$)
+\end{description}
+\end{description}
 \end{document}
 
 
