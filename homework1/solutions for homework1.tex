@@ -71,15 +71,50 @@ u_0 &=& \int_{-\infty}^{\infty} \left(\int_{-\infty}^{x} \frac{1}{\sqrt{2\pi}} e
 &=& \int_{-\infty}^{\infty} \left(\int_{-\infty}^{\sigma y+\mu} \frac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}}\right) \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2}{2}} dy   \\
 && \mbox{(use }y=(x-\mu)/\sigma-\mbox{ to replace x, then }Y\sim \MN(0,1))\\
 &=&\int_{-\infty}^{\infty} \Phi(\sigma y+\mu) \MN(y|0, 1) dy \\
-&=&\int_{-\infty}^{\infty} P(K\le \sigma Y+\mu | Y=y) f(y) dy  \\
-&&(K \sim \MN(0,1) \mbox{ and is independent of }Y, f(x)\mbox{ is the pdf of }\MN(0,1)) \\
+&=&\int_{-\infty}^{\infty} P(K\le \sigma Y+\mu | Y=y) \varphi(y) dy  \\
+&&(K \sim \MN(0,1) \mbox{ and is independent of }Y, \varphi(x)\mbox{ is the pdf of }\MN(0,1)) \\
 &=&P(K\le \sigma Y+\mu) \\
 &&\mbox{(use the law of total probability)}\\
 &=&P(K-\sigma Y\le \mu) \\
 \end{eqnarray*}
 Let $Z=K-\sigma Y$, then $Z\sim \MN(0,1+\sigma^2)$, so $\mu_0=P(K-\sigma Y\le \mu) = P(Z\le \mu) = \Phi(\frac{\mu}{1+\sigma^2})$.
 \item 
+\begin{eqnarray*}
+&& \frac{\partial u_0}{\partial \mu} = \frac{\partial \Phi(\frac{\mu}{\sqrt{1+\sigma^2}})}{\partial \mu} \\
+&\Longrightarrow &\int_{-\infty}^{\infty}\Phi(x)\MN(\mu,\sigma^2)\frac{x-\mu}{\sigma^2}dx = \varphi(\frac{\mu}{\sqrt{1+\sigma^2}})\frac{1}{\sqrt{1+\sigma^2}} \\
+&\Longrightarrow &\int_{-\infty}^{\infty}\Phi(x)\MN(\mu,\sigma^2)(x-\mu)dx = \varphi(\frac{\mu}{\sqrt{1+\sigma^2}})\frac{\sigma^2}{\sqrt{1+\sigma^2}} \\
+&\Longrightarrow &u_1 = \mu u_0+ \varphi(\frac{\mu}{\sqrt{1+\sigma^2}})\frac{\sigma^2}{\sqrt{1+\sigma^2}} \\
+\end{eqnarray*}
+\item
+\begin{eqnarray*}
+&& u_2 = \int_{-\infty}^{\infty} \Phi(x) \MN(x|\mu, \sigma^2)x^2 - 2m_1 u_1 + m_1^2u_0 \\
+\end{eqnarray*}
+and 
+\begin{eqnarray*}
+&& \frac{\partial u_1}{\partial \mu} = \frac{\partial(\mu u_0+ \varphi(\frac{\mu}{\sqrt{1+\sigma^2}})\frac{\sigma^2}{\sqrt{1+\sigma^2}})}{\partial \mu} \\
+&\Longrightarrow &\int_{-\infty}^{\infty}\Phi(x)\MN(\mu,\sigma^2)x\frac{x-\mu}{\sigma^2}dx = -\frac{\mu\sigma^2}{\sqrt{(1+\sigma^2)^{3}}}\varphi(\frac{\mu}{\sqrt{1+\sigma^2}})+u_0+\frac{\mu}{\sqrt{1+\sigma^2}}\varphi(\frac{\mu}{\sqrt{1+\sigma^2}}) \\
+&\Longrightarrow &\int_{-\infty}^{\infty}\Phi(x)\MN(\mu,\sigma^2)x(x-\mu)dx = \sigma^2\left(-\frac{\mu\sigma^2}{\sqrt{(1+\sigma^2)^{3}}}\varphi(\frac{\mu}{\sqrt{1+\sigma^2}})+u_0+\frac{\mu}{\sqrt{1+\sigma^2}}\varphi(\frac{\mu}{\sqrt{1+\sigma^2}})\right) \\
+&\Longrightarrow &\int_{-\infty}^{\infty} \Phi(x) \MN(x|\mu, \sigma^2)x^2 = \mu u_1+ \sigma^2\left(-\frac{\mu\sigma^2}{\sqrt{(1+\sigma^2)^{3}}}\varphi(\frac{\mu}{\sqrt{1+\sigma^2}})+u_0+\frac{\mu}{\sqrt{1+\sigma^2}}\varphi(\frac{\mu}{\sqrt{1+\sigma^2}})\right) \\
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+u_2 &=& \mu u_1+ \sigma^2\left(-\frac{\mu\sigma^2}{\sqrt{(1+\sigma^2)^{3}}}\varphi(\frac{\mu}{\sqrt{1+\sigma^2}})+u_0+\frac{\mu}{\sqrt{1+\sigma^2}}\varphi(\frac{\mu}{\sqrt{1+\sigma^2}})\right)-2m_1u_1+m_1^2u_0
+\end{eqnarray*}
+\end{enumerate}
+\item $f(x; \theta) = \theta^x(1-\theta)^{1-x}$, $0 < \theta < 1$.
+\begin{enumerate}
+\item Compute Jeffreys prior about $\theta$.
+\item If $\theta = \sin^2 \alpha$, compute Jeffreys prior about $\alpha$.
+\end{enumerate}
+\begin{enumerate}
 \item 
+\begin{align*}p(\theta) & \propto \sqrt{I(\theta)} = \sqrt{\operatorname{E}\!\left[ \left( \frac{d}{d\theta} \log f(x|\theta) \right)^2\right]} = \sqrt{\operatorname{E}\!\left[ \left( \frac{x}{\theta} - \frac{1-x}{1-\theta}\right)^2 \right]} \\ & = \sqrt{\theta \left( \frac{1}{\theta} - \frac{0}{1-\theta}\right)^2 + (1-\theta)\left( \frac{0}{\theta} - \frac{1}{1-\theta}\right)^2} = \frac{1}{\sqrt{\theta(1-\theta)}}\,.\end{align*} 
+\item 
+\begin{align*}
+p(\alpha) \propto&  p(\theta)|\frac{d\theta}{d\alpha}| \\
+\propto & \frac{1}{|\sin\alpha\cos\alpha|}|2\sin \alpha\cos \alpha| \\
+\propto & 1 \\
+\end{align*}
 \end{enumerate}
 \end{enumerate}
 \end{document}
