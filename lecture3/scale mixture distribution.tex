@@ -300,11 +300,12 @@ $X \sim \MN(\mu, \sigma^2)$.
 \end{example}
 \begin{description}
 \item[Case 1:] Fix $\sigma$, the only parameter is $\mu$. The likelihood is:
-$$f(X|\mu) \propto \exp(-\frac{1}{2\sigma^2}(x - \mu)^2)$$
+$$f(X|\mu) = \frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{1}{2\sigma^2}(x - \mu)^2)$$
 so
-$$\log f \propto -(\frac{x-\mu}{\sigma})^2$$So we can get:
+$$\log f = -\frac{(x-\mu)^2}{2\sigma^2}+\ln(\frac{1}{\sqrt{2\pi}\sigma})$$So we can get:
 \[\begin{split} 
-I(\mu) &= \BE\left[ \left( \frac{(x - \mu)^2}{\sigma^2} \right)^2 \right] \\
+I(\mu) &= \BE\left[ \frac{\partial\log f}{\partial \mu} \right] \\
+&= \BE\left[ \left( \frac{x - \mu}{\sigma^2} \right)^2 \right] \\
 &= \frac{\BE(x - \mu)^2}{\sigma^4} \\
 &= \frac{1}{\sigma^2}
 \end{split}\]
