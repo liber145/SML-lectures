@@ -201,7 +201,7 @@ Let $X \sim \MN(\mu, \frac{\sigma^2}{r})$, $r \sim\mbox{Gamma}(\frac{\nu}{2},\fr
 \int_0^\infty r^{\frac{\nu+1}{2} - 1} 
 e^{-\frac{r}{2}(\frac{(x-\mu)^2}{\sigma^2} + \nu)}  \mathrm{d}r \\
 = & \frac{(\frac{\nu}{2})^{\frac{\nu}{2}}\Gamma{(\frac{\nu+1}{2})}}{\sigma\sqrt{2\pi}\Gamma{(\frac{\nu}{2})}} 
-\left[\frac{(x-\mu)^2}{\sigma^2} + \nu\right]^{-\frac{\nu+1}{2}} \\
+\left[\frac{(x-\mu)^2}{2\sigma^2} + \frac{\nu}{2}\right]^{-\frac{\nu+1}{2}} \\
 = & \frac{\Gamma{(\frac{\nu+1}{2})}}{\sigma\sqrt{\nu\pi}\Gamma{(\frac{\nu}{2})}} 
 \left[\frac{(x-\mu)^2}{\nu\sigma^2} + 1\right]^{-\frac{\nu+1}{2}} \\
 = & t_\nu(\mu,\sigma^2)
