@@ -1,0 +1,245 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % more modern
+%\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{epsf}
+\usepackage{amsmath,amssymb,amsfonts,verbatim}
+\usepackage{subfigure}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{enumerate}
+%\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{xcolor}
+
+\def\A{{\bf A}}
+\def\a{{\bf a}}
+\def\B{{\bf B}}
+\def\b{{\bf b}}
+\def\C{{\bf C}}
+\def\c{{\bf c}}
+\def\D{{\bf D}}
+\def\d{{\bf d}}
+\def\E{{\bf E}}
+\def\e{{\bf e}}
+\def\F{{\bf F}}
+\def\f{{\bf f}}
+\def\G{{\bf G}}
+\def\g{{\bf g}}
+\def\k{{\bf k}}
+\def\K{{\bf K}}
+\def\H{{\bf H}}
+\def\I{{\bf I}}
+\def\L{{\bf L}}
+\def\M{{\bf M}}
+\def\m{{\bf m}}
+\def\n{{\bf n}}
+\def\N{{\bf N}}
+\def\BP{{\bf P}}
+\def\R{{\bf R}}
+\def\BS{{\bf S}}
+\def\s{{\bf s}}
+\def\t{{\bf t}}
+\def\T{{\bf T}}
+\def\U{{\bf U}}
+\def\u{{\bf u}}
+\def\V{{\bf V}}
+\def\v{{\bf v}}
+\def\W{{\bf W}}
+\def\w{{\bf w}}
+\def\X{{\bf X}}
+\def\Y{{\bf Y}}
+\def\Q{{\bf Q}}
+\def\x{{\bf x}}
+\def\y{{\bf y}}
+\def\Z{{\bf Z}}
+\def\z{{\bf z}}
+\def\0{{\bf 0}}
+\def\1{{\bf 1}}
+
+
+\def\hx{\hat{\bf x}}
+\def\tx{\tilde{\bf x}}
+\def\ty{\tilde{\bf y}}
+\def\tz{\tilde{\bf z}}
+\def\hd{\hat{d}}
+\def\HD{\hat{\bf D}}
+
+\def\MA{{\mathcal A}}
+\def\ML{{\mathcal L}}
+\def\MF{{\mathcal F}}
+\def\MR{{\mathcal R}}
+\def\MG{{\mathcal G}}
+\def\MI{{\mathcal I}}
+\def\MN{{\mathcal N}}
+\def\MO{{\mathcal O}}
+\def\MT{{\mathcal T}}
+\def\MX{{\mathcal X}}
+\def\SW{{\mathcal {SW}}}
+\def\MW{{\mathcal W}}
+\def\MY{{\mathcal Y}}
+\def\BR{{\mathbb R}}
+\def\BP{{\mathbb P}}
+\def\BE{{\mathbb E}}
+\def\BN{{\mathbb N}}
+
+\def\bet{\mbox{\boldmath$\beta$\unboldmath}}
+\def\epsi{\mbox{\boldmath$\epsilon$}}
+
+\def\etal{{\em et al.\/}\,}
+\def\tr{\mathrm{tr}}
+\def\rk{\mathrm{rk}}
+\def\diag{\mathrm{diag}}
+\def\dg{\mathrm{dg}}
+\def\argmax{\mathop{\rm argmax}}
+\def\argmin{\mathop{\rm argmin}}
+\def\vecd{\mathrm{vec}}
+
+\def\ph{\mbox{\boldmath$\phi$\unboldmath}}
+\def\vp{\mbox{\boldmath$\varphi$\unboldmath}}
+\def\pii{\mbox{\boldmath$\pi$\unboldmath}}
+\def\Ph{\mbox{\boldmath$\Phi$\unboldmath}}
+\def\pss{\mbox{\boldmath$\psi$\unboldmath}}
+\def\Ps{\mbox{\boldmath$\Psi$\unboldmath}}
+\def\muu{\mbox{\boldmath$\mu$\unboldmath}}
+\def\Si{\mbox{\boldmath$\Sigma$\unboldmath}}
+\def\lam{\mbox{\boldmath$\lambda$\unboldmath}}
+\def\Lam{\mbox{\boldmath$\Lambda$\unboldmath}}
+\def\Gam{\mbox{\boldmath$\Gamma$\unboldmath}}
+\def\Oma{\mbox{\boldmath$\Omega$\unboldmath}}
+\def\De{\mbox{\boldmath$\Delta$\unboldmath}}
+\def\de{\mbox{\boldmath$\delta$\unboldmath}}
+\def\Tha{\mbox{\boldmath$\Theta$\unboldmath}}
+\def\tha{\mbox{\boldmath$\theta$\unboldmath}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{example}{Example}[section]
+
+
+\def\probin{\mbox{\rotatebox[origin=c]{90}{$\vDash$}}}
+
+\def\calA{{\cal A}}
+
+
+
+%this is a comment
+
+%use this as a template only... you may not need the subsections,
+%or lists however they are placed in the document to show you how
+%do it if needed.
+
+
+%THINGS TO REMEMBER
+%to compile a latex document - latex filename.tex
+%to view the document        - xdvi filename.dvi
+%to create a ps document     - dvips filename.dvi
+%to create a pdf document    - dvipdf filename.dvi
+%{\bf TEXT}                  - bold font TEXT
+%{\it TEXT}                  - italic TEXT
+%$ ... $                     - places ... in math mode on same line
+%$$ ... $$                   - places ... in math mode on new line
+%more info at www.cs.wm.edu/~mliskov/cs423_fall04/tex.html
+
+
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textwidth}{6in}
+\setlength{\topmargin}{-0.4in}
+\setlength{\textheight}{8.5in}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\notes}[5]{
+	\renewcommand{\thepage}{#1 - \arabic{page}}
+	\noindent
+	\begin{center}
+	\framebox{
+		\vbox{
+		\hbox to 5.78in { { \bf Statistical Machine Learning}
+		\hfill #2}
+		\vspace{4mm}
+		\hbox to 5.78in { {\Large \hfill #5 \hfill} }
+		\vspace{2mm}
+		\hbox to 5.78in { {\it #3 \hfill #4} }
+		}
+	}
+	\end{center}
+	\vspace*{4mm}
+}
+
+\newcommand{\ho}[5]{\notes{#1}{Distributions}{Professor: Zhihua Zhang}{}{Lecture Notes #1: Multinomial Distribution}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%begins a LaTeX document
+\setcounter{section}{2}
+\setcounter{subsection}{3}
+\begin{document}
+\ho{4}{2014.03.08}{Moses Liskov}{Name}{Lecture title}
+\subsubsection{More About Mixture Distribution}
+\begin{definition}
+  In probability theory and statistics, the moment-generating function of a random variable $X$ is 
+  \[M_X(t) = \BE[e^{tX}] = \int e^{tx} f_X(x) dx\]
+\end{definition}
+One property about moment-generating function is that we can get $\BE[X^k]$ from $M_X^{(k)}(0)$, 
+as we can see $M_X^{(k)}(t) = \int x^k e^{tx} f_X(x) dx$, where we assume we can put the derivation inside. So $M_X^{(k)}(0) = \BE[X^k]$.
+
+\begin{definition}
+  A function $f:(0, \infty) \rightarrow \BR$ is completely monotone function if and only if $f$ is of class $C^\infty$(infinitely derivable), and $(-1)^n f^{(n)}(\lambda) \geq 0$ for all $n \in N\cup\{0\}$, and $\lambda > 0$.
+\end{definition}
+
+\begin{theorem}(Bernstein)
+  Let $g:(0,\infty) \rightarrow \BR$ be a completely monotone function. Then it is the Laplace transform of unique measure $\mu$ on $[0,\infty]$, i.e. for all $\lambda > 0$, \[g(\lambda) =  \ML(\mu; \lambda) = \int_{[0, \infty)} e^{-\lambda t} \mu(dt)\]. Conversely, whenever $\ML(\mu; \lambda) < \infty$ for every $\lambda > 0$,  $\lambda \mapsto  \ML(\mu; \lambda)$ is a completely monotone function.
+\end{theorem}
+
+\begin{proof}
+  Assume $g(0+) = 1$ and $g(+\infty) = 0$. By Taylor's formula
+  \begin{equation}\begin{split} 
+    f(\lambda) &= \sum_{k=0}^{n-1} \frac{f^{(k)}(a)}{k!} (\lambda - a)^k + \int_a^\lambda \frac{f^{(n)}(s)}{(n-1)!}(\lambda - s)^{n-1} ds \\
+    &= \sum_{k=0}^{n-1} \frac{(-1)^k f^{(k)}(a)}{k!} (a-\lambda)^k + \int_\lambda^a \frac{(-1)^nf^{(n)}(s)}{(n-1)!} (s-\lambda)^{n-1} ds  
+  \end{split}\end{equation}
+  
+  where $a > 0$ and $n \in \BN$. Let $a \to \infty$, then 
+  \[\begin{split}
+    \lim_{a\to\infty} \int_\lambda^a \frac{(-1)^n f^{(n)}(s)}{(n-1)!} (s-\lambda)^{n-1} ds &= 
+    \int_\lambda^\infty \frac{(-1)^n f^{(n)}(s)}{(n-1)!} (s-\lambda)^{n-1} ds \\
+    &\leq f(\lambda).
+  \end{split}\]
+  So the sum in (1) converges for every $n \in \BN$ as $a \to \infty$. Let 
+  \[ \rho_n(\lambda) = \lim_{a \to \infty} \frac{(-1)^n f^{(n)}(a)}{n!} (a-k)^n\].
+  This limit doesn't depend on $\lambda > 0$. Indeed, for $k>0$,
+  \[\begin{split}
+    \rho_n(k) &= \lim_{a \to \infty} \frac{(-1)^n f^{(n)}(a)}{n!} (a - k)^n  \\
+    &= \lim_{a \to \infty} \frac{(-1)^n f^{(n)}(a)}{n!} (a-\lambda)^n \frac{(a -k)^n}{(a-\lambda)^n} \\
+    &= \rho_n(\lambda).
+  \end{split}\]
+  So we can get 
+  \[ f(\lambda) = \sum_{k=0}^{n-1} \rho_k(\lambda) + \int_\lambda^\infty \frac{(-1)^n f^{(n)}(s)}{(n-1)!} (s-\lambda)^{n-1} ds\]
+  Let $\lambda \to \infty$, since $f(+\infty) = 0$, so $\rho_k(\lambda) = 0$. Then we can get 
+  \begin{equation} f(\lambda) = \int_\lambda^\infty \frac{(-1)^nf^{(n)}(s)}{(n-1)!}(s-\lambda)^{n-1} ds\end{equation}. 
+  And since $f(0+) = 1$, we can get:
+  \[1 = \lim_{\lambda \to 0+} f(\lambda) = \int_0^\infty \frac{(-1)^nf^{(n)}(s)}{(n-1)!} s^{n-1} ds\]
+  And (2) can also be written as:
+  \[ f(\lambda) = \int_0^\infty (1-\frac{\lambda}{s})_+^{n-1} \frac{(-1)^nf^{(n)}(s)}{(n-1)!} s^{n-1}ds. \]
+ Let $t = \frac{n}{s}$, then 
+ \[ f(\lambda) = \int_0^\infty (1-\frac{\lambda t}{n})^{n-1}_+ \frac{(-1)^n}{n!}f^{(n)}(\frac{n}{t}) (\frac{n}{t})^{n+1} dt\].
+ Since $\lim_{n\to\infty} (1-\frac{\lambda t}{n})^{n-1}_+ = e^{-\lambda t}$. So
+ \[ f(\lambda) = \int_0^\infty e^{-\lambda t} \frac{(-1)^n}{n!}f^{(n)}(\frac{n}{t}) (\frac{n}{t})^{n+1} dt.\]
+ 
+ For the converse, let $f(\lambda) = \ML(\mu; \lambda) = \int_0^\infty e^{-\lambda t} \mu(dt)$. So
+ \[(-1)^n f^{(n)}(\lambda) = \int_0^\infty t^n e^{-\lambda t} \mu(dt) \geq 0\]
+\end{proof}
+
+\end{document}
+
+
+
+
