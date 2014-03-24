@@ -252,8 +252,8 @@ If $f(x) > 0$, then $e^{-uf(x)}$ is completely monotone for every $u>0$ iff $f'(
 
 \section{Multinomial Distribution}
 
-\subsubsection{Bivariate Distribution}
-Given a pair of discrete random variable $X$ and $Y$, define the joint mass distribution by $f_{x,Y}(X=x, Y=y) = \BP(X=x, Y=y) = \BP(X=x and Y = y)$.
+\subsection{Bivariate Distribution}
+Given a pair of discrete random variable $X$ and $Y$, define the joint mass distribution by $f_{x,Y}(X=x, Y=y) = \BP(X=x, Y=y) = \BP(X=x \text{ and } Y = y)$.
 
 \begin{definition}
 In the continuous case, we call a function $f(x,y)$ a probability density function, if
@@ -311,12 +311,31 @@ In the continuous case, the steps to find density of transformation variable is 
 \item $f_Y(y) = F_Y'(y)$.
 \end{enumerate}
 
+\begin{example}
+  $f_X(x) = e^{-x}$ for $x>0$, and $Y=g(X)=\log X$. Then $F_X(x) = \int_0^x f_X(u) du = 1 - e^{-x}$. $A_Y = \{x: x \leq e^y\}$. $F_Y(y) = \BP(Y \leq y) = \BP(\log x \leq y) = \BP(x \leq e^y) = F_X(e^y) = 1 - e^{-e^y}$. $f_Y(y) = (1 - e^{-e^y})' = e^y e^{-e^y}$.
+\end{example}
+
+\begin{example}
+  $X \sim Uniform(-1, 3)$, $Y=X^2$. $f_X(x) = \begin{cases}\frac{1}{4} & x\in(-1,3) \\ 0 & \text{o.w.}\end{cases}$. Now let us think about the distribution density of $Y$. $Y$ can take value in $(0, 9)$. 
+  \begin{enumerate}
+    \item $0 < Y < 1$. $A_y = \{X : X^2 \leq y\} = [-\sqrt{y}, \sqrt{y}]$. $F_Y(y) = \int_{A_y} f_X(x) dx = \frac{1}{2} \sqrt{y}$.
+    \item $1 \leq Y < 9$. $A_y = [-1, -\sqrt{y}]$. $F_Y(y) = \int_{A_y} \frac{1}{4} dx = \frac{1}{4}(1 + \sqrt{y})$. 
+  \end{enumerate}
+  So, $f_Y(y) = \begin{cases} \frac{1}{4\sqrt{y}}  & 0 < y < 1 \\ \frac{1}{8\sqrt{y}}  & \text{o.w.}\end{cases}$
+\end{example}
+
 If random variable $Z = g(X, Y)$, then the way to find density of $Z$ is given by:
 \begin{enumerate}
 \item For each $z$, find $A_z = \{(x, y): g(x, y)\leq z\}$.
 \item Find CDF $F_Z(z) = \BP(Z \leq z) = \int\int_{A_z} f_{X,Y}(x, y) dxdy$.
 \item $f_Z(z) = F_Z'(z)$.
 \end{enumerate}
+
+\begin{example}
+  Let $X_1, X_2 \stackrel{iid}{\sim} Uniform(0, 1)$, $Y = X_1 + X_2$. $f_{X_1, X_2}(x_1, x_2) = \begin{cases} 1 & 0<x_1 < 1, 0 < x_2 < 1 \\ 0 & \text{o.w.} \end{cases}$. $F_Y(y) = \BP(\{(x_1, x_2): (x_1 + x_2) \leq y \}) = \int\int_{A_Y} f(x_1, x_2) dx_1dx_2 = \begin{cases}\frac{1}{2}y^2 & 0<y<1 \\
+  1 - \frac{(2-y)^2}{2} & 1 \leq y \leq 2 \\ 1 & y > 2 \\ 0 & y \leq 0 \end{cases}$. So,
+  $f_Y(y) = \begin{cases}y & 0\leq y \leq 1 \\ 1 - y & 1 < y \leq 2 \\ 0 & \text{o.w.} \end{cases}$
+\end{example}
 
 \begin{theorem}
 Let $X$ have CDF $F_X(x)$ and $Y=g(X)$, and let $\mathcal{X} = \{x : f_X(x) > 0\}$, $\mathcal{Y} = \{y: y = g(x) \text{ for some }x \in $X$\}$
