@@ -1,0 +1,570 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % more modern
+%\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{epsf}
+\usepackage{amsmath,amssymb,amsfonts,verbatim}
+\usepackage{subfigure}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{enumerate}
+%\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{fancyref}
+
+
+\def\A{{\bf A}}
+\def\a{{\bf a}}
+\def\B{{\bf B}}
+\def\b{{\bf b}}
+\def\C{{\bf C}}
+\def\c{{\bf c}}
+\def\D{{\bf D}}
+\def\d{{\bf d}}
+\def\E{{\bf E}}
+\def\e{{\bf e}}
+\def\F{{\bf F}}
+\def\f{{\bf f}}
+\def\G{{\bf G}}
+\def\g{{\bf g}}
+\def\k{{\bf k}}
+\def\K{{\bf K}}
+\def\H{{\bf H}}
+\def\I{{\bf I}}
+\def\L{{\bf L}}
+\def\M{{\bf M}}
+\def\m{{\bf m}}
+\def\n{{\bf n}}
+\def\N{{\bf N}}
+\def\BP{{\bf P}}
+\def\R{{\bf R}}
+\def\BS{{\bf S}}
+\def\s{{\bf s}}
+\def\t{{\bf t}}
+\def\T{{\bf T}}
+\def\U{{\bf U}}
+\def\u{{\bf u}}
+\def\V{{\bf V}}
+\def\v{{\bf v}}
+\def\W{{\bf W}}
+\def\w{{\bf w}}
+\def\X{{\bf X}}
+\def\Y{{\bf Y}}
+\def\Q{{\bf Q}}
+\def\x{{\bf x}}
+\def\y{{\bf y}}
+\def\Z{{\bf Z}}
+\def\z{{\bf z}}
+\def\0{{\bf 0}}
+\def\1{{\bf 1}}
+
+
+\def\hx{\hat{\bf x}}
+\def\tx{\tilde{\bf x}}
+\def\ty{\tilde{\bf y}}
+\def\tz{\tilde{\bf z}}
+\def\hd{\hat{d}}
+\def\HD{\hat{\bf D}}
+\def\px {\partial{x}}
+\def\py{\partial{y}}
+
+\def\MA{{\mathcal A}}
+\def\ML{{\mathcal L}}
+\def\MF{{\mathcal F}}
+\def\MR{{\mathcal R}}
+\def\MG{{\mathcal G}}
+\def\MI{{\mathcal I}}
+\def\MN{{\mathcal N}}
+\def\MO{{\mathcal O}}
+\def\MT{{\mathcal T}}
+\def\MX{{\mathcal X}}
+\def\SW{{\mathcal {SW}}}
+\def\MW{{\mathcal W}}
+\def\MY{{\mathcal Y}}
+\def\BR{{\mathbb R}}
+\def\BP{{\mathbb P}}
+\def\BE{{\mathbb E}}
+\def\BN{{\mathbb N}}
+
+\def\bet{\mbox{\boldmath$\beta$\unboldmath}}
+\def\epsi{\mbox{\boldmath$\epsilon$}}
+
+\def\etal{{\em et al.\/}\,}
+\def\tr{\mathrm{tr}}
+\def\rk{\mathrm{rk}}
+\def\diag{\mathrm{diag}}
+\def\dg{\mathrm{dg}}
+\def\argmax{\mathop{\rm argmax}}
+\def\argmin{\mathop{\rm argmin}}
+\def\vecd{\mathrm{vec}}
+
+\def\ph{\mbox{\boldmath$\phi$\unboldmath}}
+\def\vp{\mbox{\boldmath$\varphi$\unboldmath}}
+\def\pii{\mbox{\boldmath$\pi$\unboldmath}}
+\def\Ph{\mbox{\boldmath$\Phi$\unboldmath}}
+\def\pss{\mbox{\boldmath$\psi$\unboldmath}}
+\def\Ps{\mbox{\boldmath$\Psi$\unboldmath}}
+\def\muu{\mbox{\boldmath$\mu$\unboldmath}}
+\def\Si{\mbox{\boldmath$\Sigma$\unboldmath}}
+\def\lam{\mbox{\boldmath$\lambda$\unboldmath}}
+\def\Lam{\mbox{\boldmath$\Lambda$\unboldmath}}
+\def\Gam{\mbox{\boldmath$\Gamma$\unboldmath}}
+\def\Oma{\mbox{\boldmath$\Omega$\unboldmath}}
+\def\De{\mbox{\boldmath$\Delta$\unboldmath}}
+\def\de{\mbox{\boldmath$\delta$\unboldmath}}
+\def\Tha{\mbox{\boldmath$\Theta$\unboldmath}}
+\def\tha{\mbox{\boldmath$\theta$\unboldmath}}
+\def\aph{\mbox{\boldmath$\alpha$\unboldmath}}
+\def\bt{\mbox{\boldmath$\beta$\unboldmath}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{example}{Example}[section]
+
+
+\def\probin{\mbox{\rotatebox[origin=c]{90}{$\vDash$}}}
+
+\def\calA{{\cal A}}
+
+
+
+%this is a comment
+
+%use this as a template only... you may not need the subsections,
+%or lists however they are placed in the document to show you how
+%do it if needed.
+
+
+%THINGS TO REMEMBER
+%to compile a latex document - latex filename.tex
+%to view the document        - xdvi filename.dvi
+%to create a ps document     - dvips filename.dvi
+%to create a pdf document    - dvipdf filename.dvi
+%{\bf TEXT}                  - bold font TEXT
+%{\it TEXT}                  - italic TEXT
+%$ ... $                     - places ... in math mode on same line
+%$$ ... $$                   - places ... in math mode on new line
+%more info at www.cs.wm.edu/~mliskov/cs423_fall04/tex.html
+
+
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textwidth}{6in}
+\setlength{\topmargin}{-0.4in}
+\setlength{\textheight}{8.5in}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\notes}[5]{
+	\renewcommand{\thepage}{#1 - \arabic{page}}
+	\noindent
+	\begin{center}
+	\framebox{
+		\vbox{
+		\hbox to 5.78in { { \bf Statistical Machine Learning}
+		\hfill #2}
+		\vspace{4mm}
+		\hbox to 5.78in { {\Large \hfill #5 \hfill} }
+		\vspace{2mm}
+		\hbox to 5.78in { {\it #3 \hfill #4} }
+		}
+	}
+	\end{center}
+	\vspace*{4mm}
+}
+
+\newcommand{\ho}[5]{\notes{#1}{Distributions}{Professor: Zhihua Zhang}{}{Lecture Notes #1: Jacobian and Wedge}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%begins a LaTeX document
+\setcounter{section}{5}
+\setcounter{subsection}{0}
+\begin{document}
+\ho{5}{2014.03.31}{Moses Liskov}{Name}{Lecture title}
+\subsection{More About Mixture Distribution}
+\begin{theorem}
+	Let $X$ be an $m\times 1$ random vector having a density function $f_{\X}(\x)$,  which is positive on a set $\MX\subset\BR^m$. Suppose the transform $\y=\y(\x)=(y_1(\x),y_2(\x),\dots,y_m(\x))^T$ is 1-1 for some $\MY$, where $\MY$ denotes the image of $\MX$ under $\y$, s.t. the inverse transformation $\x=\x(\y)$ exists for $\y\in\MY$. Assuming that the partial derivatives $\frac{\px_i}{\py_j}$'s, $(i,j=1,2,\dots,m)$ exist and continuous on $\MY$, it is well known that the density function of random vector $\Y=\y(\X)$ is
+	\begin{equation}
+		f_{\Y}(\y) = f_{\X}(\x(\y))|J(\x\rightarrow \y)|,\ \y\in\MY
+	\end{equation}
+	where $J(\x\rightarrow \y)$ is the determinant of the Jacobian of the transformation, i.e.
+	\begin{equation}
+		J(\x\rightarrow \y) = \det 
+		\begin{pmatrix} 
+			\frac{\px_1}{\py_1}	& \frac{\px_1}{\py_2}	& \dots 	& \frac{\px_1}{\py_m}\\
+			\frac{\px_2}{\py_1}	& \frac{\px_2}{\py_2}	& \dots 	& \frac{\px_2}{\py_m}\\
+			\vdots 			& \vdots 			& \ddots 	& \vdots \\
+			\frac{\px_m}{\py_1}	& \frac{\px_m}{\py_2}	& \dots 	& \frac{\px_m}{\py_m}\\
+		\end{pmatrix}
+	\end{equation}
+\end{theorem}
+
+Then we define the exterior product, or wedge product, which is a useful tool to calculate the determinant.
+\begin{definition} [Wedge Product]
+	The exterior product or wedge product of $dx$ and $dy$, denoted as $dx\land dy$, has the property that $dx \land dy = -dy \land dx$. 
+\end{definition}
+
+Therefore, it's easy to prove that when $x=y$, $dx\land dx=0$.
+
+\begin{theorem}
+	If $d\y=(dy_1,dy_2,\dots, dy_m)^T$ is an $m\times 1$ vector of differentials and if $d\x=(dx_1,dx_2,\dots, dx_m)^T = \B dy$, where $\B$ is an $m\times m$ nonsingular matrix, then
+	\begin{equation}	\label{eq: detThm}
+		\bigwedge_{i=1}^m dx_i=\det(\B) \bigwedge_{i=1}^m dy_i
+	\end{equation}
+	
+\end{theorem}
+\begin{proof}
+	We'll prove it by induction.
+
+	 $m=2$:
+	\begin {equation}
+		\begin{pmatrix}dx_1\\ dx_2 \end{pmatrix} 
+		=
+		 \begin{pmatrix}
+			B_{11} & B_{12}\\
+			B_{21} & B_{22}\\
+		\end{pmatrix}
+		\begin{pmatrix}dy_1\\ dy_2\\ \end{pmatrix}
+		=  \begin{pmatrix}
+			B_{11}dy_1+ B_{12}dy_2\\
+			B_{21}dy_1+ B_{22}dy_2\\
+		     \end{pmatrix} 
+	\end{equation}
+	Since $dy_i\wedge dy_i=0$ and $dy_2\wedge dy_1=-dy_1\wedge dy_2$, we have
+	\begin{align}
+		dx_1\wedge dx_2 &= (B_{11}dy_1+ B_{12}dy_2)\wedge (B_{21}dy_1+ B_{22}dy_2) \\
+		&= (B_{11}B_{22}-B_{12}B_{21})dy_1\wedge dy_2 = \det(\B) dy_1\wedge dy_2
+	\end{align}
+	Suppose eq.~\ref{eq: detThm} holds for $m-1$. Now consider the case of $m$.
+	Let $\B=	\begin{pmatrix}
+				\A_{(m-1)\times (m-1)} & \b\\
+				\a^T 				 & B_{mm}\\
+			\end{pmatrix}$
+	and $\Q = 	\begin{pmatrix} 
+				\I_{(m-1)\times (m-1)} & -\b B_{mm}^{-1}\\
+				0				& 1\\
+			\end{pmatrix}$.
+	\begin{alignat*}{3}
+		 &		& d\x 		&= 	\begin{pmatrix}
+									\A_{(m-1)\times (m-1)} & \b\\
+									\a^T 				 & B_{mm}\\
+								\end{pmatrix} d\y \\
+		&\implies	& \Q d\x 		&= \Q \B d\y			\\
+		&\implies	& \begin{pmatrix} 
+					d\x_{1:(m-1)} - B_{mm}^{-1}\b dx_m\\
+					dx_m\\
+				   \end{pmatrix}
+							&= \begin{pmatrix}
+								(\A-B_{mm}^{-1}\b\a^T)d\y_{1:(m-1)} \\
+								\a^T d\y_{1:(m-1)}+B_{mm}dy_m\\
+							     \end{pmatrix}
+	\end{alignat*}
+	where $d\x_{1:(m-1)} = (dx_1,\dots,dx_{m-1})$ and  $d\y_{1:(m-1)}$ is defined similarly.
+	Calculating the wedge for both sides, we have
+	\begin{align*}
+		\bigwedge_{i=1}^m dx_i &= \bigwedge((\A-B_{mm}^{-1}\b\a^T)d\y_{1:(m-1)}) \bigwedge (B_{mm} dy_m)\\
+		&= B_{mm} \det(\A-B_{mm}^{-1}\b\a^T) \bigwedge_{i=1}^m dy_i\\
+		&= \det \begin{pmatrix}
+				\A-B_{mm}^{-1}\b\a^T & \bf{0} \\
+				\a^T  			& B_{mm}\\
+			\end{pmatrix} \bigwedge_{i=1}^m dy_i\\
+		&= \det(\Q\B) \bigwedge_{i=1}^m dy_i = \det(\Q)\det(\B)\bigwedge_{i=1}^m dy_i = \det(\B)\bigwedge_{i=1}^m dy_i\\
+	\end{align*}
+\end{proof}
+
+
+\begin{example}
+	Convert rectangular coordinates $x_1,x_2,\dots, x_m$ to polar coordinates $r,\theta_1,\theta_2,\dots, \theta_{m-1}$, where
+	\begin{align}
+		x_1 &= r sin\theta_1 sin\theta_2\cdots sin\theta_{m-2} sin\theta_{m-1}\\
+		x_2 &= r sin\theta_1 sin\theta_2\cdots sin\theta{m-2} cos\theta_{m-1}\\	
+		\vdots\\
+		x_{m-1} &= r sin\theta_1 cos\theta_2\\
+		x_m &= r cos\theta_1\\
+		&(r>0, 0<\theta_i \leq \pi (i=1,2,\dots,m-2), 0< \theta_{m-1}\leq 2\pi).
+	\end{align}
+	Then 
+	\begin{equation} \label{eq:recToPolar}
+		J(\x\rightarrow r,\theta_1,\dots,\theta_{m-1}) = r^{m-1} sin^{m-2}\theta_1 sin^{m-3}\theta_2\cdots sin\theta_{m-2}.
+	\end{equation}
+\end{example}
+\begin{proof}
+	\begin{alignat*}{3}
+		&x_1^2 &&= r^2 sin^2\theta_1 sin^2\theta_2 \cdots sin^2\theta_{m-2} sin^2\theta_{m-1}\\
+		&x_1^2+x_2^2 &&= r^2 sin^2\theta_1 sin^2\theta_2 \cdots sin^2\theta_{m-2}\\
+		&\vdots &&\quad \vdots\\
+		&x_1^2+\cdots +x_{m-1}^2 &&= r^2 sin^2\theta_1\\
+		&x_1^2+\cdots+x_{m-1}^2+x_m^2 &&= r^2\\
+	\implies & 2x_1dx_1 &&= 2r^2 sin^2\theta_1 \cdots sin^2\theta_{m-2} sin\theta_{m-1} cos\theta_{m-1} d\theta_{m-1}+ \text{terms\ of\ } dr,d\theta_1,\dots, d\theta_{m-2}\\
+		& 2x_1dx_1+2x_2dx_2 &&= 2r^2 sin^2\theta_1 \cdots sin^2\theta_{m-3} sin\theta_{m-2} cos\theta_{m-2} d\theta_{m-2}+ \text{terms\ of\ } dr,d\theta_1,\dots, d\theta_{m-3}\\
+		&\vdots &&\quad \vdots\\
+		& 2x_1dx_1+\cdots+2x_mdx_m  &&= 2rdr
+	\end{alignat*}
+	Take wedge product for LHS and RHS simultaneously. we have
+	\begin{align}
+		2^m\prod_{i=1}^m x_i \bigwedge_{i=1}^m dx_i &=  2^m r^{2m-1} sin^{2m-3}\theta_1\cdots sin\theta_{m-1} \prod_{i=1}^{m-1}cos\theta_i\ dr\bigwedge(\bigwedge_{i=1}^{m-1} d\theta_i)
+	\end{align}
+	where
+	\begin{equation}
+		\prod_{i=1}^m x_i = r^m sin^{m-1}\theta_1\cdots sin\theta_{m-1}\prod_{i=1}^{m-1} cos\theta_i.
+	\end{equation}
+	Then we can prove eq.~\ref{eq:recToPolar} easily.
+\end{proof}
+
+\begin{definition}
+	For any matrix $\X = (x_{ij})_{n\times m}$, $d\X\overset{def}{=} (dx_{ij})$,
+	$d(\X\Y) = \X d\Y+d\X\Y$,
+	where the symbol $(d\X) = \bigwedge_{i=1}^n\bigwedge_{j=1}^m dx_{ij}$.
+
+	If $\X$ is a symmetric $m\times m$ matrix, the symbol $(d\X) = \bigwedge_{1\leq i\leq j\leq m} dx_{ij}$.
+\end{definition}
+
+\begin{theorem} \label{thm:asym}
+	Let $\X$ and $\Y$ be two $n\times m$ matrix, and $\X = \B\Y\C$ where $B_{n\times n}$ and $C_{m\times m}$ are nonsingular. Then we have
+	\begin{equation}
+		(d\X) = (\det\B)^m(\det\C)^n(d\Y), \text{\ i.e.}\\
+		J(\X\rightarrow \Y) =  (\det\B)^m(\det\C)^n\\
+	\end{equation} 
+\end{theorem}
+\begin{proof}
+	\begin{align}
+		vec(\X) 	&= vec(\B\Y\C)\\
+				&= (\C^T \otimes \B) vec(\Y),
+	\end{align}
+	where $\A\otimes \B = (a_{ij}\B)$ is the Kronecker product of $\A$ and $\B$ and $vec(\A)$ is the result of concatenating the columns of $\A$.
+	\begin{align}
+		(d\X) 	&= \det(\C^T \otimes \B) (d\Y)\\
+				&= (\det\C)^n(\det\B)^m (d\Y)\\
+	\end{align}
+\end{proof}
+
+Consider the symmetric case, we have the following.
+
+\begin{theorem} \label{thm:sym}
+	If $\X=\B\Y\B^T$ where $\X$ and $\Y$ are $m\times m$ symmetric matrices and $\B$ is a nonsingular matrix, then
+	\begin{equation}
+		(d\X) = (\det\B)^{m+1}(d\Y),
+		J(\X\rightarrow\Y) = (\det\B)^{m+1}
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	\begin{equation}
+		d\X = \B d\Y\B^T \Rightarrow (d\X) = (\B d\Y\B^T) = \rho(\B)(d\Y)
+	\end{equation}
+	where $\rho(\B)$ is a polynomial of elements of $\B$.
+	\begin{lemma}
+		if $\rho$ is a polynomial and has the property that $\rho(\X_1\X_2) = \rho(\X_1)\rho(\X_2)$, then $\rho(\X)=(\det \X)^k$ for some $k$.
+	\end{lemma}
+	It's easy to show $\rho(\B_1\B_2)=\rho(\B_1)\rho(\B_2)$:
+	\begin{equation}
+		(\B_1\B_2d\Y\B_2^T\B_1^T) = (\B_1(\B_2d\Y\B_2^T)\B_1^T) = \rho(\B_1)(\B_2d\Y\B_2^T) = \rho(\B_1)\rho(\B_2) (d\Y)
+	\end{equation}
+	Because of this property, we have $\rho(\B) = (\det\B)^k $ for some $k$.
+	To determine $k$, we consider a simple case where $\B = \diag(b,1,\dots,1)$ and let $\Y = (y_{ij})$. Then
+	$$ \B\Y\B^T =
+		\begin{pmatrix}
+			b^2y_{11}	& b y_{12}	& \cdots 	& b y_{1m}\\
+			b y_{21}	& y_{22}	& \cdots 	& y_{2m}\\
+			\vdots 	& \vdots 	& \ddots 	& \vdots \\
+			b y_{m1} 	& y_{m2} 	& \cdots 	& y_{mm}\\
+		\end{pmatrix}.
+	$$
+	So considering the upper triangular part, we have
+	$$(d\X) = (\B d\Y\B^T) = b^{m+1}(d\Y) = (\det\B)^{m+1}(d\Y).s$$
+	Therefore, $k = m+1$.
+\end{proof}
+
+\begin{theorem}
+	If $\X_{m\times m} = \Y^{-1}$, then 
+		$$(d\X) = (\det\Y)^{-2m}(d\Y).$$
+	Further, if $\Y$ is symmetric, then 
+		$$(d\X) = (\det\Y)^{-(m+1)}(d\Y).$$
+\end{theorem}
+\begin{proof}
+	Since 
+		$$\X = \Y^{-1}\Y\Y^{-1},$$
+	If $\Y$ is asymmetric, by Theorem.~\ref{thm:asym}, we have
+		$$(d\X) = (\det\Y^{-1})^{2m}(d\Y) = (\det\Y)^{-2m}(d\Y).$$
+	If $\Y$ is symmetric, by Theorem.~\ref{thm:sym}, we have
+		$$(d\X) = (\det\Y^{-1})^{m+1}(d\Y) = (\det\Y)^{-(m+1)}(d\Y).$$
+\end{proof}
+
+\begin{theorem}
+	If $\A$ is an $m\times m$ symmetric positive definite matrix, by Cholesky decomposition, $\A=\T^T\T$, where $\T =\left( \begin{smallmatrix} 
+						t_{11}	& t_{12}	& \cdots 	& t_{1m}\\	
+						\quad	& t_{22} 	& \cdots 	& t_{2m} \\
+						\quad	& *		& \ddots 	& \vdots \\
+						\quad 	&\quad 	& \quad	& t_{mm}\\
+					  \end{smallmatrix}\right)$ is an upper triangular matrix with positive diagonal elements. Then we have 
+	\begin{equation}
+		J(\A\rightarrow \T) = 2^m \prod_{i=1}^m t_{ii}^{m+1-i}.
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	Let $\A=(a_{ij})_{m\times m}$. 
+	$$ 	
+		\begin{pmatrix}
+			a_{11}	& a_{12}	& \cdots 	& a_{1m}\\
+			a_{21}	& a_{22}	& \cdots 	& a_{2m}\\
+			\vdots 	& \vdots 	& \ddots 	& \vdots \\
+			a_{m1} 	& a_{m2} 	& \cdots 	& a_{mm}\\
+		\end{pmatrix}
+		= 
+		\begin{pmatrix} 
+			t_{11}	&\quad	&\quad 	& \quad \\	
+			t_{12}	& t_{22} 	& * 		& \quad \\
+			\vdots	& \vdots	& \ddots 	& \quad \\
+			t_{1m} 	& t_{2m}	& \cdots	& t_{mm}\\
+		\end{pmatrix}
+		\begin{pmatrix} 
+			t_{11}	& t_{12}	& \cdots 	& t_{1m}\\	
+			\quad	& t_{22} 	& \cdots 	& t_{2m} \\
+			\quad	& *		& \ddots 	& \vdots \\
+			\quad 	&\quad 	& \quad	& t_{mm}\\
+		\end{pmatrix}
+	$$
+	So
+	\begin{alignat*}{7}
+		a_{11} &= t_{11}^2				&\implies	&& da_{11} &= 2t_{11}dt_{11}\\
+		a_{12} &= t_{11}t_{12}			&\implies	&& da_{12} &= dt_{11}t_{12}+t_{11}dt_{12}\\
+		\vdots  & \quad\vdots 				&\quad	&& \vdots    & \quad\vdots\\
+		a_{ii}	   &= t_{1i}^2+\cdots+t_{ii}^2	&\implies	&& da_{ii}	  &= \text{terms\ of\ }dt_{1i},\dots,dt_{(i-1),i}+2t_{ii}dt_{ii}\\
+		(i<j)\ a_{ij} &= t_{1i}t_{1j}+\cdots+t_{ii}t_{ij}	&\implies 	&& da_{ij} &= \text{terms\ of\ }dt_{1j},\dots,dt_{(i-1),j},dt_{1i},\dots,dt_{(i-1),i} +dt_{ii}t_{ij}+t_{ii}dt_{ij}\\
+		\vdots  & \quad\vdots 				&\quad	&& \vdots    & \quad\vdots\\
+		a_{mm}	   &= t_{1m}^2+\cdots+t_{mm}^2	&\implies	&& da_{mm}	  &= \text{terms\ of\ }dt_{1m},\dots,dt_{(m-1),m}+2t_{mm}dt_{mm}
+	\end{alignat*}
+	When taking wedge of both sides, we have
+	\begin{equation*}
+		(d\A) = 2^m \prod_{i=1}^m t_{ii}^{m+1-i} (d\T)
+	\end{equation*}
+\end{proof}
+
+
+{\bf Homework}
+\begin{enumerate}
+	\item Compute the Laplace transforms of Gamma, Negative Binomial, Poisson distributions.
+	\item Consider that
+		\begin{alignat*}{5}
+			w_1		&= w\alpha					&, && w_2 &=w(1-\alpha),\\
+			u_1		&= u-\beta\sigma\sqrt{\frac{w_2}{w_1}}	&, && u_2 &=  u+\beta\sigma\sqrt{\frac{w_1}{w_2}}\\
+			\sigma_1^2 &= r(1-\beta^2)\sigma^2w/w_1	&, && \sigma_2^2 &= (1-r)(1-\beta^2)\sigma^2w/w_2,
+		\end{alignat*}
+		where $\alpha,\beta,r\in(0,1)$.
+		Compute the Jacobian from $(w_1,w_2,u_1,u_2,\sigma_1^2,\sigma_2^2)$ to $(w,u,\sigma^2,\alpha,\beta,r)$
+\end{enumerate}
+
+\subsection{Random variables and their properties}
+
+\begin{definition}
+	Let random vector $\X=(X_1,\dots,X_m)^T$. Then mean of $\X$ is 
+		$$\mu=(\mu_1,\dots,\mu_m)^T=(\BE[X_1],\dots,\BE[X_m])^T.$$
+	The covariance matrix $\Si$ is
+		$$\Si = Cov(\X) = 
+			\begin{pmatrix}
+				Var(X_1)		& Cov(X_1,X_2)	& \cdots 	& Cov(X_1,X_m)\\
+				Cov(X_1,X_2)	& Var(X_2)	 	& \cdots 	& Cov(X_2,X_m)\\	
+				\vdots 		& \vdots 		& \ddots 	& \vdots\\
+				Cov(X_m,X_1) 	& Cov(X_m,X_2)& \cdots 	& Var(X_m,X_m)
+			\end{pmatrix}.
+		$$
+\end{definition}
+
+\begin{lemma}
+	If $\a$ is a vector and $\X$ is a random vector with mean $\muu$ and covariance matrix $\Si$, then
+		$$\BE[\a^T\X]=\a^T\muu \quad \text{and} \quad Var(\a^T\X)=\a^T\Si\a$$.
+	If $\A$ is a matrix then
+		$$\BE[\A\X] = \A\muu  \quad \text{and} \quad Cov(\A\X) = \A\Si\A^T$$.
+\end{lemma}
+
+\subsubsection{Examples}
+\begin{definition} [The Multinomial Distribution]
+	A discrete random vector $\X = (X_1,\dots,X_k)$ has Multinomial distribution of dimension $k$ with parameters $\tha=(\theta_1,\dots,\theta_k)$ and $n$ ($0\leq \theta_i \leq 1, \sum_{i=1}^{k}\theta_i \leq1, n=1,2,\dots$).
+	If it's p.d.f. is 
+		\begin{equation}
+			Mul(\x|\tha,n) = \frac{n!}{\prod_{i=1}^k x_i!(n-\sum_{i=1}^k x_i)!}\prod_{i=1}^k \theta_i^{x_i} (1-\sum_{t=1}^k\theta_t)^{n-\sum_{j=1}^kx_j}.
+		\end{equation}
+\end{definition}
+The mean vector and covariance matrix
+	\begin{align}
+		\BE[X_i] &= n\theta_i\\
+		Var(X_i) &= n\theta_i(1-\theta_i)\\
+		Cov(X_i,X_j) &= -n\theta_i\theta_j.
+	\end{align}
+
+\begin{theorem}
+	The marginal distribution of $\X^{(m)}=(X_1,\dots,X_m)^T, (m<k)$ is the multinomial distribution
+		$$M_m(\x^{(m)}|(\theta_1,\dots,\theta_m),n).$$
+	The conditional distribution of $\X^{(m)}$ given the remaining $X_i$'s is also Multinomial 
+		$$f(x^{(m)}|x_{m+1},\cdots,x_k)\sim M_{m-1}(\x^{(m)}|(\theta'_1,\dots, \theta'_m),n-s),$$
+	where $\theta'_i = \frac{\theta_i}{\sum_{j=1}^{m}\theta_j}, (1\leq i\leq m)$ and $s=\sum_{i=m+1}^{k}x_i$.
+\end{theorem}
+
+Its corresponding prior is
+\begin{definition} [Dirichlet Distribution]
+	A continuous random vector $\X=(X_1,\dots,X_k)$ has a Dirichlet distribution of dimension $k$ with parameter $\aph=(\alpha_1,\dots, \alpha_{k+1})$, $(\alpha_i>0, i=1,\dots,k+1)$
+	if its p.d.f. is 
+		\begin{equation}
+			Dir(\x|\aph) = \frac{\Gamma(\sum_{i=1}^{k+1}\alpha_i)}{\prod_{i=1}^{k+1}\Gamma(\alpha_i)}x_1^{\alpha_1-1}\cdots x_k^{\alpha_k-1}(1-\sum_{i=1}^k x_i)^{\alpha_{k+1}-1}
+		\end{equation}.
+\end{definition}
+The mean vector and covariance matrix
+	\begin{align}
+		\BE[X_i] &= \alpha_i/\sum_{j=1}^{k+1}\alpha_j\\
+		Var(X_i) &= \frac{\BE[X_i](1-\BE[X_i])}{1+\sum_{j=1}^{k+1}\alpha_j}\\
+		Cov(X_i,X_j) &= \frac{\BE[X_i]\BE[X_j]}{1+\sum_{t=1}^{k+1}\alpha_t}.
+	\end{align}
+
+\begin{theorem}
+	The marginal distribution of $\X^{(m)}=(X_1,\dots,X_m)^T, (m<k)$ is the Dirichlet distribution
+		$$Dir(\x^{(m)}|(\alpha_1,\dots,\alpha_m),\sum_{i=m+1}^{k+1}\alpha_i).$$
+	The conditional distribution of $\X^{(m)}$ given the $X_{m+1},\dots,X_k$ of $Y_i = \frac{X_i}{1-\sum_{j=m+1}^k X_j}$ is also Dirichlet 
+		$$Dir(\y^{(m)}|\alpha_1,\dots, \alpha_m,\alpha_{k+1}).$$
+\end{theorem}
+
+\begin{theorem}
+	A random vector $\X=(X_1,\dots,X_k) \sim Dir(\x|\aph=(\alpha_1,\dots,\alpha_{k+1}))$. If $\Z=(Z_1,\dots,Z_t)$ satisfies 
+	\begin{align}
+		Z_1&=X_1+\cdots+X_{i_1}\\
+		Z_2&=X_{i_1+1}+\cdots +X_{i_2}\\
+		\vdots\\
+		Z_t&=X_{i_{t-1}+1}+\cdots +X_k,
+	\end{align}
+	then 
+		$$\Z \sim Dir(\z|\bt),$$
+	where $\bt=(\beta_1,\dots,\beta_{t+1})$ and
+		\begin{align*}
+			\beta_1 &= \alpha_1+\cdots+\alpha_{i_1}\\
+			\beta_2 &= \alpha_{i_1+1}+\cdots+\alpha_{i_2}\\
+			\vdots\\
+			\beta_t&= \alpha_{i_{t-1}+1}+\cdots +\alpha_k\\
+			\beta_{t+1} &= \alpha_{k+1}.
+		\end{align*}
+\end{theorem}
+
+{\bf Homework}
+\begin{enumerate}
+\item
+Show the conditional distribution of multinomial distribution in Theorem 2.7.
+\item
+\begin{align*}
+	\BP(\X|\tha,n)		&\sim Multinomial\ Distribution,\\
+	\BP(\tha|\aph) 	&\sim Dirichlet\ Distribution.
+\end{align*}
+Compute $\BP(\theta|\X)$.
+\end{enumerate}
+
+
+\end{document}
+
+
+
+
