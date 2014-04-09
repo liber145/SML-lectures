@@ -1,0 +1,416 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % more modern
+%\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{epsf}
+\usepackage{bm}
+\usepackage{amsmath,amssymb,amsfonts,verbatim}
+\usepackage{subfigure}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{enumerate}
+%\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{fancyref}
+
+
+\def\A{{\bm A}}
+\def\a{{\bm a}}
+\def\B{{\bm B}}
+\def\b{{\bm b}}
+\def\C{{\bm C}}
+\def\c{{\bm c}}
+\def\D{{\bm D}}
+\def\d{{\bm d}}
+\def\E{{\bm E}}
+\def\e{{\bm e}}
+\def\F{{\bm F}}
+\def\f{{\bm f}}
+\def\G{{\bm G}}
+\def\g{{\bm g}}
+\def\k{{\bm k}}
+\def\K{{\bm K}}
+\def\H{{\bm H}}
+\def\I{{\bm I}}
+\def\L{{\bm L}}
+\def\M{{\bm M}}
+\def\m{{\bm m}}
+\def\n{{\bm n}}
+\def\N{{\bm N}}
+\def\BP{{\bm P}}
+\def\R{{\bm R}}
+\def\BS{{\bm S}}
+\def\s{{\bm s}}
+\def\t{{\bm t}}
+\def\T{{\bm T}}
+\def\U{{\bm U}}
+\def\u{{\bm u}}
+\def\V{{\bm V}}
+\def\v{{\bm v}}
+\def\W{{\bm W}}
+\def\w{{\bm w}}
+\def\X{{\bm X}}
+\def\Y{{\bm Y}}
+\def\Q{{\bm Q}}
+\def\x{{\bm x}}
+\def\y{{\bm y}}
+\def\Z{{\bm Z}}
+\def\z{{\bm z}}
+\def\0{{\bm 0}}
+\def\1{{\bm 1}}
+
+
+\def\hx{\hat{\bm x}}
+\def\tx{\tilde{\bm x}}
+\def\ty{\tilde{\bm y}}
+\def\tz{\tilde{\bm z}}
+\def\hd{\hat{d}}
+\def\HD{\hat{\bm D}}
+\def\px {\partial{x}}
+\def\py{\partial{y}}
+
+\def\MA{{\mathcal A}}
+\def\ML{{\mathcal L}}
+\def\MF{{\mathcal F}}
+\def\MR{{\mathcal R}}
+\def\MG{{\mathcal G}}
+\def\MI{{\mathcal I}}
+\def\MN{{\mathcal N}}
+\def\MO{{\mathcal O}}
+\def\MT{{\mathcal T}}
+\def\MX{{\mathcal X}}
+\def\SW{{\mathcal {SW}}}
+\def\MW{{\mathcal W}}
+\def\MY{{\mathcal Y}}
+\def\BR{{\mathbb R}}
+\def\BP{{\mathbb P}}
+\def\BE{{\mathbb E}}
+\def\BN{{\mathbb N}}
+
+\def\bet{\mbox{\boldmath$\beta$\unboldmath}}
+\def\epsi{\mbox{\boldmath$\epsilon$}}
+
+\def\etal{{\em et al.\/}\,}
+\def\tr{\mathrm{tr}}
+\def\rk{\mathrm{rk}}
+\def\diag{\mathrm{diag}}
+\def\dg{\mathrm{dg}}
+\def\argmax{\mathop{\rm argmax}}
+\def\argmin{\mathop{\rm argmin}}
+\def\vecd{\mathrm{vec}}
+
+\def\ph{\mbox{\boldmath$\phi$\unboldmath}}
+\def\vp{\mbox{\boldmath$\varphi$\unboldmath}}
+\def\pii{\mbox{\boldmath$\pi$\unboldmath}}
+\def\Ph{\mbox{\boldmath$\Phi$\unboldmath}}
+\def\pss{\mbox{\boldmath$\psi$\unboldmath}}
+\def\Ps{\mbox{\boldmath$\Psi$\unboldmath}}
+\def\muu{\mbox{\boldmath$\mu$\unboldmath}}
+\def\Si{\mbox{\boldmath$\Sigma$\unboldmath}}
+\def\lam{\mbox{\boldmath$\lambda$\unboldmath}}
+\def\Lam{\mbox{\boldmath$\Lambda$\unboldmath}}
+\def\Gam{\mbox{\boldmath$\Gamma$\unboldmath}}
+\def\Oma{\mbox{\boldmath$\Omega$\unboldmath}}
+\def\De{\mbox{\boldmath$\Delta$\unboldmath}}
+\def\de{\mbox{\boldmath$\delta$\unboldmath}}
+\def\Tha{\mbox{\boldmath$\Theta$\unboldmath}}
+\def\tha{\mbox{\boldmath$\theta$\unboldmath}}
+\def\aph{\mbox{\boldmath$\alpha$\unboldmath}}
+\def\bt{\mbox{\boldmath$\beta$\unboldmath}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{example}{Example}[section]
+
+
+\def\probin{\mbox{\rotatebox[origin=c]{90}{$\vDash$}}}
+
+\def\calA{{\cal A}}
+
+
+
+%this is a comment
+
+%use this as a template only... you may not need the subsections,
+%or lists however they are placed in the document to show you how
+%do it if needed.
+
+
+%THINGS TO REMEMBER
+%to compile a latex document - latex filename.tex
+%to view the document        - xdvi filename.dvi
+%to create a ps document     - dvips filename.dvi
+%to create a pdf document    - dvipdf filename.dvi
+%{\bm TEXT}                  - bold font TEXT
+%{\it TEXT}                  - italic TEXT
+%$ ... $                     - places ... in math mode on same line
+%$$ ... $$                   - places ... in math mode on new line
+%more info at www.cs.wm.edu/~mliskov/cs423_fall04/tex.html
+
+
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textwidth}{6in}
+\setlength{\topmargin}{-0.4in}
+\setlength{\textheight}{8.5in}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\notes}[7]{
+	\renewcommand{\thepage}{#1 - \arabic{page}}
+	\noindent
+	\begin{center}
+	\framebox{
+		\vbox{
+		\hbox to 5.78in { { \bf Statistical Machine Learning}
+		\hfill #2}
+		\vspace{4mm}
+		\hbox to 5.78in { {\Large \hfill #5 \hfill} }
+		\vspace{2mm}
+		\hbox to 5.78in { {\it #3 \hfill #4} }
+		}
+	}
+	\end{center}
+	\vspace*{4mm}
+}
+
+\newcommand{\ho}[7]{\notes{#1}{Distributions}{Professor: Zhihua Zhang}{}{Lecture Notes #1: Exponential Family}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%begins a LaTeX document
+\setcounter{section}{7}
+\begin{document}
+\ho{7}{2014.03.31}{Moses Liskov}{Name}{Lecture title}
+\subsection{}
+\subsection{Statistic}
+\begin{definition}[Statistic]
+Given random variables(vectors) $X_1, \cdots, X_n$ with respect to sets of possible values $\mathcal{X}_1,\mathcal{X}_2,\cdots,\mathcal{X}_n$, respectively. A random vector $\t_n:\mathcal{X}_1\times\mathcal{X}_2\times\cdots\times\mathcal{X}_n\rightarrow \mathbb{R}^{k(n)}$ is called a $k(n)$ dimensional statistic.
+\end{definition}
+\begin{example}
+$t_n(X_1,\cdots, X_n) = (X_1,\cdots, X_n)$.
+\end{example}
+Example 7.1 is the simplest statistic, usually we want to achieve data reduction by statistic, i.e., $k(n)<n$. Sometimes $k(n)$ are independent with $n$.
+\begin{example}
+\noindent $ $ \\
+$\t_n = \frac{1}{n}(X_1+\cdots+X_n), k(n) = 1$ \\
+$\t_n = [n, (X_1+\cdots+X_n), (X_1^2+\cdots+X_n^2)], k(n) = 3$, the zero order, first and second moment. \\
+\noindent $\t_n = [n, \mathrm{median}(X_1,\cdots,X_n)]$, the median. \\
+\noindent $\t_n = \max\{X_1,\cdots,X_n\}-\min\{X_1,\cdots,X_n\}$, the range.
+\end{example}
+
+\begin{definition}[Sufficient Statistic]
+The sequence $\t_1, \t_2, \cdots, \t_n$ is a sufficient statistic for $X_1, X_2, \cdots, X_n$ if for $n\geq1$, the joint density for $X_1, X_2, \cdots, X_n$ given $\theta$ has the form
+$$
+p(x_1, x_2, \cdots, x_n|\theta) = h_n(\t_n, \theta)g(x_1, x_2, \cdots, x_n)
+$$
+for some function $h_n\geq 0$, $g>0$.
+\end{definition}
+\begin{theorem}
+The sequence  $\t_1, \t_2, \cdots, \t_n$ is sufficient for infinitely exchangeable $X_1, X_2, \cdots$ if and only if for any $n\geq 1$, the density $p(x_1, x_2, \cdots, x_n|\theta, \t_n)$ is independent of $\theta$.
+\end{theorem}
+\begin{proof}
+For any $\t_n=t_n(X_1, X_2, \cdots, X_n)$,
+$$
+p(x_1, x_2, \cdots, x_n|\theta) = p(x_1, x_2, \cdots, x_n|\theta, \t_n)p(\t_n, \theta)
+$$
+If $p(x_1, x_2, \cdots, x_n|\theta, \t_n)$ is independent of $\theta$, then  $p(x_1, x_2, \cdots, x_n|\theta, \t_n)$  is $g$, $p(\t_n, \theta)$ is $h_n$. So $\t_n$ is a sufficient statistic.
+
+If $\t_n$ is sufficient, then $p(x_1, x_2, \cdots, x_n|\theta) = h_n(\t_n, \theta)g(x_1, x_2, \cdots, x_n)$,$h_n\geq 0$, $g>0$. Taking integral on both sides, we have
+\begin{eqnarray*}
+\int\limits_{\{t_n(x_1, \cdots, x_n)=\t_n\}}p(x_1, \cdots, x_n|\theta)dx_1\cdots dx_n = \int\limits_{\{t_n(x_1, \cdots, x_n)=\t_n\}}h_n(\t_n, \theta)g(x_1, \cdots, x_n)dx_1\cdots dx_n
+\end{eqnarray*}
+Note that $h_n(\t_n, \theta)$ in the right side is unrelated to the integral, $\int g(\x) d\x$ can be seemed as a function of $\t_n$, denoted by $G(\t_n)$ and $\int p(\x|\theta) d\x$ can be seemed as $p(\t_n|\theta)$. Hence, we have 
+\begin{eqnarray*}
+&&p(\t_n|\theta) = h_n(\t_n, \theta)G(\t_n)\\
+&\Longrightarrow&h_n(\t_n, \theta)=\frac{p(\t_n|\theta)}{G(\t_n)}
+\end{eqnarray*}
+So,
+\begin{eqnarray*}
+&&p(x_1, x_2, \cdots, x_n|\theta) = \frac{p(\t_n|\theta)}{G(\t_n)}g(x_1, x_2, \cdots, x_n) \\
+&\Longrightarrow& p(x_1, x_2, \cdots, x_n|\theta, \t_n) = \frac{p(x_1, x_2, \cdots, x_n|\theta)}{p(\t_n|\theta)} = \frac{g(x_1, x_2, \cdots, x_n)}{G(\t_n)}
+\end{eqnarray*}
+Thus we can see $p(x_1, x_2, \cdots, x_n|\theta, \t_n)$ is independent with $\theta$.
+\end{proof}
+\begin{example}[Bernoulli Distribution] For a Bernoulli sequence $X_1, \cdots, X_n$,
+\begin{eqnarray*}
+p(x_1, \cdots, x_n) &=& \int_0^1p(x_1, \cdots, x_n | \theta) dF(\theta) \\
+&=& \int_0^1\prod_{i=1}^{n}B(x|\theta) dF(\theta) \\
+&=& \int_0^1\theta^{S_n} (1-\theta)^{n-S_n}dF(\theta) \\
+\end{eqnarray*}
+where $S_n = x_1+\cdots+x_n$.
+So, 
+$$
+p(x_1, \cdots, x_n | \theta) = \theta^{S_n} (1-\theta)^{n-S_n}
+$$
+Let $\t_n=[n, S_n]$,  $p(x_1, \cdots, x_n | \theta)$ can be factorized into $h_n=\theta^{S_n} (1-\theta)^{n-S_n}$ and $g=1$. So $\t_n$ is the sufficient statistic of Bernoulli distribution.
+\end{example}
+\begin{example}[Normal Distribution]
+\begin{eqnarray*}
+p(x_1, \cdots, x_n | \mu, \lambda) &=& \prod_{i=1}^{n}(\frac{\lambda}{2\pi})^{\frac{1}{2}}\exp(-\frac{\lambda}{2}(x_i-\mu)^2) \\
+&=& (\frac{\lambda}{2\pi})^{\frac{n}{2}}\exp(-\frac{\lambda}{2}\sum_{i=1}^{n}(x_i-\mu)^2) \\
+&=& (\frac{\lambda}{2\pi})^{\frac{n}{2}}\exp(-\frac{\lambda}{2}[n(\bar{x}-\mu)+nS_n^2) \\
+\end{eqnarray*}
+where $\bar{x}_n=\frac{1}{n}\sum_{i=1}^{n}x_i, S^2_n=\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x}_n)^2$.
+So the sufficient statistic of normal distribution can be $[n, \bar{X_n}, S_n^2]$. Note that the sufficient statistic is not unique, for example, $[n, \bar{X_n}, \frac{1}{n}\sum_{i=1}^{n}X_i^2]$ is also sufficient statistic of normal distribution.
+\end{example}
+\subsection{Exponential Family}
+\begin{definition}[one-parameter exponential family]
+A p.d.f or p.m.f $p(x|\theta)$, labelled by $\theta\in\Theta\subseteq\mathbb{R}$ is said to belong to one-parameter exponential family if it is of the form
+$$
+p(x|\theta) = f(x) g(\theta)\exp \left (c\cdot\phi(\theta)h(x)\right ) 
+$$
+where $g^{-1}(\theta) = \int f(x)\exp\left(c\cdot\phi(\theta)h(x)\right )dx < \infty$  is a  regularization factor. Denoted by $E_f(f,g,h,\phi, c,\theta)$.
+\end{definition}
+\begin{definition}
+The family is called regular if $\mathcal{X}, (X\in\mathcal{X})$ does not dependent on $\theta$, otherwise is called non-regular.
+\end{definition}
+\begin{proposition}[Sufficient statistic for $E_f$] If $X_1, \cdots, X_n \in \mathcal{X}$ is an exchangeable sequence such that given regular $E_f(X|f,g,h,\phi,c,\theta)$, 
+$$
+p(x_1,\cdots,x_n) = \int_{\theta}\prod_{i=1}^{n}E_f(x_i|f,g,h,\phi,c)dF(\theta)
+$$
+for some $dF(\theta)$. Then $\t_n=t_n(X_1,\cdots,X_n)=[n, h(X_1)+\cdots+h(X_n)]$ is sufficient statistic.
+\end{proposition}
+\begin{example}[Bernoulli Distribution]
+\begin{eqnarray*}
+p(x|\theta) &=& \theta^{x}(1-\theta)^{1-x}, \,\,\,\,\,\,\,\, x\in\{0,1\}, \theta\in[0,1] \\
+&=& (1-\theta)\left(\frac{\theta}{1-\theta}\right)^{x} \\
+&=& (1-\theta)\exp(x\ln\frac{\theta}{1-\theta})
+\end{eqnarray*}
+So, $f(x) = 1, g(\theta) = 1-\theta, c=1, h(x) = x, \phi(\theta) = \ln\frac{\theta}{1-\theta}$.
+\end{example}
+\begin{example}[Poisson Distribution]
+\begin{eqnarray*}
+p(x|\theta) &=& \frac{\theta^x\cdot e^{-\theta}}{x!} \\
+&=& \frac{1}{x!}\exp(-\theta)\exp(x\ln x) \\
+\end{eqnarray*}
+So, $f(x) = \frac{1}{x!}, g(\theta) = e^{-\theta}, c=1, h(x) = x, \phi(\theta) = \ln x$.
+\end{example}
+\begin{example}[Normal Distribution with Unknown Variance]
+\begin{eqnarray*}
+p(x|\theta) &=& N(x|0,\sigma^2) \\
+&=& \left(\frac{1}{2\pi\sigma^2}\right)^{\frac{1}{2}}\exp(-\frac{x^2}{2\sigma^2}) \\
+&=& \left(\frac{1}{2\pi}\right)^{\frac{1}{2}}\theta^{-\frac{1}{2}}\exp(-\frac{x^2}{2\theta}) \\
+\end{eqnarray*}
+So, $f(x) = \left(\frac{1}{2\pi}\right)^{\frac{1}{2}}, g(\theta) = \theta^{-\frac{1}{2}}, c=-\frac{1}{2}, h(x) = x^2, \phi(\theta) = \theta^{-1}$.
+\end{example}
+\begin{example}[Uniform Distribution, non-regular]
+\begin{eqnarray*}
+p(x|\theta) &=& U(x|[0,\theta])=\frac{1}{\theta} \\
+\end{eqnarray*}
+So, $f(x) = 1, g(\theta) = \theta^{-1}, c=1, h(x) = 0, \phi(\theta) = 0$.
+Since $\mathcal{X}$ is $[0,\theta]$, related to $\theta$, so it is non regular.
+
+    \begin{align*} f_X(x_1,\ldots,x_n) &= \frac{1}{\theta}\mathbf{1}_{\{0\leq x_1\leq\theta\}} \cdots \frac{1}{\theta}\mathbf{1}_{\{0\leq x_n\leq\theta\}} \\ &= \frac{1}{\theta^n}\mathbf{1}_{\{0\leq\min\{x_i\}\}}\mathbf{1}_{\{\max\{x_i\}\leq\theta\}} \end{align*} 
+    where $\mathbf{1}\{...\}$ is the indicator function. So the sufficient statistic $\t_n = [n, \max\{x_i\}]$.
+\end{example}
+\begin{definition}[k-parameters exponential family]
+A p.d.f or p.m.f $p(x|\theta)$, $x\in\mathcal{X}$, which is labelled by $\theta\in\Theta\subseteq\mathbb{R}$ is said to belong to k-parameters exponential family if it is of the form
+$$
+p(x|\theta) = f(x) g(\theta)\exp \left (\sum_{j=1}^{k}c_j\cdot\phi_j(\theta)h_j(x)\right ) 
+$$
+Denoted by $E_{f_k}(x|f,g,h,\phi, c,\theta)$.
+\end{definition}
+\begin{proposition}[Sufficient statistic for $E_{f_k}$] If $X_1, \cdots, X_n \in \mathcal{X}$ is an exchangeable sequence such that given regular $E_{f_k}(X|f,g,h,\phi,c,\theta)$, 
+$$
+p(x_1,\cdots,x_n|\theta) = \prod_{i=1}^{n}E_{f_k}(x_i|f,g,h,\phi,c,\theta)
+$$
+Then $\t_n=t_n(X_1,\cdots,X_n)=[n, \sum_{i=1}^{n}h_1(X_i), \cdots, \sum_{i=1}^{n}h_k(X_i)]$ is sufficient statistic of $X_1, \cdots, X_n$.
+\end{proposition}
+\begin{example}[Normal Distribution with Unknown Mean and Variance]
+Let $\theta=[\mu,\lambda]$,
+\begin{eqnarray*}
+p(x|\theta) &=& N(x|\mu,\lambda) \\
+&=& (\frac{\lambda}{2\pi})^{\frac{1}{2}}\exp(-\frac{\lambda}{2}(x-\mu)^2)) \\
+&=& (\frac{1}{2\pi})^{\frac{1}{2}}\lambda^{\frac{1}{2}}\exp(-\frac{\lambda}{2}\mu^2)\exp(\lambda\mu x-\frac{1}{2}\lambda x^2) \\
+\end{eqnarray*}
+So, $g(\theta) =\lambda^{\frac{1}{2}}\exp(-\frac{\lambda}{2}\mu^2)$, $c_1=1, c_2=-\frac{1}{2}$, $\phi_1(\theta) = \lambda\mu, \phi_2(\theta) = \lambda$, $h_1(x)=x, h_2(x) = x^2$.
+\end{example}
+\subsection{Canonical(Natural) Exponential Family}
+The p.d.f of exponential family can be rewritten into another form:
+$$
+p(\y|\varphi) = cef(\y|a,b,\varphi) = a(\y)\exp(\y^T\varphi-b(\varphi))
+$$
+where $y=(y_1,\cdots, y_k), \phi=(\varphi_1, \cdots, \varphi_k)$. Comparing to the previous form, we can see $y_i = h_i(x), \varphi_i = c_i\phi(\theta)$.
+\begin{proposition}[moments of cef] For $y$ in definition of cef, we have
+$$
+E[\y|\varphi] = \int \y a(\y)\exp(\y^T\varphi-b(\varphi))d\y
+$$
+Since $\int a(\y)\exp(\y^T\varphi-b(\varphi))d\y=1$, taking derivation on both sides.
+\begin{eqnarray*}
+&&\int a(\y)\exp(\y^T\varphi-b(\varphi))(\y-\bigtriangledown_{\varphi}b(\varphi))d\y = 0\\
+&\Longrightarrow&\int a(\y)\exp(\y^T\varphi-b(\varphi))\y d\y = \int a(\y)\exp(\y^T\varphi-b(\varphi))\bigtriangledown_{\varphi}b(\varphi))d\y\\
+&\Longrightarrow& E[\y] = \bigtriangledown_{\varphi}b(\varphi))
+\end{eqnarray*}
+\end{proposition}
+
+\begin{example}[Possion Distribution]
+$$
+e^{-\lambda}\frac{\lambda^x}{x!} = \frac{1}{x!}\exp(x\log \lambda-\lambda) = \frac{1}{x!}\exp(x\theta-e^\theta), \lambda = e^\theta
+$$
+So, $E[\y] = \bigtriangledown_{\varphi}b(\varphi)) = \lambda$
+\end{example}
+\begin{theorem}
+If $X=(X_1, \cdots, X_n)$ is random variable from a regular exponential family distribution such that
+$$
+p(\x|\theta) = \prod_{i=1}^{n}f(x_i)[g(\theta)]^n\exp\left(\sum_{j=1}^{k}c_j\phi_j(\theta)\sum_{i=1}^{n}h_j(x_i)\right).
+$$
+Then the conjugate family for $\theta$ has the form
+$$
+p(\x|\tau) = [K(\tau)]^{-1}[g(\theta)]^{\tau_0}\exp\left(\sum_{j=1}^{k}c_j\phi_j(\theta)\tau_j\right)
+$$
+where $k(\tau) = \int_\theta [g(\theta)]^\tau \exp\left(\sum_{j=1}^{k}c_j\phi_j(\theta)\tau_j\right) d\theta < \infty$
+\end{theorem}
+\begin{example}[Bernoulli Likelihood]
+\begin{eqnarray*}
+p(\x|\theta) &=& \prod_{i=1}^{n}\theta^{x_i}(1-\theta)^{(1-\x_i)} \\
+&=&(1-\theta)^n\exp\left((\log \frac{\theta}{1-\theta})\sum_{i=1}^{n}x_i\right)
+\end{eqnarray*}
+So,
+\begin{eqnarray*}
+p(\theta|\tau) &\propto& (1-\theta)^{\tau_0}\exp\left(\log\frac{\theta}{1-\theta}\tau_1\right) \\
+&\propto& (1-\theta)^{\tau_0}\left(\frac{\theta}{1-\theta}\right)^{\tau_1} \\
+&\propto& \theta^{\tau_1}(1-\theta)^{\tau_0-\tau_1}\\
+\end{eqnarray*}
+Hence, the conjugate prior of Bernoulli distribution is beta distribution.
+\end{example}
+\begin{example}[Possion Likelihood]
+\begin{eqnarray*}
+p(\x|\theta) &=& \prod_{i=1}^{n}\frac{\theta^{x_i}\exp(-\theta)}{x_i !} \\
+&=& \prod_{i=1}^{n}(x_i!)^{-1}\exp(-n\theta)\exp(\log\theta\sum_{i=1}^n x_i) \\
+\end{eqnarray*}
+So, 
+\begin{eqnarray*}
+p(\theta|\tau) &\propto& \exp(-\tau_0\theta)\exp(\tau_1\log\theta) \\
+&\propto& \theta^{\tau_1}\exp(-\tau_0\theta) \\
+\end{eqnarray*}
+Hence, the conjugate prior of Possion distribution is gamma distribution.
+\end{example}
+\begin{example}[Normal Likelihood]
+Let $\theta = (\mu,\lambda)$
+\begin{eqnarray*}
+p(\x|\theta) &=& \prod_{i=1}^{n}\left(\frac{\lambda}{2\pi}\right)^{\frac{1}{2}}\exp\left(-\frac{\lambda}{2}(x_i-\mu)^2\right) \\
+&=& (2\pi)^{-\frac{n}{2}}\left[\lambda^{\frac{1}{2}}\exp(-\frac{\lambda}{2}\mu^2)\right]^n\exp(\mu\lambda\sum_{i=1}^{n}x_i-\frac{\lambda}{2}\sum_{i=1}^{n}x_i^2)\\
+\end{eqnarray*}
+So, 
+\begin{eqnarray*}
+p(\theta|\tau) &\propto& \left[\lambda^{\frac{1}{2}}\exp(-\frac{\lambda}{2}\mu^2)\right]^{\tau_0}\exp(\mu\lambda\tau_1-\frac{\lambda}{2}\tau_2) \\
+&\propto& \lambda^{\frac{\tau_0}{2}}\exp(-\frac{\tau_0\lambda}{2}\mu^2)\exp(\mu\lambda\tau_1-\frac{\lambda}{2}\tau_2) \\
+&\propto& \lambda^{\frac{\tau_0}{2}}\exp\left(-\frac{\tau_0\lambda}{2}(\mu-\frac{\tau_1}{\tau_0})^2\right)\exp(\frac{\lambda\tau_1^2}{2\tau_0})\exp(-\frac{\lambda\tau_2}{2}) \\
+&\propto& (\tau_0\lambda)^{\frac{1}{2}}\exp\left(-\frac{\tau_0\lambda}{2}(\mu-\frac{\tau_1}{\tau_0})^2\right)\exp(\frac{\lambda\tau_1^2}{2\tau_0})\exp(-\frac{\lambda\tau_2}{2})\lambda^{\frac{\tau_0}{2}}(\tau_0\lambda)^{-\frac{1}{2}} \\
+&\propto& (\tau_0\lambda)^{\frac{1}{2}}\exp\left(-\frac{\tau_0\lambda}{2}(\mu-\frac{\tau_1}{\tau_0})^2\right)\exp(-\frac{\lambda}{2}(\tau_2-\frac{\tau_1^2}{\tau_0}))\tau_0^{-\frac{1}{2}}\lambda^{\frac{\tau_0+1}{2}-1}\\
+\end{eqnarray*}
+Note that $(\tau_0\lambda)^{\frac{1}{2}}\exp\left(-\frac{\tau_0\lambda}{2}(\mu-\frac{\tau_1}{\tau_0})^2\right)$ can be seemed as a normal prior, $p(\mu|\lambda,\tau)$ and $\exp(-\frac{\lambda}{2}(\tau_2-\frac{\tau_1^2}{\tau_0}))\tau_0^{-\frac{1}{2}}\lambda^{\frac{\tau_0+1}{2}-1}$ can be seemed as a gamma prior, $p(\lambda|\tau)$.
+\end{example}
+\begin{theorem}[posterior]
+$p(\theta|x,\tau) = p(\theta|\tau+\t_n(x))$, where $\tau+\t_n(x) = (\tau_0+n, \tau_1+\sum_{i=1}^{n}h_1(x_i), \cdots, \tau_k+\sum_{i=1}^{n}h_k(x_i))$.
+\end{theorem}
+\end{document}
