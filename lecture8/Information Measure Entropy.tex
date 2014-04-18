@@ -1,0 +1,477 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % more modern
+%\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{epsf}
+\usepackage{amsmath,amssymb,amsfonts,verbatim}
+\usepackage{subfigure}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+%\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{xcolor}
+
+\def\A{{\bf A}}
+\def\a{{\bf a}}
+\def\B{{\bf B}}
+\def\b{{\bf b}}
+\def\C{{\bf C}}
+\def\c{{\bf c}}
+\def\D{{\bf D}}
+\def\d{{\bf d}}
+\def\E{{\bf E}}
+\def\e{{\bf e}}
+\def\F{{\bf F}}
+\def\f{{\bf f}}
+\def\G{{\bf G}}
+\def\g{{\bf g}}
+\def\k{{\bf k}}
+\def\K{{\bf K}}
+\def\H{{\bf H}}
+\def\I{{\bf I}}
+\def\L{{\bf L}}
+\def\M{{\bf M}}
+\def\m{{\bf m}}
+\def\n{{\bf n}}
+\def\N{{\bf N}}
+\def\BP{{\bf P}}
+\def\R{{\bf R}}
+\def\BS{{\bf S}}
+\def\s{{\bf s}}
+\def\t{{\bf t}}
+\def\T{{\bf T}}
+\def\U{{\bf U}}
+\def\u{{\bf u}}
+\def\V{{\bf V}}
+\def\v{{\bf v}}
+\def\W{{\bf W}}
+\def\w{{\bf w}}
+\def\X{{\bf X}}
+\def\Y{{\bf Y}}
+\def\Q{{\bf Q}}
+\def\x{{\bf x}}
+\def\y{{\bf y}}
+\def\Z{{\bf Z}}
+\def\z{{\bf z}}
+\def\0{{\bf 0}}
+\def\1{{\bf 1}}
+
+
+\def\hx{\hat{\bf x}}
+\def\tx{\tilde{\bf x}}
+\def\ty{\tilde{\bf y}}
+\def\tz{\tilde{\bf z}}
+\def\hd{\hat{d}}
+\def\HD{\hat{\bf D}}
+
+\def\MF{{\mathcal F}}
+\def\MG{{\mathcal G}}
+\def\MI{{\mathcal I}}
+\def\MN{{\mathcal N}}
+\def\MO{{\mathcal O}}
+\def\MT{{\mathcal T}}
+\def\MX{{\mathcal X}}
+\def\SW{{\mathcal {SW}}}
+\def\MW{{\mathcal W}}
+\def\MY{{\mathcal Y}}
+\def\BR{{\mathbb R}}
+\def\BP{{\mathbb P}}
+
+\def\bet{\mbox{\boldmath$\beta$\unboldmath}}
+\def\epsi{\mbox{\boldmath$\epsilon$}}
+
+\def\etal{{\em et al.\/}\,}
+\def\tr{\mathrm{tr}}
+\def\rk{\mathrm{rk}}
+\def\diag{\mathrm{diag}}
+\def\dg{\mathrm{dg}}
+\def\argmax{\mathop{\rm argmax}}
+\def\argmin{\mathop{\rm argmin}}
+\def\vecd{\mathrm{vec}}
+
+\def\ph{\mbox{\boldmath$\phi$\unboldmath}}
+\def\vp{\mbox{\boldmath$\varphi$\unboldmath}}
+\def\pii{\mbox{\boldmath$\pi$\unboldmath}}
+\def\Ph{\mbox{\boldmath$\Phi$\unboldmath}}
+\def\pss{\mbox{\boldmath$\psi$\unboldmath}}
+\def\Ps{\mbox{\boldmath$\Psi$\unboldmath}}
+\def\muu{\mbox{\boldmath$\mu$\unboldmath}}
+\def\Si{\mbox{\boldmath$\Sigma$\unboldmath}}
+\def\lam{\mbox{\boldmath$\lambda$\unboldmath}}
+\def\Lam{\mbox{\boldmath$\Lambda$\unboldmath}}
+\def\Gam{\mbox{\boldmath$\Gamma$\unboldmath}}
+\def\Oma{\mbox{\boldmath$\Omega$\unboldmath}}
+\def\De{\mbox{\boldmath$\Delta$\unboldmath}}
+\def\de{\mbox{\boldmath$\delta$\unboldmath}}
+\def\Tha{\mbox{\boldmath$\Theta$\unboldmath}}
+\def\tha{\mbox{\boldmath$\theta$\unboldmath}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proof}{Proof}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{example}{Example}[section]
+
+
+\def\probin{\mbox{\rotatebox[origin=c]{90}{$\vDash$}}}
+
+\def\calA{{\cal A}}
+
+
+
+%this is a comment
+
+%use this as a template only... you may not need the subsections,
+%or lists however they are placed in the document to show you how
+%do it if needed.
+
+
+%THINGS TO REMEMBER
+%to compile a latex document - latex filename.tex
+%to view the document        - xdvi filename.dvi
+%to create a ps document     - dvips filename.dvi
+%to create a pdf document    - dvipdf filename.dvi
+%{\bf TEXT}                  - bold font TEXT
+%{\it TEXT}                  - italic TEXT
+%$ ... $                     - places ... in math mode on same line
+%$$ ... $$                   - places ... in math mode on new line
+%more info at www.cs.wm.edu/~mliskov/cs423_fall04/tex.html
+
+
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textwidth}{6in}
+\setlength{\topmargin}{-0.4in}
+\setlength{\textheight}{8.5in}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\notes}[5]{
+	\renewcommand{\thepage}{#1 - \arabic{page}}
+	\noindent
+	\begin{center}
+	\framebox{
+		\vbox{
+		\hbox to 5.78in { { \bf Statistic Machine Learning}
+		\hfill #2}
+		\vspace{4mm}
+		\hbox to 5.78in { {\Large \hfill #5 \hfill} }
+		\vspace{2mm}
+		\hbox to 5.78in { {\it #3 \hfill #4} }
+		}
+	}
+	\end{center}
+	\vspace*{4mm}
+}
+
+\newcommand{\ho}[1]{\notes{#1}{Information Measure Entropy}{Professor: Zhihua Zhang}{Scribe:}{Lecture Notes #1: Information Measure Entropy}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{section}{7}
+%begins a LaTeX document
+
+\begin{document}
+
+\ho{8}
+
+\section{Information Measure and Entropy}
+\subsection{Discrete Cases}
+\begin{definition}
+Given discrete random variable $X$, the entropy $\mathbb{H}(X)$ of $X$ is defined by $\mathbb{H}(X)=-\sum\limits_{x \in \mathcal{X}} p(x)\log{p(x)}$
+\end{definition}
+\begin{itemize}
+\item $\log e=1$,
+\item $0\log 0=\lim\limits_{a\to0^{+}}a\log a=0$.
+\end{itemize}
+
+\begin{lemma}
+For any discrete random variable $X$,  $\mathbb{H}(X)\geq 0$.
+\end{lemma}
+{\bf Proof :}
+Since $0\leq p(x)\leq1$, we have $p(x)\log p(x)\leq0$. So $\mathbb{H}(x)\geq0$ holds.
+
+\begin{example}
+Given the random variable $X$ with p.m.f that \quad
+$p(x)=\left\{
+\begin{aligned}
+1 &\quad with\quad probability\quad p \\
+0 &\quad with\quad probability\quad 1-p \\
+\end{aligned}
+\right.
+$
+Then, $\mathbb{H}(x)=-p\log p-(1-p)\log (1-p)$.
+\end{example}
+
+\subsection{Joint Entropy and Conditional Entropy}
+\begin{definition}
+The entropy $\mathbb{H}(X,Y)$ of $(X,Y)$ is defined by 
+\[
+\mathbb{H}(X,Y)=-\sum\limits_{x\in \mathcal{X}}\sum\limits_{y \in \mathcal{Y}}p(x,y)\log p(x,y)=-\mathbb{E}\left[ \log p(x,y)\right].
+\]
+\end{definition}
+
+\begin{definition}
+If $(X,Y)\sim p(x,y)$, then the conditional entropy
+\[
+\begin{split}
+\mathbb{H}(Y|X) &= \sum\limits_{x \in \mathcal{X}}p(x)\mathbb{H}(Y|X=x) \\
+                &=-\sum\limits_{x \in \mathcal{X}}p(x)\sum\limits_{y \in \mathcal{Y}}p(y|x)\log p(y|x)\\
+                &=-\sum\limits_{x \in \mathcal{X}}\sum\limits_{y \in \mathcal{Y}}p(x,y)\log p(y|x)\\
+                &=-\mathbb{E}\left[\log p(y|x)\right]
+\end{split}
+\]
+\end{definition}
+\begin{theorem}[The Chain Rule]
+$\mathbb{H}(X,Y)=\mathbb{H}(X)+\mathbb{H}(Y|X)$
+\end{theorem}
+{\bf Proof:}
+Using $\log p(x,y)=\log p(x) + \log p(y|x)$, we compute the expectation in both sides about $(X,Y)$.
+
+\begin{corollary}
+$\mathbb{H}(X,Y|Z)=\mathbb{H}(X|Z)+\mathbb{H}(Y|X,Z)$.
+\end{corollary}
+
+\subsection{Relative Entropy and Mutual Information}
+\begin{definition}
+The relative entropy or Kullback–Leibler Divergence(KLD) between p.m.f p(x) and q(x) is defined as follows:
+$$D(p||q)=\sum\limits_{x \in \mathcal{X}}p(x)\log \frac{p(x)}{q(x)}=\mathbb{E}_{p}\left[\log \frac{p(x)}{q(x)}\right]$$.
+\end{definition}
+\begin{itemize}
+\item $0\log \frac{0}{q}=0$,
+\item $a\log \frac{a}{0}=\infty$,
+\item $0\log \frac{0}{0}=0$.
+\end{itemize}
+\begin{definition}
+Given two variable $X$ and $Y$ with p.m.f $p(x,y)$ and the marginal p.m.f are $p(x)$ and $p(y)$. The mutual information $\mathbb{I}(X,Y)$ is
+\[
+\begin{split}
+\mathbb{I}(X,Y) &= \sum\limits_{x \in \mathcal{X}}\sum\limits_{y \in \mathcal{Y}}\log \frac{p(x,y)}{p(x)p(y)}p(x,y) \\
+&= D(p(x,y)||p(x)p(y))
+\end{split}
+\]
+\end{definition}
+Generally the Kullback–Leibler Divergence is not symmetric. But we can build $D^{'}(p||q)=\frac{1}{2}D(p||q)+\frac{1}{2}D(q||p)$ to make the KLD symmetric.
+\begin{example}
+Let $\mathcal{X}=\{0,1\}$, $p(x)$ and $q(x)$ are p.m.f. let $p(X=0)=1-r$, $p(X=1)=r$, $q(X=0)=1-s$, $q(X=1)=s$, Then
+\[
+\begin{split}
+D(p||q) &=(1-r)\log \frac{1-r}{1-s}+r\log \frac{r}{s} \\
+D(q||p) &=(1-s)\log \frac{1-s}{1-r}+s\log \frac{s}{r} \\
+\end{split}
+\]
+\end{example}
+\begin{theorem}[Mutual Information and Entropy]
+\[
+\begin{split}
+\mathbb{I}(X,Y) &=\mathbb{I}(Y,X)\\
+\mathbb{I}(X,X) &=\mathbb{H}(X)\\
+\mathbb{I}(X,Y) &=\mathbb{H}(X)-\mathbb{H}(X|Y)\\
+                &=\mathbb{H}(Y)-\mathbb{H}(Y|X) \\
+                &=\mathbb{H}(X)+\mathbb{H}(Y)-\mathbb{H}(X,Y)\\
+\end{split}
+\]
+\end{theorem}
+\begin{definition}
+The conditional mutual information of random variable $X$ and $Y$ given $Z$ is
+$$\mathbb{I}(X,Y|Z)=\mathbb{H}(X|Z)-\mathbb{H}(X|Y,Z)$$
+\end{definition}
+\begin{definition}
+The conditional relative entropy $D(p(y|x)||q(y|x))$ is
+$$D(p(y|x)||q(y|x))=\sum\limits_{x \in \mathcal{X}}\sum\limits_{y \in \mathcal{Y}}p(y|x)\log \frac{p(y|x)}{q(y|x)}$$.
+
+\end{definition}
+\begin{theorem}
+Let $p(x)$ and $q(x)$ with $x \in \mathcal{X}$ be two p.m.f. Then $D(p||q)\geq0$ with the equality if and only if $p(x)=q(x)$, for all $x \in \mathcal{X}$
+\end{theorem}
+
+\begin{lemma}
+Let $\sum a_{i}$ and $\sum b_{i}$ be convergent sequence of non-negative numbers. Then the following hold:
+\begin{itemize}
+\item $\sum a_{i} \log \frac{b_{i}}{a_{i}}+\sum(a_{i}-b_{i})\leq 0$ or $\sum a_{i} \log \frac{a_{i}}{b_{i}}+\sum(b_{i}-a_{i})\geq 0$.
+\item If $\sum a_{i}\geq \sum b_{i}$, then $\sum a_{i} \log \frac{b_{i}}{a_{i}}\leq0$ with equality iff $a_{i}=b_{i}$.
+\item Further more, if $a_{i}\leq 1$ and $b_{i} \leq 1$ for all $i$, then $2\sum a_{i} \log \frac{a_{i}}{b_{i}}\geq\sum a_{i}(a_{i}-b_{i})^2$
+\end{itemize}
+\end{lemma}
+{\bf Proof :} Considering the taylor expansion of $\log x$ at $x=1$, we have $\log x =(x-1)-\frac{(x-1)^2}{2}\frac{1}{\theta^2}$, where $\theta$ is between $1$ and $x$.
+Hence, $\log \frac{b_{i}}{a_{i}}=(\frac{b_{i}}{a_{i}}-1)-\frac{1}{2\theta_{i}^2}(\frac{b_{i}}{a_{i}}-1)^2$, then $a_{i}\log \frac{b_{i}}{a_{i}}=(b_{i}-a_{i})-\frac{a_{i}^3}{2a_{i}^2\theta_{i}^2}(\frac{b_{i}}{a_{i}}-1)^2$. So $\sum a_{i}\log \frac{b_{i}}{a_{i}}=\sum(b_{i}-a_{i})-\sum\frac{a_{i}^3}{2a_{i}^2\theta_{i}^2}(\frac{b_{i}}{a_{i}}-1)^2$. Notice that $\theta_{i}\in\left[1,\frac{b_{i}}{a_{i}}\right]$, we have $a_{i}\theta_{i}\in \left[a_{i},b_{i}\right]$, hence $\sum\frac{a_{i}^3}{2a_{i}^2\theta_{i}^2}(\frac{b_{i}}{a_{i}}-1)^2\geq0$. So
+$\sum a_{i} \log \frac{b_{i}}{a_{i}}+\sum(a_{i}-b_{i}) \leq0$. And the equality holds when $\frac{a_{i}}{b_{i}}=1$. Further more, $\sum\frac{a_{i}^3}{2a_{i}^2\theta_{i}^2}(\frac{b_{i}}{a_{i}}-1)^2 \leq \sum\frac{a_{i}}{2}(a_{i}-b_{i})^2$, accordingly we obtain $2\sum a_{i} \log \frac{a_{i}}{b_{i}}\geq\sum a_{i}(a_{i}-b_{i})^2$.
+\begin{lemma}
+Let $\sum a_{i}$ and $\sum b_{i}$ be convergent sequences. Then
+$$\sum a_{i}\log \frac{a_{i}}{b_{i}}\geq (\sum a_{i})\log \frac{\sum a_{i}}{\sum b_{i}}$$
+\end{lemma}
+{\bf Proof :} $\frac{\sum a_{i}\log \frac{b_{i}}{a_{i}}}{\sum a_{i}}\leq\log\sum\frac{a_{i}}{\sum a_{i}}\frac{b_{i}}{a_{i}}=\log \frac{\sum b_{i}}{\sum a_{i}}$. Both sides multiplies $-1$, we have $\sum a_{i}\log \frac{a_{i}}{b_{i}}\geq (\sum a_{i})\log \frac{\sum a_{i}}{\sum b_{i}}$. The equality holds when $\frac{a_{i}}{b_{i}}$ are the same for all $i$, that is $\frac{a_{i}}{b_{i}}$ are constant.
+\begin{theorem}
+$\mathbb{H}(X)\leq \log |\mathcal{X}|$, where $|\mathcal{X}|$ denotes the number of elements in the range of $X$ with equality iff $X$ has a uniform distribution over $\mathcal{X}$.
+\end{theorem}
+{\bf Proof} Suppose $p(x)$ and $q(x)$ are p.m.f of random variable $X$, the  Kullback–Leibler Divergence(KLD) between $p$ and $g$ are
+$$D(p||q)=\sum\limits_{x \in \mathcal{X}}p(x)\log \frac{p(x)}{q(x)}\geq 0$$
+Alternatively, $-\sum\limits_{x \in \mathcal{X}}p(x)\log p(x) + \sum\limits_{x \in \mathcal{X}}p(x)\log q(x)\leq0$, that is $\mathbb{H}(X)\leq-\sum\limits_{x \in \mathcal{X}}p(x)\log q(x)$. Let $q(x)=\frac{1}{|\mathcal{X}|}$, we have $\mathbb{H}(X)\leq\log|\mathcal{X}|$, which complete the proof.
+\begin{theorem}[Condition Reduces Entropy]
+$$\mathbb{H}(X|Y)\leq\mathbb{H}(X)$$ with the equality iff $X$ and $Y$ are independent.
+\end{theorem}
+\begin{definition}[Differential Entropy]
+$$\mathbb{H}(X)=-\int_{\mathcal{S}}f(x)\log f(x)dx$$, where $\mathcal{S}$ is the support set of random variable $X$(if f(x) exists) and $f(x)$ is p.d.f of $X$.
+\end{definition}
+\begin{example}
+Suppose random variable $X$ is uniformly distributed on $\left(0,a\right)$. Then
+$\mathbb{H}(X)=-\int_{0}^{a}\frac{1}{a}\log \frac{1}{a}dx=\log a$. $\mathbb{H}(X)\leq0$, when $0\leq a\leq1$.
+\end{example}
+Similarly, suppose the p.d.f of $X_{1},X_{2},\cdots,X_{n}$ is $f(x_{1},x_{2},\cdots,x_{n})$, then $$\mathbb{H}(x_{1},x_{2},\cdots,x_{n})=-\int f(x_{1},x_{2},\cdots,x_{n})\log f(x_{1},x_{2},\cdots,x_{n})dx_{1}dx_{2}\cdots dx_{n}$$.
+$$\mathbb{H}(X|Y)=-\int f(x,y)\log f(x|y)dxdy$$
+\begin{example}
+Let $X=(X_{1},\cdots,X_{n})$ is gaussian distribution, that is, $X\thicksim N(\mu,\Sigma)$.
+\[
+\begin{split}
+\mathbb{H}(X) &= -\int f_{X}(x)(-\frac{n}{2}\log 2\pi - \frac{1}{2}\log |\Sigma|-\frac{1}{2}(X-\mu)^{\T}\Sigma^{-1}(X-\mu))dX \\
+              &=\frac{1}{2}(n\log 2\pi +\log |\Sigma|+\int f_{X}(x)\tr((X-\mu)^{\T}\Sigma^{-1}(X-\mu))dX) \\
+              &=\frac{1}{2}(n\log 2\pi +\log |\Sigma|+\int f_{X}(x)\tr(\Sigma^{-1}(X-\mu)(X-\mu)^{\T})dX) \\
+               &=\frac{1}{2}(n\log 2\pi +\log |\Sigma|+\tr(\Sigma^{-1}\int f_{X}(x)(X-\mu)(X-\mu)^{\T}dX)) \\
+               &=\frac{1}{2}(n\log 2\pi +\log |\Sigma|+\tr(\Sigma^{-1}\Sigma)) \\
+               &=\frac{1}{2}(n\log 2\pi +\log |\Sigma|+n) \\
+\end{split}
+\]
+\end{example}
+\begin{definition}
+Suppose $X \thicksim f(X)$ and $Y \thicksim g(X)$, then
+$$D(f||g)=\int f(X)\log \frac{f(X)}{g(X)}dX$$
+Note that $D(f||g)$ is finite only if the support of $f$ is contained in the support of $g$.
+\end{definition}
+\begin{definition}[Mutual Information]
+$$\mathbb{I}(X,Y)=\int f(x,y)\log \frac{f(x,y)}{f(x)f(y)}dxdy=D(f(x,y)||f(x)f(y))$$
+$$\mathbb{I}(X,Y)=\mathbb{H}(X)-\mathbb{H}(X|Y)=\mathbb{H}(Y)-\mathbb{H}(Y|X)$$
+\end{definition}
+\begin{theorem}
+$$D(f||g)\geq0$$ with the equality iff $f=g$ at almost everywhere.
+\end{theorem}
+{\bf Proof :} $\int f(x)\log \frac{g(x)}{f(x)}dx\leq \log \int f(x)\frac{g(x)}{f(x)}dx=\log \int g(x)dx=0$, So $\int f(x)\log \frac{f(x)}{g(x)}dx\geq0$, which complete the proof.
+\begin{corollary}
+\quad \
+\begin{itemize}
+\item $\mathbb{I}(X,Y)\geq0$, with the equality iff $X$ and $Y$ are independent.
+\item $\mathbb{H}(X|Y)\leq\mathbb{H}(X)$, with the equality iff $X$ and $Y$ are independent.
+\end{itemize}
+\end{corollary}
+\begin{theorem}
+The chain rule for differential entropy
+$$\mathbb{H}(X_{1},\cdots,X_{n})=\sum\limits_{i=1}^{n}\mathbb{H}(X_{i}|X_{1},\cdots,X_{i-1})$$
+\end{theorem}
+\begin{corollary}
+$$\mathbb{H}(X_{1},\cdots,X_{n})\leq\sum\limits_{i=1}^{n}\mathbb{H}(X_{i})$$
+\end{corollary}
+\begin{example}
+Suppose $\Sigma \in \BS_{++}^{n}$, where $\Sigma=[\sigma_{ij}]$ then
+$$\det \Sigma \leq \prod\limits_{i=1}^{n} \sigma_{ii}$$
+\end{example}
+{\bf Proof :} Suppose $X=(X_{1},\cdots,X_{n})\thicksim N(0,\Sigma)$, so $X_{i} \thicksim N(0,\sigma_{ii})$. $\mathbb{H}(X_{1},\cdots,X_{n})=\frac{1}{2}(n\log 2\pi +\log \det\Sigma+n)$, $\mathbb{H}(X_{i})=\frac{1}{2}(\log 2\pi +\log \sigma_{ii}+1)$. Since $\mathbb{H}(X_{1},\cdots,X_{n})\leq\sum\limits_{i=1}^{n}\mathbb{H}(X_{i})$, we have
+$\frac{1}{2}(n\log 2\pi +\log \det\Sigma+n)\leq\frac{n}{2}\log 2\pi+\frac{1}{2}\sum\limits_{i=1}^{n}\log \sigma_{ii}+\frac{n}{2}$, thus $\log\det\Sigma\leq\sum\limits_{i=1}^{n}\log \sigma_{ii}$. So $\det \Sigma \leq \prod\limits_{i=1}^{n}\sigma_{ii}$ holds.
+\begin{theorem}
+$$\mathbb{H}(\alpha X+c)=\mathbb{H}(X)+\log|\alpha|$$, where $\alpha\geq0$
+\end{theorem}
+{\bf Proof : } Let $Y=\alpha X+c$, then $f_{Y}(y)=\frac{1}{|\alpha|}f_{X}(\frac{Y-c}{\alpha})$
+\[
+\begin{split}
+\mathbb{H}(\alpha X+c) &= -\int f_{Y}(y)\log f_{Y}(y)dy \\
+                       &= -\int \frac{1}{|\alpha|}f_{X}(\frac{Y-c}{\alpha})(\log \frac{1}{|\alpha|}+\log f_{X}(\frac{Y-c}{\alpha}))dy \\
+                       &= -\int f_{X}(X)(\log \frac{1}{|\alpha|}+\log f_{X}(X))dx \\
+                       &=\mathbb{H}(X)+\log|\alpha|
+\end{split}
+\]
+\begin{corollary}
+Suppose $\A$ is nonsingular, then $\mathbb{H}(\A X)=\mathbb{H}(X)+\log|\A|$.
+\end{corollary}
+\begin{theorem}
+Let $X \in \mathbb{R}^{m}$ have zero mean and covariance $\Sigma=\mathbb{E}[XX^{\T}]$, then
+$$\mathbb{H}(X)\leq\frac{1}{2}\log((2\pi)^{n}|\Sigma|)+\frac{n}{2}$$
+\end{theorem}
+{\bf Proof :} Suppose $g(X)$ is p.d.f of $X$, we also let $f(X)=N\thicksim(0,\Sigma)$.
+\[
+\begin{split}
+0 &\leq D(g||f) \\
+  &= \int g\log \frac{g}{f} \\
+  &= \int g\log g -\int g\log f \\
+  &=-\mathbb{H}(X)-\int g\log f\\
+\end{split}
+\]
+Hence
+\[
+\begin{split}
+\mathbb{H}(X) &\leq -\int g\log f \\
+              &= -\int g(x)(-\frac{n}{2}\log 2\pi - \frac{1}{2}\log |\Sigma|-\frac{1}{2}(X-\mu)^{\T}\Sigma^{-1}(X-\mu))dX \\
+              &=\frac{1}{2}(n\log 2\pi +\log |\Sigma|+\tr(\Sigma^{-1}\int g(x)(X-\mu)(X-\mu)^{\T}dX)) \\
+              &=\frac{1}{2}\log((2\pi)^{n}|\Sigma|)+\frac{n}{2}
+\end{split}
+\]
+\subsection{The Exponential Family}
+Consider the p.d.f $p(x)$ which satisfies the $k$ (independent) constraints,
+$$\int_{\mathcal{X}}h_{i}(x)p(x)dx=m_{i}< \infty,\quad i=1,\cdots,k$$, where $m_{1},\cdots,m_{k}$ are specified constants. We want to find certain p.d.f $p(x)$ that is closest to $f(x)$. That is,
+\[
+\min_{p}\quad\int p(x)\log\frac{p(x)}{f(x)}dx  ~~~~~~~\nonumber\\
+\textrm{s.t.} \quad\int_{\mathcal{X}}h_{i}(x)p(x)dx=m_{i}< \infty,\quad i=1,\cdots,k, and \int p(x)dx=1.
+\]
+This is an optimization problem with the object function
+$$F(p)=\int p(x)\log \frac{p(x)}{f(x)}dx+\sum\limits_{i=1}^{k}\theta_{i}(\int_{\mathcal{X}}h_{i}(x)p(x)dx-m_{i})+c(\int_{\mathcal{X}} p(x)dx-1)$$, where $\theta_{i}, i =1,\cdots,k~and~c$ are lagrange multipliers. Besides, $f(x)$ is known.
+\begin{theorem}
+The function defined above is minimized by
+\[
+\begin{split}
+p(x) &= E_{f_{k}}(X|f,g,\vec h,\vec \phi,\vec \theta,\vec c) \\
+     &= \frac{1}{g(\theta)}f(x)\exp(\sum\limits_{i=1}^{k}\theta_{i}h_{i}(x)),
+\end{split}
+\]
+where $c_{i}=1$, and $\vec \phi=\vec \theta=(\theta_{1},\cdots,\theta_{k})$.
+\end{theorem}
+{\bf Proof :}
+\[
+\begin{split}
+{dF(p)}=\lim\limits_{\alpha \to 0}\int p(x+\alpha\tau(x))\log\frac{p(x+\alpha\tau(x))}{f(x)}dx-\lim\limits_{\alpha \to 0}\int p(x)\log\frac{p(x)}{f(x)}\\+\sum\limits_{i=1}^{k}\theta_{i}(\int h_{i}(x)(p(x)+\alpha\tau(x)-p(x))dx)+c(\int p(x)+\alpha \tau(x)-p(x)dx)\\
+=\lim\limits_{\alpha \to 0}(\int p(x)\log(1+\alpha\frac{\tau(x)}{p(x)})dx+\alpha\sum\limits_{i=1}^{k}\int\theta_{i}h_{i}(x)\tau(x)dx+\alpha c\int \tau(x)dx)
+\end{split}
+\]
+So
+\[
+\begin{split}
+\frac{dF(p)}{dp}&=\int p(x)\lim\limits_{\alpha\to0}\frac{\log(1+\alpha\frac{\tau(x)}{p(x)})}{\alpha}dx+\int \tau(x)\log \frac{p(x)}{f(x)}dx+\sum\limits_{i=1}^{k}\int\theta_{i}h_{i}(x)\tau(x)dx+c\int \tau(x)dx) \\
+&=(c+1)(\int \tau(x)dx)+\int \tau(x)\log \frac{p(x)}{f(x)}dx+\sum\limits_{i=1}^{k}\int\theta_{i}h_{i}(x)\tau(x)dx
+\end{split}
+\]
+For any small $\tau(x)$, $\frac{dF(p)}{dp}=0$. Thus $$c+1+\log \frac{p(x)}{f(x)}+\sum\limits_{i=1}^{k}\theta_{i}h_{i}(x)=0$$,
+which means $p(x)=\frac{1}{g(\theta)}f(x)\exp(\sum\limits_{i=1}^{k}\theta_{i}h_{i}(x))$, where
+$g(\theta)=\int_{x\in\mathcal{X}}f(x)\exp(\sum\limits_{i=1}^{k}\theta_{i}h_{i}(x))dx$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
