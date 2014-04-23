@@ -1,0 +1,409 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % more modern
+%\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{epsf}
+\usepackage{amsmath,amssymb,amsfonts,verbatim}
+\usepackage{amsthm}
+\usepackage{subfigure}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+%\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{xcolor}
+
+\def\A{{\bf A}}
+\def\a{{\bf a}}
+\def\B{{\bf B}}
+\def\b{{\bf b}}
+\def\C{{\bf C}}
+\def\c{{\bf c}}
+\def\D{{\bf D}}
+\def\d{{\bf d}}
+\def\E{{\bf E}}
+\def\e{{\bf e}}
+\def\F{{\bf F}}
+\def\f{{\bf f}}
+\def\G{{\bf G}}
+\def\g{{\bf g}}
+\def\k{{\bf k}}
+\def\K{{\bf K}}
+\def\H{{\bf H}}
+\def\I{{\bf I}}
+\def\L{{\bf L}}
+\def\M{{\bf M}}
+\def\m{{\bf m}}
+\def\n{{\bf n}}
+\def\N{{\bf N}}
+\def\BP{{\bf P}}
+\def\R{{\bf R}}
+\def\BS{{\bf S}}
+\def\s{{\bf s}}
+\def\t{{\bf t}}
+\def\T{{\bf T}}
+\def\U{{\bf U}}
+\def\u{{\bf u}}
+\def\V{{\bf V}}
+\def\v{{\bf v}}
+\def\W{{\bf W}}
+\def\w{{\bf w}}
+\def\X{{\bf X}}
+\def\Y{{\bf Y}}
+\def\Q{{\bf Q}}
+\def\x{{\bf x}}
+\def\y{{\bf y}}
+\def\Z{{\bf Z}}
+\def\z{{\bf z}}
+\def\0{{\bf 0}}
+\def\1{{\bf 1}}
+
+
+\def\hx{\hat{\bf x}}
+\def\tx{\tilde{\bf x}}
+\def\ty{\tilde{\bf y}}
+\def\tz{\tilde{\bf z}}
+\def\hd{\hat{d}}
+\def\HD{\hat{\bf D}}
+
+\def\MF{{\mathcal F}}
+\def\MG{{\mathcal G}}
+\def\MI{{\mathcal I}}
+\def\MN{{\mathcal N}}
+\def\MO{{\mathcal O}}
+\def\MT{{\mathcal T}}
+\def\MX{{\mathcal X}}
+\def\SW{{\mathcal {SW}}}
+\def\MW{{\mathcal W}}
+\def\MY{{\mathcal Y}}
+\def\BR{{\mathbb R}}
+\def\BE{{\mathbb E}}
+\def\BP{{\mathbb P}}
+
+\def\bet{\mbox{\boldmath$\beta$\unboldmath}}
+\def\epsi{\mbox{\boldmath$\epsilon$}}
+
+\def\etal{{\em et al.\/}\,}
+\def\tr{\mathrm{tr}}
+\def\rk{\mathrm{rk}}
+\def\diag{\mathrm{diag}}
+\def\dg{\mathrm{dg}}
+\def\argmax{\mathop{\rm argmax}}
+\def\argmin{\mathop{\rm argmin}}
+\def\vecd{\mathrm{vec}}
+
+\def\ph{\mbox{\boldmath$\phi$\unboldmath}}
+\def\vp{\mbox{\boldmath$\varphi$\unboldmath}}
+\def\pii{\mbox{\boldmath$\pi$\unboldmath}}
+\def\Ph{\mbox{\boldmath$\Phi$\unboldmath}}
+\def\pss{\mbox{\boldmath$\psi$\unboldmath}}
+\def\Ps{\mbox{\boldmath$\Psi$\unboldmath}}
+\def\muu{\mbox{\boldmath$\mu$\unboldmath}}
+\def\Si{\mbox{\boldmath$\Sigma$\unboldmath}}
+\def\lam{\mbox{\boldmath$\lambda$\unboldmath}}
+\def\Lam{\mbox{\boldmath$\Lambda$\unboldmath}}
+\def\Gam{\mbox{\boldmath$\Gamma$\unboldmath}}
+\def\Oma{\mbox{\boldmath$\Omega$\unboldmath}}
+\def\De{\mbox{\boldmath$\Delta$\unboldmath}}
+\def\de{\mbox{\boldmath$\delta$\unboldmath}}
+\def\Tha{\mbox{\boldmath$\Theta$\unboldmath}}
+\def\tha{\mbox{\boldmath$\theta$\unboldmath}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+%\newtheorem{proof}{Proof}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{example}{Example}[section]
+
+
+\def\probin{\mbox{\rotatebox[origin=c]{90}{$\vDash$}}}
+
+\def\calA{{\cal A}}
+
+
+
+%this is a comment
+
+%use this as a template only... you may not need the subsections,
+%or lists however they are placed in the document to show you how
+%do it if needed.
+
+
+%THINGS TO REMEMBER
+%to compile a latex document - latex filename.tex
+%to view the document        - xdvi filename.dvi
+%to create a ps document     - dvips filename.dvi
+%to create a pdf document    - dvipdf filename.dvi
+%{\bf TEXT}                  - bold font TEXT
+%{\it TEXT}                  - italic TEXT
+%$ ... $                     - places ... in math mode on same line
+%$$ ... $$                   - places ... in math mode on new line
+%more info at www.cs.wm.edu/~mliskov/cs423_fall04/tex.html
+
+
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textwidth}{6in}
+\setlength{\topmargin}{-0.4in}
+\setlength{\textheight}{8.5in}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\notes}[5]{
+	\renewcommand{\thepage}{#1 - \arabic{page}}
+	\noindent
+	\begin{center}
+	\framebox{
+		\vbox{
+		\hbox to 5.78in { { \bf Statistic Machine Learning}
+		\hfill #2}
+		\vspace{4mm}
+		\hbox to 5.78in { {\Large \hfill #5 \hfill} }
+		\vspace{2mm}
+		\hbox to 5.78in { {\it #3 \hfill #4} }
+		}
+	}
+	\end{center}
+	\vspace*{4mm}
+}
+
+\newcommand{\ho}[1]{\notes{#1}{Information Measure Entropy}{Professor: Zhihua Zhang}{Scribe:}{Lecture Notes #1: Information Measure Entropy}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{section}{8}
+%begins a LaTeX document
+
+\begin{document}
+
+\ho{9}
+
+\section{Probability Inequality}
+\subsection{Jensen Inequality}
+If $g$ is convex, then $\BE[g(X)] \geq g(\BE X)$.
+
+\begin{proof}
+Since $g$ is convex, we can find a linear function $L(x) = a+bx$ such that the only intersection point is $\BE X$ and $L'(\BE X) = g'(\BE X)$. So \[
+g(x) \geq L(x)\]
+\[\begin{split} 
+\BE[g(X)] &\geq \BE[L(X)]\\
+& =  a + b \BE X \\
+& =  L(\BE X) \\
+& =  g(\BE X)
+\end{split}\]
+\end{proof}
+
+\subsection{Cauchy-Schwartz Inequality}
+If $X$ and $Y$ have finite variances, then \[\BE|XY| \leq \sqrt{\BE(X^2) \BE(Y^2)} \]
+
+\begin{proof}
+Consider vector variable $\begin{bmatrix}
+X \\
+Y
+\end{bmatrix}$,
+its variance is\[
+var(\begin{bmatrix}X \\ Y \end{bmatrix}) 
+= \begin{bmatrix}
+var(X) & cov(X, Y) \\
+cov(Y, X) & var(Y)
+\end{bmatrix}\]
+Since variance is semi-definite, so $var(X) var(Y) \geq cov(X, Y) cov(Y, X)$. Now let 
+$\BE X = \BE Y = 0$, we can get the inequality.
+\end{proof}
+
+\subsection{Markov Inequality}
+For all $t > 0 $, \[\begin{split}
+Y 1_{\{y \geq t\}} &\geq t 1_{\{y \geq t\}} \\
+\BE(Y 1_{\{y \geq t\}}) &\geq \BE(t 1_{\{y \geq t\}}) \\
+Pr(\{y \geq t\}) &\leq \frac{\BE(Y 1_{\{y\geq t\}})}{t}
+\end{split}\]
+If $Y > 0$, then $Pr(\{y \geq t\}) \leq \frac{\BE Y}{t}$
+
+\begin{corollary}
+Let $Y = |Z - \BE Z|$, then $Pr(\{|Z - \BE Z| \geq t\}) \leq \frac{\BE |Z - \BE Z|}{t}$
+\end{corollary}
+
+\begin{corollary}
+If $\phi$ denotes a nondecreasing and nonnegative function of $Z$ on a (possibly infinite) interval $I \subset \R$. Let $Y$ and $t$ take values in $I$, $t\in \BR$, then
+\[\begin{split} Pr(\{Y \geq t\}) &\leq Pr(\{\phi(Y) \geq \phi(t) \})\\
+&\leq \frac{\BE[\phi(Y)]}{\phi(t)} \end{split}\]
+\end{corollary}
+
+\begin{example}
+Let $\phi(t) = t^2$, $I = (0, +\infty)$, $Y = |Z - \BE Z|$. Then
+\[ Pr(\{ |Z - \BE Z| \geq t \}) \leq \frac{var(Z)}{t^2} \]
+which is called Chebyshev's inequality.
+\end{example}
+
+More generally, $\phi(t) = t^q$, then for some $q > 0$, we have 
+\[
+Pr (\{ |Z - \BE Z| \geq t \}) \ leq \frac{\BE (\{ ||Z - \BE Z||^q \})}{t^q}
+\]
+
+\begin{example}
+$Z$ is a sum of independent of random variables $Z = X_1 + X_2 + ... + X_n$, so
+$var(Z) = \sum_{i=1}^n var(X_i)$.
+Then we have 
+\[
+Pr (\{ \frac{1}{n} |\sum_{i=1}^n (X_i - \BE X_i)| \geq t \}) \leq \frac{\sigma^2}{nt^2}
+\]
+where $\sigma^2 = \frac{1}{n} \sum_{i=1}^n var(X_i)$.
+\end{example}
+
+Let $\phi(t) = e^{\lambda t}$ where $\lambda$ is a positive number, then we will get 
+\[ Pr(\{Z \geq t\}) \leq \frac{\BE[e^{\lambda Z}]}{e^{\lambda t}}
+\]
+
+\textbf{Note:} $M(\lambda) = \BE e^{\lambda Z}$, $\lambda \in \BR$ is called the moment generating function.
+
+\subsection{The Cramer-Chernoff Method}
+Let $Z$ be a real-valued random variable. For all $\lambda \geq 0$, we have
+\[Pr(\{ Z \geq t \}) \leq e^{-\lambda t} \BE [e^{\lambda Z}] \]
+
+We want to minimize the upper bound, so 
+\[\begin{split}
+& \inf_{\lambda \geq 0} e^{-\lambda t} \BE[e^{\lambda Z}] \\
+\Leftrightarrow & \inf_{\lambda \geq 0} -\lambda t +  \log \BE[e^{\lambda Z}]
+\end{split}\]
+
+Define $\psi_Z(\lambda) = \log\BE e^{\lambda Z}$.
+Let $\psi_Z^*(t) \triangleq \sup_{\lambda \geq 0} \lambda t - \psi_Z(\lambda)$, which is called the cramer transform of $Z$.
+
+If $\lambda = 0$, then $\psi_Z(0) = \log \BE e^0 = 0$. So we can get $\psi_Z^* \geq 0$.
+
+\begin{enumerate}
+\item $\BE Z \leq t \leq +\infty$.
+\[\begin{split}
+\psi_Z(\lambda) &= \log \BE(e^{\lambda Z}) \\
+&\geq \log e^{\lambda \BE Z} \\
+&= \lambda \BE Z.
+\end{split}\]
+
+If $\lambda < 0$, then $\lambda t - \psi_Z(\lambda) \leq 0$. So $\sup\limits_{\lambda \geq 0} \lambda t - \psi_Z(\lambda) = \sup\limits_{\lambda \in \BR} \lambda t - \psi_Z(\lambda)$.
+
+\textbf{Note:} $\psi_Z^*(t) = \sup\limits_{\lambda\in\BR} \lambda t - \psi_Z(\lambda)$ is called Fenchel-Legendre dual function and convex conjugate.
+
+SO if $t \geq \BE Z$, we only need to compute the dual function.
+
+\item $t \leq \BE Z$,
+To get the maximum value of $\lambda t - \psi_Z(\lambda)$, we compute its deriatives.
+\[\psi'_Z(\lambda)  = \frac{\BE[Z e^{\lambda Z}]}{\BE e^{\lambda Z}} \]
+
+\[\psi''_Z(\lambda) = \frac{\BE[Z^2 e^{\lambda Z}]\BE[e^{\lambda Z}] - \BE[Z e^{\lambda Z}]\BE[Z e^{\lambda Z}]}{(\BE[e^{\lambda Z}])^2} \]
+
+According to Cauchy-Schwartz inequality, $\psi''_Z(\lambda) \geq 0$. So, \[\psi'_Z(\lambda) \geq \psi'_Z(0) = \BE Z \]
+\[t - \psi'_Z(\lambda) \leq t - \BE Z \leq 0 \]
+Then $\lambda t - \psi_Z(\lambda)$  gets its maximum value at $\lambda = 0$.
+In this case, we will get $\psi_Z^*(t) = 0$, which means $Pr({Z \geq t}) \leq 1$. 
+\end{enumerate}
+
+In the following, we only care about $t \geq \BE Z$. We will get 
+\[\psi_Z^*(t) = \lambda_t t - \psi_Z(\lambda_t) \]
+where $\lambda_t$ is the solution of $t - \psi'_Z(\lambda) = 0$, i.e. $\lambda_t = ({\psi'_Z}^{-1})(t)$.
+
+\begin{example}
+Let $Z \sim N(0, \sigma^2)$, then we have
+\[\begin{split}
+\psi_Z(\lambda) &= \log\int e^{\lambda z} \frac{1}{(2\pi\sigma^2)^{\frac{1}{2}}} \exp(-\frac{z^2}{2\sigma^2}) dz \\
+&= \log \int \frac{1}{(2\pi\sigma^2)^{\frac{1}{2}}} \exp(-\frac{z^2 - 2\lambda\sigma^2 z}{2\sigma^2}) dz \\
+&= \log \int \frac{1}{(2\pi\sigma^2)^{\frac{1}{2}}} \exp(-\frac{(z-\lambda z^2)^2 - \lambda^2 \sigma^4}{2\sigma^2})  \\
+&= \frac{\lambda^2 \sigma^2}{2}
+\end{split}\]
+
+\[\begin{split}
+\psi_Z^*(t) &= \sup_\lambda \lambda t - \psi_Z(\lambda) \\
+\end{split}\]
+$t - \lambda\sigma^2 = 0 \Rightarrow \lambda_t = \frac{t}{\sigma^2}$, so \[Pr({Z \geq t}) \leq \exp(-\frac{t^2}{2\sigma^2}) \], where $t \geq \BE Z = 0$.
+
+\end{example}
+
+\textbf{Note:} If $\psi_Y(\lambda) \leq \frac{\lambda^2\sigma^2}{2}$, then we call $Y$ is sub-Gaussian.
+
+\textbf{Homework:} Given that $\psi_Y(\lambda) \leq \frac{\lambda^2\sigma^2}{2}$, prove $var(Y) \leq \sigma^2$.
+
+\begin{example}
+A random variable $Y$ has Poisson distribution with parameter $\nu$. \[
+Pr(Y = k) = \frac{e^{-\nu} \nu^k}{k!} \]
+where $ k = 0, 1, 2...$.
+
+Let $Z = Y - \nu$, then $\BE Z = 0$.
+\[\begin{split}
+\BE e^{\lambda Z} & = e^{-\lambda \nu} \sum_{k=0}^\infty e^{\lambda k} e^{-\nu} \frac{\nu^k}{k!} \\
+&= e^{-\lambda \nu -\nu} \sum_{k=0}^\infty \frac{(\nu e^\lambda)^k}{k!} \\
+&= e^{-\lambda \nu - \nu} e^{\nu e^\lambda}
+\end{split}\]
+Then $\psi(\lambda) = \nu(e^\lambda - \lambda - 1)$.
+So
+\[\begin{split}
+& t - \psi'(\lambda) = 0 \\
+\Rightarrow & \lambda_t = \log(1 + \frac{t}{\nu})
+\end{split}\]
+So $\psi^*(t) = \nu[(1 + \frac{t}{\nu}) \log(1 + \frac{t}{\nu}) - \frac{t}{\nu}]$
+\end{example}
+
+\begin{example}
+A random variable $Y$ has Bernoulli distribution with parameter $p$.\[
+Pr(Y = 1) = 1 - Pr(Y = 0) = p.
+\]
+Let $Z = Y - p$. 
+\[\begin{split}
+\psi_Z(\lambda) &= \log \BE e^{\lambda Z} \\
+&= \log (p e^{\lambda (1-p)} + (1-p) e^{-\lambda p}) \\
+&= -\lambda p + \log(p e^\lambda + 1 - p)
+\end{split} \]
+
+Since $(\lambda t - \psi_Z(\lambda))' = 0$, so $ pe^\lambda (1-t-p) = (t+p)(1-p)$. Then $ 0 \leq 1 - t - p$. So $ 0 \leq t \leq 1-p$.
+\[
+\psi^*_Z(t) = (1 - p - t)\log \frac{1-p-t}{1-p} + (p+t)\log\frac{p+t}{p}
+\]
+Let $a = p+t$, $p \leq a \leq 1$, then we get 
+\[\begin{split} \psi_Z^*(t) &= (1 - a)\log\frac{1-a}{1-p} + a \log\frac{a}{p} \\
+&= D(P_a || P_p)
+ \end{split} \]
+ $D(P_a || P_p)$ is the KL-Divergence between $P_a$ and $P_p$, $P_a$ means the Bernoulli distribution with paramter $a$, $P_p$ means the Bernoulli distribution with parameter $p$.
+\end{example}
+
+\begin{example}
+Let $Y \sim Binomial(n, p)$, so $Y = Z_1 + Z_2 + ..  + Z_n$, and $Z_i \sim Bernoulli(p)$ and $Z_i$'s are independent.
+\[\begin{split} 
+\psi_Y(\lambda) &= \log \BE e^{\lambda \sum_{i=1}^n Z_i} \\
+&= \log \Pi_{i=1}^n \BE e^{\lambda Z_i} \\
+&= \sum \log\BE e^{\lambda Z_i} \\
+&= n \psi_Z(\lambda)
+\end{split}\]
+
+\[\begin{split} \lambda t - \psi_Y(\lambda)  &= \lambda t - n\psi_Z(\lambda) \\
+&= n(\frac{\lambda t}{den} - \psi_Z(\lambda)) 
+\end{split} \]
+So, $\psi_Y^*(t) = n\psi_Z^*(\frac{t}{n})$
+\end{example}
+
+\subsection{Hoeffding's Inequality}
+If $X_1, X_2, ... X_n$ are independent random variables with a finite mean value such that for some non-empty interval $I$,
+$
+\BE e^{\lambda X_i} 
+$
+is finite, then define \[ S = \sum_{i=1}^n (X_i - \BE X_i) \].
+And assume that $X_i$ takes its values in a bounded interval $[a_i, b_i]$. Then 
+\[
+Pr (S \geq t ) \leq \exp( - \frac{2t^2}{\sum_{i=1}^n (b_i - a_i)^2})
+\]
+for all $t > 0$.
+
+\begin{definition}
+If $Pr(\epsilon_i = 1) = Pr(\epsilon_i = -1) = \frac{1}{2}$, then we call $\epsilon_i$ Rademacher random variable.
+\end{definition}
+
+Let $X_i = \epsilon_i a_i$, $a_i$ is a real number. Then we will get $X_i \in [\min\{-a_i, a_i\}, \max\{-a_i, a_i\}]$. So the inequality above will be 
+\[
+Pr(S \geq t) \leq \exp(-\frac{t^2}{2\sum_{i=1}^n a_i^2})
+\]
+
+\end{document}
+
+
+
+
+
