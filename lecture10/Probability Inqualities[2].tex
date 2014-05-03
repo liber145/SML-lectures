@@ -1,0 +1,352 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % more modern
+%\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{epsf}
+\usepackage{amsmath,amssymb,amsfonts,verbatim}
+\usepackage{amsthm}
+\usepackage{subfigure}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+%\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{xcolor}
+
+\def\A{{\bf A}}
+\def\a{{\bf a}}
+\def\B{{\bf B}}
+\def\b{{\bf b}}
+\def\C{{\bf C}}
+\def\c{{\bf c}}
+\def\D{{\bf D}}
+\def\d{{\bf d}}
+\def\E{{\bf E}}
+\def\e{{\bf e}}
+\def\F{{\bf F}}
+\def\f{{\bf f}}
+\def\G{{\bf G}}
+\def\g{{\bf g}}
+\def\k{{\bf k}}
+\def\K{{\bf K}}
+\def\H{{\bf H}}
+\def\I{{\bf I}}
+\def\L{{\bf L}}
+\def\M{{\bf M}}
+\def\m{{\bf m}}
+\def\n{{\bf n}}
+\def\N{{\bf N}}
+\def\BP{{\bf P}}
+\def\R{{\bf R}}
+\def\BS{{\bf S}}
+\def\s{{\bf s}}
+\def\t{{\bf t}}
+\def\T{{\bf T}}
+\def\U{{\bf U}}
+\def\u{{\bf u}}
+\def\V{{\bf V}}
+\def\v{{\bf v}}
+\def\W{{\bf W}}
+\def\w{{\bf w}}
+\def\X{{\bf X}}
+\def\Y{{\bf Y}}
+\def\Q{{\bf Q}}
+\def\x{{\bf x}}
+\def\y{{\bf y}}
+\def\Z{{\bf Z}}
+\def\z{{\bf z}}
+\def\0{{\bf 0}}
+\def\1{{\bf 1}}
+
+
+\def\hx{\hat{\bf x}}
+\def\tx{\tilde{\bf x}}
+\def\ty{\tilde{\bf y}}
+\def\tz{\tilde{\bf z}}
+\def\hd{\hat{d}}
+\def\HD{\hat{\bf D}}
+
+\def\MF{{\mathcal F}}
+\def\MG{{\mathcal G}}
+\def\MI{{\mathcal I}}
+\def\MN{{\mathcal N}}
+\def\MO{{\mathcal O}}
+\def\MT{{\mathcal T}}
+\def\MX{{\mathcal X}}
+\def\SW{{\mathcal {SW}}}
+\def\MW{{\mathcal W}}
+\def\MY{{\mathcal Y}}
+\def\BR{{\mathbb R}}
+\def\BE{{\mathbb E}}
+\def\BP{{\mathbb P}}
+
+\def\bet{\mbox{\boldmath$\beta$\unboldmath}}
+\def\epsi{\mbox{\boldmath$\epsilon$}}
+
+\def\etal{{\em et al.\/}\,}
+\def\tr{\mathrm{tr}}
+\def\rk{\mathrm{rk}}
+\def\diag{\mathrm{diag}}
+\def\dg{\mathrm{dg}}
+\def\argmax{\mathop{\rm argmax}}
+\def\argmin{\mathop{\rm argmin}}
+\def\vecd{\mathrm{vec}}
+
+\def\ph{\mbox{\boldmath$\phi$\unboldmath}}
+\def\vp{\mbox{\boldmath$\varphi$\unboldmath}}
+\def\pii{\mbox{\boldmath$\pi$\unboldmath}}
+\def\Ph{\mbox{\boldmath$\Phi$\unboldmath}}
+\def\pss{\mbox{\boldmath$\psi$\unboldmath}}
+\def\Ps{\mbox{\boldmath$\Psi$\unboldmath}}
+\def\muu{\mbox{\boldmath$\mu$\unboldmath}}
+\def\Si{\mbox{\boldmath$\Sigma$\unboldmath}}
+\def\lam{\mbox{\boldmath$\lambda$\unboldmath}}
+\def\Lam{\mbox{\boldmath$\Lambda$\unboldmath}}
+\def\Gam{\mbox{\boldmath$\Gamma$\unboldmath}}
+\def\Oma{\mbox{\boldmath$\Omega$\unboldmath}}
+\def\De{\mbox{\boldmath$\Delta$\unboldmath}}
+\def\de{\mbox{\boldmath$\delta$\unboldmath}}
+\def\Tha{\mbox{\boldmath$\Theta$\unboldmath}}
+\def\tha{\mbox{\boldmath$\theta$\unboldmath}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+%\newtheorem{proof}{Proof}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{example}{Example}[section]
+
+
+\def\probin{\mbox{\rotatebox[origin=c]{90}{$\vDash$}}}
+
+\def\calA{{\cal A}}
+
+
+
+%this is a comment
+
+%use this as a template only... you may not need the subsections,
+%or lists however they are placed in the document to show you how
+%do it if needed.
+
+
+%THINGS TO REMEMBER
+%to compile a latex document - latex filename.tex
+%to view the document        - xdvi filename.dvi
+%to create a ps document     - dvips filename.dvi
+%to create a pdf document    - dvipdf filename.dvi
+%{\bf TEXT}                  - bold font TEXT
+%{\it TEXT}                  - italic TEXT
+%$ ... $                     - places ... in math mode on same line
+%$$ ... $$                   - places ... in math mode on new line
+%more info at www.cs.wm.edu/~mliskov/cs423_fall04/tex.html
+
+
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textwidth}{6in}
+\setlength{\topmargin}{-0.4in}
+\setlength{\textheight}{8.5in}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\notes}[5]{
+	\renewcommand{\thepage}{#1 - \arabic{page}}
+	\noindent
+	\begin{center}
+	\framebox{
+		\vbox{
+		\hbox to 5.78in { { \bf Statistic Machine Learning}
+		\hfill #2}
+		\vspace{4mm}
+		\hbox to 5.78in { {\Large \hfill #5 \hfill} }
+		\vspace{2mm}
+		\hbox to 5.78in { {\it #3 \hfill #4} }
+		}
+	}
+	\end{center}
+	\vspace*{4mm}
+}
+
+\newcommand{\ho}[1]{\notes{#1}{Probability Inequalities(2)}{Professor: Zhihua Zhang}{Scribe:}{Lecture Notes #1: Probability Inequalities(2)}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{section}{9}
+%begins a LaTeX document
+
+\begin{document}
+
+\ho{10}
+
+\section{Probability Inequalities(2)}
+
+\subsection{Hoeffding's Inequality}
+
+
+If $X_1$, ... , $X_n$ are indenpendent random variables with a finite mean value such that for some non-empty interval $I$, $\BE e^{\lambda X_i}$ is finite. Then we define 
+\[ S = \sum_{i=1}^n (X_i - \BE X_i)\].
+Assume $X_i$ takes its values in a bounded interval $[a_i,b_i]$. Then \[
+\BP(S \geq t) \leq \exp\left( -\frac{2t^2}{\sum_{i=1}^n (b_i - a_i)^2} \right) \]
+for all $t > 0$.
+
+
+\begin{lemma} (\textbf{Hoeffding's Lemma})
+Let $Y$ be a random variable with $\BE Y = 0$, taking values in a bounded interval $[a, b]$ and let $\psi_Y(\lambda) = \log \BE e^{\lambda Y}$. Then $\psi''_Y(\lambda) \leq \frac{(b-a)^2}{4}$ and $\psi_Y(\lambda) \leq \frac{\lambda^2}{2}\frac{(b-a)^2}{4}$.
+\end{lemma}
+
+We first show that if Hoeffding's lemma is true, then Hoeffding's inequality is also true.
+
+\begin{proof}(Hoeffding's Lemma $\rightarrow$ Hoeffding's Inequality)
+
+Let $Y_i = X_i - \BE X_i$. So $\BE Y_i = 0$ ,$S = \sum_{i=1}^{n} Y_i$ and $Y_i \in [a_i - \BE Y_i, b_i - \BE Y_i]$.
+
+\[\begin{split}
+\Pr (S \geq t) &\leq \frac{\BE e^{\lambda S}}{e^{\lambda t}} \\
+&=\exp(- \lambda t + \log\BE e^{\lambda S}) \\ 
+& (Y_i's \text{ are independent}) \\
+&= \exp(-\lambda t + \log \Pi_{i=1}^n \BE e^{\lambda Y_i}) \\
+& = \exp(-\lambda t + \sum_{i = 1}^n \log \BE e^{\lambda Y_i}) \\
+& \leq \exp(-\lambda t + \frac{\lambda^2}{2} \sum_{i=1}^n\frac{(b_i - a_i)^2}{4}) \\
+&\leq \exp(- \frac{2t^2}{\sum_{i=1}^n} (b_i - a_i)^2)
+\end{split}\]
+\end{proof}
+
+Next, we will give two proofs for Hoeffding's Lemma.
+
+\begin{proof}
+Let $g(y) = \exp(-\psi_Y(\lambda)) e^{\lambda y} f(y)$, then we have 
+\[
+\int g(y) dy = \frac{\int e^{\lambda y} f(y) dy}{\exp(\psi_Y(\lambda))} = 1
+\]
+
+Because $Y \in [a, b]$, we can get $|Y - \frac{a+b}{2}| \leq \frac{b - a}{a}$. So $Var(Y) = \BE ((Y - \frac{a+b}{2})^2) \leq \frac{(b-a)^2}{4}$.
+
+And we have
+\[\begin{split} 
+\BE ( Y - \BE_g Y)^2 & = 
+\int (y^2 - 2y\BE_gY + \BE_g^2(Y)) g(y) dy \\
+&= \exp(-\psi_Y(\lambda )) \int y^2 e^{\lambda y} f(y) dy - 
+2\exp(-2\psi_Y(\lambda ))\int y e^{\lambda y}f(y) \int y e^{\lambda y} f(y)dy dy + \BE_g^2(Y) \\
+&= \exp(-\psi_Y(\lambda )) \int y^2 e^{\lambda y} f(y) dy -
+2 [\exp(-\psi_Y(\lambda))]^2 \left(\int ye^{\lambda y}f(y) dy\right)^2 + \\
+& [\exp(-\psi_Y(\lambda))]^2 \left(\int ye^{\lambda y}f(y) dy\right)^2 \\
+&= \exp(-\psi_Y(\lambda )) \int y^2 e^{\lambda y} f(y) dy -
+[\exp(-\psi_Y(\lambda))]^2 \left(\int ye^{\lambda y}f(y) dy\right)^2\\
+& = \exp(-\psi_Y(\lambda)) \BE_f (Y^2 e^{\lambda Y}) - \exp(-2\psi_Y(\lambda))(\BE_f(Ye^{\lambda Y}))^2 \\
+&\leq \frac{(b-a)^2}{4}
+\end{split}\]
+
+By Taylor's expansion, we have
+\[
+\psi_Y(\lambda ) = \psi_Y(0) + \lambda\psi'_Y(0) +  \frac{\lambda^2}{2} \psi''_Y(\theta)
+\]
+where $\theta \in (0, \lambda)$.
+And $\psi_Y(0) = \psi'_Y(0) = 0$ and 
+$\psi''_Y(\lambda) = \frac{\BE_f (Y^2 e^{\lambda Y})}{\BE_f e^{\lambda Y}} - \frac{[\BE_f(Ye^{\lambda Y})]^2}{\BE_f e^{2\lambda Y}} \leq \frac{(b-a)^2}{4}$.
+So,
+\[\begin{split}
+\psi_Y(\lambda) &= \frac{\lambda^2}{2}\psi''_Y(\theta) \\
+&\leq \frac{\lambda^2}{2}\psi''_Y(\lambda) \\
+&\leq \frac{\lambda^2}{2} \frac{(b-a)^2}{4}
+\end{split} \]
+\end{proof}
+
+Let $X$ be any real-valued random variable with expected value $\BE X = 0$ and such that $a \leq X \leq b$ almost surely. Then, for all $\lambda \in \BR$,\[ \BE[e^{\lambda X}] \leq \exp (\frac{\lambda^2 (b-a)^2}{8}) \]
+
+\begin{proof}
+ Since $e^{\lambda x}$ is a convex function, we have 
+ \[ e^{\lambda x} \leq \frac{b - x}{b - a} e^{\lambda a} + \frac{x - a}{b - a} e^{\lambda b}, \forall a \leq x \leq b \]
+ So, 
+ \[ \BE[e^{\lambda X}] \leq \frac{b - \BE X}{b - a} e^{\lambda a} + \frac{\BE X - a}{b - a} e^{\lambda b}. \]
+ Let $\alpha = \frac{-a}{b - a} \in [0, 1]$, $u = \lambda(b -a)$, and $L(u) = -\alpha u + \ln (1 - \alpha + \alpha e^u)$
+ 
+ Then $\frac{b - \BE X}{b - a} e^{\lambda a} + \frac{\BE X - a}{b - a} e^{\lambda b} = e^{L(u)}$ since $\BE X = 0$. 
+ Taking derivative of $L(u)$,
+ \[ L(0) = L'(0) = 0 \text{ and } L''(h) \leq \frac{1}{4} \]
+ By Taylor's expansion, 
+ \[ L(u) \leq \frac{1}{8}u^2 = \frac{1}{8}\lambda^2(b-a)^2 \]
+ Hence, $\BE[e^{\lambda X}] \leq e^{\frac{1}{8} \lambda^2 (b-a)^2}$
+\end{proof}
+
+
+\subsection{Bennett's Inquality}
+
+Let $X_1$, ..., $X_n$ be independent random variables with finite variance such that $X_i \leq b$ for some $b > 0$ almost surely for $i \leq n$. And let $v = \sum_{i=1}^n \BE(X_i^2)$. Assume $\psi(u) = e^u - u - 1$. For $u \in \BR$, and $\forall \lambda > 0$.
+\[
+\psi_S(\lambda) = \log \BE e^{\lambda S} \leq n \log (1 + \frac{v}{nb^2} \psi(b\lambda)) \leq \frac{v}{b^2} \psi(b\lambda).
+\]
+And for any $t > 0$,
+\[
+\BP (S \geq t) \leq \exp(-\frac{v}{b^2} h(\frac{bt}{v}))
+\]
+where $h(u) = (1 + u)\log(1+u) - u$ for $u > 0$.
+
+
+\begin{theorem}\textbf{(Bernstein's Inequality)}
+Let $h(x) = (1+x)\log(1+x) - x$ for $x \geq 0$. And $h(x) \geq \frac{x^2}{2(1 + \frac{x}{3})} = g(x)$.
+So,
+\[
+\BP(S \geq t) \leq \exp\left( - \frac{t^2}{2 (v+\frac{bt}{3})}\right)
+\]
+
+\end{theorem}
+
+\begin{proof}
+$h'(x) = \log(1+x)$ and $h''(x) = \frac{1}{x+1}$
+
+$g'(x) = \frac{x}{1 + \frac{x}{3}} - \frac{x^2}{6(1+\frac{x}{3})^2}$ and $g''(x) = \frac{27}{(x+3)^3}$
+
+It's easy to see that $h^{(n)}(0) \geq g^{(n)}(0)$.
+\end{proof}
+
+\begin{lemma}\textbf{(Johnson-Lindenstrauss Lemma)}
+Given $0 < \epsilon < 1$, a set $X$ of $m$ points in $\BR^N$, and a number $n > 8 \ln(m) / \epsilon^2$, there is a linear map $f: \BR^N \to \BR^n$ such that 
+\[
+(1 - \epsilon) ||u - v||^2 \leq ||f(u) - f(v)||^2 \leq (1 + \epsilon) \leq (1+\epsilon) ||u - v||^2
+\]
+for all $u, v \in X$.
+\end{lemma}
+
+\begin{definition}\textbf{(Sub-Gaussian Random Variables)}
+A real-valued random variable $X$ is said to be subgaussian if it has the property that there is some $b > 0$ such that for every $\lambda \in \BR$ one has \[
+\BE e^{\lambda X} \leq e^{\lambda^2 t^2/ 2}
+\]
+We denote that $X \in G(t^2)$.
+\end{definition}
+
+\begin{proposition}
+If $X\in G(t^2)$, then 
+\begin{enumerate}
+\item $\BE X = 0$
+\item $Var(X) \leq t^2$
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Using Taylor's expansion for the exponential function
+\[
+\BE \sum_{n = 0}^\infty \frac{\lambda^n x^n}{n!} = \BE e^{\lambda X}
+\] and Lebesgue's Dominated Convergence Theorem, for any $\lambda \in \BR$,
+\[
+\sum_{n=0}^\infty \frac{\lambda^n}{n!} \BE(X^n) = \BE e^{\lambda X} \leq e^{\lambda^2 t^2 /2 } = \sum_{n = 0}^\infty \frac{\lambda^{2n}t^{2n}}{2^n n!}
+\]
+Thus 
+\[
+\lambda \BE X + \frac{\lambda^2}{2}\BE X^2 \leq \frac{\lambda^2 t^2}{2} + o(\lambda^2)
+\text{\quad\quad as $\lambda \to 0$}
+\]
+Dividing through by $\lambda > 0$ ans letting $\lambda \to 0$ we get $\BE (X) \leq 0$. Dividing through by $\lambda < 0$ and letting $\lambda \to 0$ we get $\BE (X) \geq 0$. Thus $\BE(X) = 0$. Now that this is established, we divided through by $\lambda^2$ and let $\lambda \to 0$, thus getting $Var(X) \leq t^2$.
+\end{proof}
+
+\begin{example}
+Let $X$ be a random variable with the Rademacher distribution, meaning that the law of $X$ if $\BP X = \frac{1}{2} \delta_{-1} + \frac{1}{2} \delta_1$[ here $\delta_t$ is the point mass at $x$]. Then for any $t \in \BR$, \[BE e^{tX} = \frac{1}{2} e^{-t} + \frac{1}{2} e^t = cosh t \leq e^{t^2 / 2}\]. So $X \in G(1)$.
+\end{example}
+
+
+\end{document}
+
+
+
+
+
