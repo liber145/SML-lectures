@@ -221,9 +221,10 @@ Let $g(y) = \exp(-\psi_Y(\lambda)) e^{\lambda y} f(y)$, then we have
 \int g(y) dy = \frac{\int e^{\lambda y} f(y) dy}{\exp(\psi_Y(\lambda))} = 1
 \]
 
-Because $Y \in [a, b]$, we can get $|Y - \frac{a+b}{2}| \leq \frac{b - a}{a}$. So $Var(Y) = \BE ((Y - \frac{a+b}{2})^2) \leq \frac{(b-a)^2}{4}$.
+Because $Y \in [a, b]$, we can get $|Y - \frac{a+b}{2}| \leq \frac{b - a}{a}$. So
+$\BE (Y - \frac{a+b}{2})^2 = \BE((Y - \BE Y) + (\BE Y - \frac{a+b}{2}))^2 = \BE (Y - \BE Y)^2 + (\BE Y - \frac{a+b}{2})^2$. So $Var(Y) = \BE(Y - \BE Y)^2 \leq \BE (Y - \frac{a+b}{2})^2 \leq \frac{(b-a)^2}{4}$.
 
-And we have
+Thus 
 \[\begin{split} 
 \BE ( Y - \BE_g Y)^2 & = 
 \int (y^2 - 2y\BE_gY + \BE_g^2(Y)) g(y) dy \\
@@ -283,6 +284,32 @@ And for any $t > 0$,
 \]
 where $h(u) = (1 + u)\log(1+u) - u$ for $u > 0$.
 
+\begin{proof}
+Without losing generality, we can assume $b = 1$. If $b \neq 1$, let $X_i \leftarrow \frac{X_i}{b}$.
+
+\[\begin{split}
+\psi_S(\lambda) &= \sum_{i=1}^n \left(\log \BE e^{\lambda X_i} -\lambda \BE X_i \right) \\
+&\leq \sum_{i=1}^n\left[ \log \left( 1 + \lambda \BE X_i + \psi(\lambda) \BE X_i^2 \right) -\lambda \BE X_i \right] \\
+&= n \sum_{i=1}^{n} \frac{1}{n} \left[ \log \left( 1 + \lambda \BE X_i + \psi(\lambda) \BE X_i^2 \right) -\lambda \BE X_i \right] \\
+& (log(1 + x) \text{ is concave}) \\
+&\leq n \log \left( 1 + \sum_{i=1}^{n} \frac{\lambda \BE X_i}{n} + \sum_{i=1}^{n} \frac{\psi(\lambda)}{n}\BE X_i^2 \right) - \sum_{i=1}^{n} \lambda \BE X_i \\
+&(By Taylor's expansion)\\
+&\leq n \log(1 + \frac{v}{n}\psi(\lambda)) \\
+&\leq v\psi(\lambda)
+\end{split} \]
+
+For $\BP(S \geq t)$, we have
+\[\begin{split} 
+\BP(S \geq t) &\leq \frac{\BE e^{\lambda S}}{e^{\lambda t}} \\
+&= \exp( \log \BE e^{\lambda S} - \lambda t) \\
+&\leq \exp\left( v\psi(\lambda) -\lambda t \right) \text{\quad\quad} \forall \lambda > 0 \\
+&= \exp (v(e^\lambda - \lambda - 1) - \lambda t) \\
+&((v(e^\lambda -\lambda - 1) -\lambda t)' = 0 \implies \lambda = \log(1 + \frac{t}{v}))\\
+&\leq \exp(t - (v+t)\log( 1 + \frac{t}{v})) \\
+&= \exp(-vh(\frac{t}{v}))
+\end{split} \]
+\end{proof}
+
 
 \begin{theorem}\textbf{(Bernstein's Inequality)}
 Let $h(x) = (1+x)\log(1+x) - x$ for $x \geq 0$. And $h(x) \geq \frac{x^2}{2(1 + \frac{x}{3})} = g(x)$.
@@ -299,6 +326,17 @@ $h'(x) = \log(1+x)$ and $h''(x) = \frac{1}{x+1}$
 $g'(x) = \frac{x}{1 + \frac{x}{3}} - \frac{x^2}{6(1+\frac{x}{3})^2}$ and $g''(x) = \frac{27}{(x+3)^3}$
 
 It's easy to see that $h^{(n)}(0) \geq g^{(n)}(0)$.
+
+And by Taylor's expansion, we have
+\[
+h(x) \geq g(x) \text{\quad\quad for } x > 0
+\]
+So from Bennett's inequality, it's easy to get
+\[\begin{split}
+\BP(S \geq t) &\leq \exp(-\frac{v}{b^2}h(bt/v)) \\
+&\leq \exp(-\frac{v}{b^2}g(bt/v)) \\
+&= \exp(-\frac{t^2}{2(v+\frac{bt}{3})})
+\end{split}\]
 \end{proof}
 
 \begin{lemma}\textbf{(Johnson-Lindenstrauss Lemma)}
@@ -343,6 +381,32 @@ Dividing through by $\lambda > 0$ ans letting $\lambda \to 0$ we get $\BE (X) \l
 Let $X$ be a random variable with the Rademacher distribution, meaning that the law of $X$ if $\BP X = \frac{1}{2} \delta_{-1} + \frac{1}{2} \delta_1$[ here $\delta_t$ is the point mass at $x$]. Then for any $t \in \BR$, \[BE e^{tX} = \frac{1}{2} e^{-t} + \frac{1}{2} e^t = cosh t \leq e^{t^2 / 2}\]. So $X \in G(1)$.
 \end{example}
 
+\begin{example}
+If $X \in G(v)$, then $\BP(\{X > t\}) \vee \BP(\{-X > t \}) \leq e^{-\frac{t^2}{2v}}$, where $a \vee b = \max \{a, b\}$.
+\end{example}
+
+\begin{theorem}
+Let $X$ be a random variable with $\BE X = 0$. If for some $v > 0$,
+\[
+\BP(\{X > t\}) \vee \BP(\{-X > t\}) \leq e^{-\frac{t^2}{2v}}.
+\]
+Then for every $p > 0$,
+\[
+\BE |X|^p \leq p 2^{\frac{p}{2}} v^{\frac{p}{2}} \Gamma(\frac{p}{2})
+\]
+\end{theorem}
+
+\begin{proof}
+\[\begin{split}
+\BE |X|^p &= \int_{0}^{\infty} \BP(|X|^p > t) dt \\
+&= \int_{0}^{\infty} \BP(|X| > t^{\frac{1}{p}}) dt \\
+&= \int_{0}^{\infty} pt^{p-1} \BP(|X| > t) dt \\
+&\leq \int_{0}^{\infty} pt^{p-1} 2\exp(-\frac{t^2}{2v}) dt \\
+&(\text{let } u = \frac{t^2}{2v}) \\
+&= p(2v)^{\frac{p}{2}} \int_{0}^{\infty} u^{\frac{p}{2} - 1} \exp(-u) du \\
+&= p(2v)^{\frac{p}{2}} \Gamma(\frac{p}{2})
+\end{split} \]
+\end{proof}
 
 \end{document}
 
