@@ -1,0 +1,166 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{bm}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\title{Solutions for Homework 2}
+\date{}
+
+\def\MN{{\mathcal N}}
+\def\BP{{\mathbb P}}
+\def\tha{\mbox{\boldmath$\theta$\unboldmath}}
+\def\aph{\mbox{\boldmath$\alpha$\unboldmath}}
+\def\A{{\bm A}}
+\def\B{{\bm B}}
+\def\X{{\bm X}}
+\def\Y{{\bm Y}}
+\def\x{{\bm x}}
+\def\bmu{{\bm \mu}}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item Compute the Laplace transforms of Gamma, Negative Binomial, Poisson distributions.
+\begin{proof}[Solution]\let\qed\relax
+\begin{enumerate}
+\item Gamma:
+\begin{eqnarray*}
+f(x; \alpha,\beta) &=& \frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}\exp(-\beta x) \\
+\Longrightarrow F(s) &=& \int_0^\infty f(x)\exp(-s x) dx \\
+&=& \frac{\beta^\alpha}{\Gamma(\alpha)}\int_0^\infty x^{\alpha-1}\exp(-(s+\beta)x) dx \\
+&=& \frac{\beta^\alpha}{\Gamma(\alpha)}\frac{\Gamma(\alpha)}{(\beta+s)^\alpha} \\
+&=& \frac{\beta^\alpha}{(\beta+s)^\alpha}
+\end{eqnarray*}
+\item Negative Binomial
+\begin{eqnarray*}
+P(X=x;p,r) &=& \frac{\Gamma(x+r)}{\Gamma(x+1)\Gamma(r)}p^x (1-p)^r, \quad \mbox{for}\,\,x = 0,1,2,\cdots \\
+\Longrightarrow F(x) &=& \sum_{x=0}^\infty P(X=x;p,r)\exp(-sx) dx \\
+&=& (1-p)^r\sum_{x=0}^\infty \frac{\Gamma(x+r)}{\Gamma(x+1)\Gamma(r)}(pe^{-s})^x dx \\
+&=& (1-p)^r(1-pe^{-s})^{-r} \\
+\end{eqnarray*}
+\item Poisson:
+\begin{eqnarray*}
+P(X=x;\lambda) &=& \frac{\lambda^x}{x!}e^{-\lambda},\quad \mbox{for}\,\,x = 0,1,2,\cdots \\
+\Longrightarrow F(x) &=& \sum_{x=0}^\infty P(X=x;\lambda)\exp(-sx) dx \\
+&=& e^{-\lambda}\sum_{x=0}^\infty\frac{(\lambda e^{-s})^x}{x!} \\
+&=& e^{-\lambda (1-e^{-s})} \\
+\end{eqnarray*}
+\end{enumerate}
+\end{proof}
+\item Consider that
+	\begin{alignat*}{5}
+			w_1		&= w\alpha					&, && w_2 &=w(1-\alpha),\\
+			u_1		&= u-\beta\sigma\sqrt{\frac{w_2}{w_1}}	&, && u_2 &=  u+\beta\sigma\sqrt{\frac{w_1}{w_2}}\\
+			\sigma_1^2 &= r(1-\beta^2)\sigma^2w/w_1	&, && \sigma_2^2 &= (1-r)(1-\beta^2)\sigma^2w/w_2,
+		\end{alignat*}
+		where $\alpha,\beta,r\in(0,1)$.
+		Compute the Jacobian from $(w_1,w_2,u_1,u_2,\sigma_1^2,\sigma_2^2)$ to $(w,u,\sigma^2,\alpha,\beta,r)$
+\begin{proof}[Solution]\let\qed\relax
+\begin{eqnarray*}
+dw_1 &=& wd\alpha+\alpha dw \\
+dw_2 &=& -wd\alpha+(1-\alpha)dw \\
+\Longrightarrow dw_1\wedge dw_2 &=& w d\alpha\wedge dw
+\end{eqnarray*}
+\begin{eqnarray*}
+du_1 &=& du-\sqrt{\frac{1-\alpha}{\alpha}}d(\beta\sigma)+\mbox{terms including }d\alpha \\
+du_1 &=& du+\sqrt{\frac{\alpha}{1-\alpha}}d(\beta\sigma)+\mbox{terms including }d\alpha \\
+\Longrightarrow dw_1\wedge dw_2\wedge du_1\wedge du_2 &=& w\left(\sqrt{\frac{1-\alpha}{\alpha}}+\sqrt{\frac{\alpha}{1-\alpha}}\right)d\alpha\wedge dw\wedge du\wedge d(\beta\sigma) \\
+&=& w\left(\sqrt{\frac{1-\alpha}{\alpha}}+\sqrt{\frac{\alpha}{1-\alpha}}\right)\frac{\beta}{2\sigma} d\alpha\wedge dw\wedge du\wedge d(\sigma^2) \\
+&&+w\left(\sqrt{\frac{1-\alpha}{\alpha}}+\sqrt{\frac{\alpha}{1-\alpha}}\right)\sigma d\alpha\wedge dw\wedge du\wedge d\beta
+\end{eqnarray*}
+\begin{eqnarray*}
+d\sigma_1^2 &=& \frac{r(1-\beta^2)}{\alpha}d(\sigma^2)-\frac{2r\sigma^2\beta}{\alpha}d\beta+\frac{(1-\beta^2)\sigma^2}{\alpha}dr+C_1d\alpha  \\
+d\sigma_2^2 &=& \frac{(1-r)(1-\beta^2)}{1-\alpha}d(\sigma^2)-\frac{2(1-r)\sigma^2\beta}{1-\alpha}d\beta-\frac{(1-\beta^2)\sigma^2}{1-\alpha}dr+C_2d\alpha  \\
+\Longrightarrow dw_1\wedge dw_2\wedge du_1\wedge du_2\wedge d\sigma_1^2 \wedge d\sigma_2^2 &=& w\left(\sqrt{\frac{1-\alpha}{\alpha}}+\sqrt{\frac{\alpha}{1-\alpha}}\right)\left[\frac{\beta}{2\sigma}\left(\frac{2r\sigma^2\beta(1-\beta^2)\sigma^2}{\alpha(1-\alpha)}+\frac{2(1-\beta^2)\sigma^4\beta(1-r)}{\alpha(1-\alpha)}\right)\right] \\
+&&d\alpha\wedge dw\wedge du\wedge d(\sigma^2)\wedge d\beta\wedge dr +\\
+&&w\left(\sqrt{\frac{1-\alpha}{\alpha}}+\sqrt{\frac{\alpha}{1-\alpha}}\right)\left[\sigma\left(\frac{-r(1-\beta^2)^2\sigma^2}{\alpha(1-\alpha)}-\frac{(1-r)(1-\beta^2)^2\sigma^2}{\alpha(1-\alpha)}\right)\right] \\
+&&d\alpha\wedge dw\wedge du\wedge d\beta \wedge d(\sigma^2)\wedge dr \\
+&=&w\left(\sqrt{\frac{1-\alpha}{\alpha}}+\sqrt{\frac{\alpha}{1-\alpha}}\right)\frac{(1-\beta)^2\sigma^3}{\alpha(1-\alpha)}d\alpha\wedge dw\wedge du\wedge d(\sigma^2)\wedge d\beta\wedge dr\\
+&=&-w\left(\sqrt{\frac{1-\alpha}{\alpha}}+\sqrt{\frac{\alpha}{1-\alpha}}\right)\frac{(1-\beta)^2\sigma^3}{\alpha(1-\alpha)}dw\wedge du\wedge d(\sigma^2)\wedge d\alpha\wedge d\beta\wedge dr
+\end{eqnarray*}
+So, $$\det(J) = -w\left(\sqrt{\frac{1-\alpha}{\alpha}}+\sqrt{\frac{\alpha}{1-\alpha}}\right)\frac{(1-\beta)^2\sigma^3}{\alpha(1-\alpha)}$$
+\end{proof}
+\item
+Show the conditional distribution of multinomial distribution in Theorem 5.7.
+\begin{proof}
+Using definition of conditional distribution,
+\begin{eqnarray*}
+f(x^{(m)}|x_{m+1},\cdots,x_k) &=&\frac{n!}{\prod_{i=1}^k x_i!(n-\sum_{i=1}^k x_i)!}\prod_{i=1}^k \theta_i^{x_i} (1-\sum_{t=1}^k\theta_t)^{n-\sum_{j=1}^kx_j} / \\
+&&\frac{n!}{\prod_{i=m+1}^k x_i!(n-\sum_{i=m+1}^k x_i)!}\prod_{i=m+1}^k \theta_i^{x_i} (1-\sum_{t=m+1}^k\theta_t)^{n-\sum_{j=m+1}^kx_j} \\
+&=& M_{m-1}(x^{(m)}|(\theta'_1,\dots, \theta'_m),n-s)
+\end{eqnarray*}
+where $\theta'_i = \frac{\theta_i}{\sum_{j=1}^{m}\theta_j}, (1\leq i\leq m)$ and $s=\sum_{i=m+1}^{k}x_i$.
+\end{proof}
+\item
+\begin{align*}
+	\BP(\X|\tha,n)		&\sim Multinomial\ Distribution,\\
+	\BP(\tha|\aph) 	&\sim Dirichlet\ Distribution.
+\end{align*}
+Compute $\BP(\theta|\X)$.
+\begin{proof}[Solution]\let\qed\relax
+\begin{equation*}
+			\BP(\X|\tha) = \frac{n!}{\prod_{i=1}^k x_i!}\prod_{i=1}^k \theta_i^{x_i}
+\end{equation*}
+where $x_1+\cdots+x_k = n, \,\theta_1+\cdots+\theta_k=1$.
+\begin{equation*}
+			\BP(\tha|\aph) = \frac{\Gamma(\sum_{i=1}^{k}\alpha_i)}{\prod_{i=1}^{k}\Gamma(\alpha_i)}\theta_1^{\alpha_1-1}\cdots \theta_k^{\alpha_k-1}
+\end{equation*}
+So,
+\begin{eqnarray*} 
+\BP(\theta|\X) &\propto& \BP(\X|\tha)\BP(\tha|\aph) \\
+&\propto& \frac{n!}{\prod_{i=1}^k x_i!}\prod_{i=1}^k \theta_i^{x_i}\frac{\Gamma(\sum_{i=1}^{k}\alpha_i)}{\prod_{i=1}^{k}\Gamma(\alpha_i)}\theta_1^{\alpha_1-1}\cdots \theta_k^{\alpha_k-1} \\
+&\propto& \frac{n!}{\prod_{i=1}^k x_i!}\frac{\Gamma(\sum_{i=1}^{k}\alpha_i)}{\prod_{i=1}^{k}\Gamma(\alpha_i)}\theta_1^{x_1+\alpha_1-1}\cdots \theta_k^{x_k+\alpha_k-1} \\
+\end{eqnarray*}
+Ignoring the constant part, we can see it's also a Dirichlet distribution.
+$$
+\BP(\tha | \X) \sim Dir(\tha | \x+\aph)
+$$
+\end{proof}
+\item If $vec(\X^T) \sim N_{np}(vec(\bmu^T),\bf{B}\otimes\bf{A})$, show the p.d.f of $\X$ is
+$$
+\frac{1}{(2\pi)^{\frac{np}{2}}|\A|^{\frac{n}{2}}|\B|^{\frac{n}{2}}}\exp(-\frac{1}{2}\mbox{tr}(\A^{-1}(\X-\bmu)^T\B^{-1}(\X-\bmu)))
+$$
+\begin{proof}[Solution]\let\qed\relax
+Since any matrix $\X$ may be considered in the vector form $vec(\X)$. The way of ordering the elements can have no effect on the distribution. So,
+\begin{eqnarray*}
+\BP(\X) &=& \BP(vec(\X^T)) \\
+&=& \frac{1}{(2\pi)^{\frac{np}{2}}|\B\otimes\A|^{\frac{1}{2}}}\exp(-\frac{1}{2}(vec(\X^T)-vec(\bmu^T))^T(\B\otimes\A)^{-1}(vec(\X^T)-vec(\bmu^T))) \\
+\end{eqnarray*}
+Since $|\A\otimes \B| = |\A|^n |\B|^p$  ($\A$ is $p\times p$, $\B$ is $n\times n$),
+\begin{eqnarray*}
+\BP(\X) &=& \frac{1}{(2\pi)^{\frac{np}{2}}|\A|^{\frac{n}{2}}|\B|^{\frac{n}{2}}}\exp(-\frac{1}{2}(vec(\X^T)-vec(\bmu^T))^T(\B\otimes\A)^{-1}(vec(\X^T)-vec(\bmu^T))) \\
+\end{eqnarray*}
+Since $(\B\otimes\A)^{-1}=\B^{-1}\otimes\A^{-1}$,
+\begin{eqnarray*}
+\BP(\X) &=& \frac{1}{(2\pi)^{\frac{np}{2}}|\A|^{\frac{n}{2}}|\B|^{\frac{n}{2}}}\exp(-\frac{1}{2}(vec(\X^T)-vec(\bmu^T))^T(\B^{-1}\otimes\A^{-1})(vec(\X^T)-vec(\bmu^T))) \\
+\end{eqnarray*}
+Since $(\mathbf{B}^T \otimes \mathbf{A}) \, \operatorname{vec}(\mathbf{X}) = \operatorname{vec}(\mathbf{AXB}),$
+\begin{eqnarray*}
+\BP(\X) &=& \frac{1}{(2\pi)^{\frac{np}{2}}|\A|^{\frac{n}{2}}|\B|^{\frac{n}{2}}}\exp(-\frac{1}{2}(vec(\X^T)-vec(\bmu^T))^T vec(\A^{-1}(\X^T-\bmu^T)(\B^{-1})^T)) \\
+\end{eqnarray*}
+Since $vec(\X)^Tvec(\Y)=\mbox{tr}(\X^T\Y)$,
+\begin{eqnarray*}
+\BP(\X) &=& \frac{1}{(2\pi)^{\frac{np}{2}}|\A|^{\frac{n}{2}}|\B|^{\frac{n}{2}}}\exp(-\frac{1}{2}\mbox{tr}((X-\bmu)\A^{-1}(\X^T-\bmu^T)(\B^{-1})^T)) \\
+&=& \frac{1}{(2\pi)^{\frac{np}{2}}|\A|^{\frac{n}{2}}|\B|^{\frac{n}{2}}}\exp(-\frac{1}{2}\mbox{tr}(\A^{-1}(\X-\bmu)^T\B^{-1}(\X-\bmu)))
+\end{eqnarray*}
+\end{proof}
+\item Prove theorem 6.6.
+\begin{proof}
+The joint distribution of A,B is 
+$$
+p(A,B) = \frac{etr(\frac{1}{2}\Sigma^{-1}(A+B))|A|^{\frac{r_1-p-1}{2}}|B|^{\frac{r_2-p-1}{2}}}{2^{\frac{p(r_1+r_2)}{2}}|\Sigma|^{\frac{r_1+r_2}{2}}\Gamma_p(\frac{1}{2}r_1)\Gamma_p(\frac{1}{2}r_2)}
+$$
+We have $A=T^TUT$, $B=T^TT-T^TUT$,
+So,
+\begin{eqnarray*}
+p(U,T^TT) &=& \frac{etr(\frac{1}{2}\Sigma^{-1}(T^TT))|T^TT|^{\frac{r_1-p-1}{2}}|U|^{\frac{r_1-p-1}{2}}|T^TT|^{\frac{r_2-p-1}{2}}|I-U|^{\frac{r_2-p-1}{2}}|T^TT|^{\frac{p+1}{2}}}{2^{\frac{p(r_1+r_2)}{2}}|\Sigma|^{\frac{r_1+r_2}{2}}\Gamma_p(\frac{1}{2}r_1)\Gamma_p(\frac{1}{2}r_2)}\\
+&=& \frac{etr(\frac{1}{2}\Sigma^{-1}(T^TT))|T^TT|^{\frac{r_1+r_2-p-1}{2}}}{2^{\frac{p(r_1+r_2)}{2}}|\Sigma|^{\frac{r_1+r_2}{2}}\Gamma_p(\frac{r_1+r_2}{2})}\frac{\Gamma_p(\frac{r_1+r_2}{2})}{\Gamma_p(\frac{1}{2}r_1)\Gamma_p(\frac{1}{2}r_2)}|U|^{\frac{r_1-p-1}{2}}|I-U|^{\frac{r_2-p-1}{2}}\\
+\end{eqnarray*}
+So, A+B and U are independent ,$A+B \sim W_p(\Sigma,r1+r2)$ and $p(U) \propto |U|^{\frac{r_1-p-1}{2}}|I-U|^{\frac{r_2-p-1}{2}}$.
+\end{proof}
+\end{enumerate}
+\end{document}
