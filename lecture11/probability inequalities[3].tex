@@ -1,0 +1,398 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % more modern
+%\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{epsf}
+\usepackage{amsmath,amssymb,amsfonts,verbatim}
+\usepackage{amsthm}
+\usepackage{subfigure}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+%\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{xcolor}
+
+\def\A{{\bf A}}
+\def\a{{\bf a}}
+\def\B{{\bf B}}
+\def\b{{\bf b}}
+\def\C{{\bf C}}
+\def\c{{\bf c}}
+\def\D{{\bf D}}
+\def\d{{\bf d}}
+\def\E{{\bf E}}
+\def\e{{\bf e}}
+\def\F{{\bf F}}
+\def\f{{\bf f}}
+\def\G{{\bf G}}
+\def\g{{\bf g}}
+\def\k{{\bf k}}
+\def\K{{\bf K}}
+\def\H{{\bf H}}
+\def\I{{\bf I}}
+\def\L{{\bf L}}
+\def\M{{\bf M}}
+\def\m{{\bf m}}
+\def\n{{\bf n}}
+\def\N{{\bf N}}
+\def\BP{{\bf P}}
+\def\R{{\bf R}}
+\def\BS{{\bf S}}
+\def\s{{\bf s}}
+\def\t{{\bf t}}
+\def\T{{\bf T}}
+\def\U{{\bf U}}
+\def\u{{\bf u}}
+\def\V{{\bf V}}
+\def\v{{\bf v}}
+\def\W{{\bf W}}
+\def\w{{\bf w}}
+\def\X{{\bf X}}
+\def\Y{{\bf Y}}
+\def\Q{{\bf Q}}
+\def\x{{\bf x}}
+\def\y{{\bf y}}
+\def\Z{{\bf Z}}
+\def\z{{\bf z}}
+\def\0{{\bf 0}}
+\def\1{{\bf 1}}
+
+
+\def\hx{\hat{\bf x}}
+\def\tx{\tilde{\bf x}}
+\def\ty{\tilde{\bf y}}
+\def\tz{\tilde{\bf z}}
+\def\hd{\hat{d}}
+\def\HD{\hat{\bf D}}
+
+\def\MF{{\mathcal F}}
+\def\MG{{\mathcal G}}
+\def\MI{{\mathcal I}}
+\def\MN{{\mathcal N}}
+\def\MO{{\mathcal O}}
+\def\MT{{\mathcal T}}
+\def\MX{{\mathcal X}}
+\def\SW{{\mathcal {SW}}}
+\def\MW{{\mathcal W}}
+\def\MY{{\mathcal Y}}
+\def\BR{{\mathbb R}}
+\def\BE{{\mathbb E}}
+\def\BP{{\mathbb P}}
+
+\def\bet{\mbox{\boldmath$\beta$\unboldmath}}
+\def\epsi{\mbox{\boldmath$\epsilon$}}
+
+\def\etal{{\em et al.\/}\,}
+\def\tr{\mathrm{tr}}
+\def\rk{\mathrm{rk}}
+\def\diag{\mathrm{diag}}
+\def\dg{\mathrm{dg}}
+\def\argmax{\mathop{\rm argmax}}
+\def\argmin{\mathop{\rm argmin}}
+\def\vecd{\mathrm{vec}}
+
+\def\ph{\mbox{\boldmath$\phi$\unboldmath}}
+\def\vp{\mbox{\boldmath$\varphi$\unboldmath}}
+\def\pii{\mbox{\boldmath$\pi$\unboldmath}}
+\def\Ph{\mbox{\boldmath$\Phi$\unboldmath}}
+\def\pss{\mbox{\boldmath$\psi$\unboldmath}}
+\def\Ps{\mbox{\boldmath$\Psi$\unboldmath}}
+\def\muu{\mbox{\boldmath$\mu$\unboldmath}}
+\def\Si{\mbox{\boldmath$\Sigma$\unboldmath}}
+\def\lam{\mbox{\boldmath$\lambda$\unboldmath}}
+\def\Lam{\mbox{\boldmath$\Lambda$\unboldmath}}
+\def\Gam{\mbox{\boldmath$\Gamma$\unboldmath}}
+\def\Oma{\mbox{\boldmath$\Omega$\unboldmath}}
+\def\De{\mbox{\boldmath$\Delta$\unboldmath}}
+\def\de{\mbox{\boldmath$\delta$\unboldmath}}
+\def\Tha{\mbox{\boldmath$\Theta$\unboldmath}}
+\def\tha{\mbox{\boldmath$\theta$\unboldmath}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+%\newtheorem{proof}{Proof}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{example}{Example}[section]
+
+
+\def\probin{\mbox{\rotatebox[origin=c]{90}{$\vDash$}}}
+
+\def\calA{{\cal A}}
+
+
+
+%this is a comment
+
+%use this as a template only... you may not need the subsections,
+%or lists however they are placed in the document to show you how
+%do it if needed.
+
+
+%THINGS TO REMEMBER
+%to compile a latex document - latex filename.tex
+%to view the document        - xdvi filename.dvi
+%to create a ps document     - dvips filename.dvi
+%to create a pdf document    - dvipdf filename.dvi
+%{\bf TEXT}                  - bold font TEXT
+%{\it TEXT}                  - italic TEXT
+%$ ... $                     - places ... in math mode on same line
+%$$ ... $$                   - places ... in math mode on new line
+%more info at www.cs.wm.edu/~mliskov/cs423_fall04/tex.html
+
+
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textwidth}{6in}
+\setlength{\topmargin}{-0.4in}
+\setlength{\textheight}{8.5in}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\notes}[5]{
+	\renewcommand{\thepage}{#1 - \arabic{page}}
+	\noindent
+	\begin{center}
+	\framebox{
+		\vbox{
+		\hbox to 5.78in { { \bf Statistic Machine Learning}
+		\hfill #2}
+		\vspace{4mm}
+		\hbox to 5.78in { {\Large \hfill #5 \hfill} }
+		\vspace{2mm}
+		\hbox to 5.78in { {\it #3 \hfill #4} }
+		}
+	}
+	\end{center}
+	\vspace*{4mm}
+}
+
+\newcommand{\ho}[1]{\notes{#1}{Probability Inequalities(3)}{Professor: Zhihua Zhang}{Scribe:}{Lecture Notes #1: Probability Inequalities(3)}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{section}{10}
+%begins a LaTeX document
+
+\begin{document}
+
+\ho{11}
+
+\section{Probability Inequalities(3)}
+
+\begin{theorem}
+If $X \in G(v)$, $\BE X = 0$, then for any $p > 0$,
+\[
+	\BE |X|^p \leq p(2v)^\frac{p}{2} \Gamma(\frac{p}{2}).
+\]
+Thus for any integer $q \geq 1$,
+\[
+	\BE (X^{2q}) \leq 2q! (2v)^q \leq q!(4v)^q
+\]
+Conversely, if for any constant $C$,
+\[
+	\BE(X^{2q}) \leq q!C^q,
+\]
+then $X \in G(4C)$.
+\end{theorem}
+
+Let's prove the converse part.
+
+\begin{proof}
+Let $\hat{X}$ be a copy of $X$, which means has the same distribution like $X$ and be independent.
+
+\[\begin{split} 
+\BE e^{\lambda X} \BE e^{-\lambda \hat{X}} &= \BE e^{\lambda X - \hat{X}} \\
+&(\BE (X - \hat{X})^{2q + 1} = 0 \text{ and } \\
+& \text{ lebesgue dominated convergence theorem } ) \\
+&\leq \sum_{q=0}^{\infty} \frac{\lambda^{2q} \BE ((X - \hat{X})^{2q})}{(2q)!} \\
+\end{split} \] 
+
+By Jensen inequality, $(\frac{1}{2}X + \frac{1}{2}(-\hat{X}))^{2q} \leq \frac{1}{2} X^{2q} + \frac{1}{2}(\hat{X})^{2q}$. So $\BE ((X - \hat{X})^{2q}) \leq 2^{2q-1} [\BE(X^{2q}) + \BE(\hat{X}^{2q})] = 2^{2q} \BE (X^2q)$. Thus
+\[
+\BE e^{\lambda X} \BE e^{-\lambda \hat{X}} \leq \sum_{q=0}^{\infty} \frac{\lambda^{2q} 2^{2q} C^q q!}{(2q)!}
+\]
+And $\frac{(2q)!}{q!} = \Pi_{j=1}^q (q+j) \geq 2^q q!$, by Jensen inequality $\BE e^{-\lambda \hat{X}} \geq e^{-\lambda \BE \hat{X}} = 1$. Thus
+\[\begin{split}
+\BE e^{\lambda X} &\leq \sum_{q = 0}^{\infty} \frac{\lambda^{2q} 2^q C^q}{q!} \\
+& = e^{2\lambda^2 C} \\
+&= e^{\frac{4\lambda^2 C}{2}}
+\end{split}\]
+\end{proof}
+
+
+\begin{theorem}[Bernstein's inequality]
+Let $X_1, ..., X_n$ be independent real-valued random variables. Assume that there exist positive number $\nu$ and $c$, such that $\sum_{i=1}^n \BE [X_i^2] \leq \nu$ and $\sum_{i=1}^n \BE [(X_i)_+^q] \leq \frac{q! \nu c^{q-2}}{2}$ for all integers $q \geq 3$. If $S = (X_i - \BE X_i)$, then for all $\lambda \in (0, \frac{1}{c})$ and $t > 0$, $\psi_S(\lambda) \leq \frac{\nu \lambda^2}{2 (1-c\lambda)}$ and $\psi_S^*(t) \geq \frac{\nu}{c^2}h_1(\frac{ct}{\nu})$, where 
+$h_1(u) = 1 + u - \sqrt{1+2u}$ for $u>0$.
+$\BP(\{S \geq \sqrt{2\nu t} + ct \}) \leq e^{-t}$.
+\end{theorem}
+
+\begin{proof}
+Let $\phi(u) = e^u -u - 1$, for $u \leq 0$, $\phi(u) \leq \frac{u^2}{2}$.
+
+By Taylor's expansion, for $\lambda > 0$, 
+$\phi(\lambda X_i) \leq \frac{\lambda^2 X_i^2}{2} + \sum_{q = 3}^{\infty} \frac{\lambda^q (X_i)_+^q}{q!}$. Thus
+\[
+	\BE \phi(\lambda X_i) \leq \BE (\frac{\lambda^2 X_i^2}{2}) + \sum_{q = 3}^{\infty} \frac{\lambda^q \BE ((X_i)_+^q)}{q !}
+\]
+\[\begin{split}
+\sum_{i=1}^{n} \BE \phi(\lambda X_i) &\leq \sum_{i=1}^{n} \BE(\frac{\lambda^2 X_i^2}{2}) + \sum_{q=3}^{\infty} \frac{\lambda^q}{q!} \sum_{i=1}^{n} \BE ((X_i)_+^q)  \\
+& \leq \frac{\nu}{2} \sum_{q=2}^\infty \lambda^q c^{q-2} \\
+&= \frac{\nu\lambda^2}{2} \sum_{q=0}^\infty (\lambda c)^q
+\end{split}
+\]
+$\lambda \in (0, \frac{1}{c})$, so $\sum_{q = 0}^{\infty} (\lambda c)^q = \frac{1}{\lambda c}$
+
+\[\begin{split}
+\psi_S(\lambda) &= \log \BE e^{\lambda S} \\
+&= \log \BE e^{\lambda \sum_{i=1}^{n}(X_i - \BE X_i)} \\
+&= \log \Pi_{i=1}^n \BE e^{\lambda (X_i - \BE X_i)} \\
+&= \sum_{i=1}^{n} (\log\BE e^{\lambda X_i} - \lambda \BE X_i) \\
+&= \sum_{i=1}^{n} (\BE e^{\lambda X_i} - 1 - \lambda \BE X_i) \\
+& = \sum_{i = 1}^{n} \BE \phi(\lambda X_i) \\
+&\leq \frac{\nu}{2} \frac{\lambda^2}{1-c\lambda}
+\end{split}\]
+
+\[\begin{split}
+\psi_S^* (t) &= \sup_{\lambda \in (0, \frac{1}{c})} (t\lambda - \psi_S(\lambda )) \\
+&\geq \sup_{\lambda \in (0, \frac{1}{c})} (t\lambda - \frac{\lambda^2 \nu}{2(1-c\lambda)}) \\
+&= \frac{v}{c^2} h_1(\frac{ct}{\nu}) 
+\end{split}
+\]
+
+$h_1$ is an increasing funciton from $(0, \infty)$ to $(0, \infty)$. $h^{-1}(u) = u + \sqrt{2u}$. $\psi^*(t) = \frac{\nu}{c^2} h_1(\frac{ct}{\nu})$ and $\psi^{*-1}(t) = ct + \sqrt{2\nu t}$. Thus
+\[
+	\BP(S \geq t) \leq \exp(-\frac{\nu}{c^2} h_1(\frac{ct}{\nu}))
+\]
+\[
+	\BP(S \geq \psi^{*-1}(t)) \geq \exp(-\psi^*(\psi^{*-1}(t))) = \exp(-t)
+\]
+Then $\BP (S \geq ct + \sqrt{2\nu t}) \leq \exp(-t)$.
+\end{proof}
+
+\begin{corollary}
+Let $X_1, X_2, ..., X_n$ be independent real-valued random variables, satisfying the condition of theorem, and $S = \sum_{i=1}^{n} (X_i - \BE X_i)$. Then for all $t > 0$.
+\[
+\BP(S \geq t) \leq \exp(-\frac{t^2}{2(v+ct)})
+\]
+\end{corollary}
+
+\subsection{Random projection and Johnson-Lindenstrauss lemma}
+
+Let $U = [u_1, ..., u_p]^T \in \BR^p$, $R \BR^{p \times d}$, $R^T R = I_d$. Let $V = \sqrt{\frac{p}{d}} R^T U$. Then $\BE (||V||_2^2) = ||U||_2^2$.
+
+\begin{proof}
+\[
+R = \begin{bmatrix}
+- R_{(1)}^T  -\\
+\vdots \\
+-R_{(p)}^T -
+\end{bmatrix}
+= \begin{bmatrix}
+| & & | \\
+R_1 & ... & R_d \\
+| & & |
+\end{bmatrix}
+\]
+$\sum_{i=1}^p R_{(i)}^T R_{(i)} =  \BE [tr(RR^T)] = \BE [tr(R^T R)] = d$, then $R_{(i)}^T R_{(i)} = \frac{d}{p}$. And $R_i^T R_j = 0 \implies R_{(i)}^T R_{(j)} = 0$.
+So
+\[
+	\BR (V^T V) = U^T \BE (RR^T) U = \frac{d}{p} U^T U = \frac{d}{p}||U||_2^2
+\]
+\end{proof}
+
+\begin{definition}
+$f: U \in \BR^p \to V \in \BR^d $, if $(1-\epsilon)||x - y||^2 \leq ||f(x) - f(y)||^2 \leq (1 + \epsilon) ||x - y||^2$. It is called $\epsilon-$isometric.
+\end{definition}
+
+\begin{lemma}
+Each entry of a $p\times d$ matrix $R$ be chosen independently from $N(0, 1)$. Let $V = \frac{1}{\sqrt{d}} R^T U$ for $U \in \BR^p$. Then for any $\epsilon > 0$,
+\begin{enumerate}
+\item $\BE(||V||^2) = ||U||^2$
+\item $\BP( | ||V||^2 - ||U||^2 | \geq \epsilon ||U||^2 ) \leq 2 \exp(-(\epsilon^2 - \epsilon^3)\frac{d}{4})$
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+$\BE (||V||^2) = \frac{1}{d} \BE (U^T RR^T U) = \frac{1}{d} U^T\BE(RR^T)U$.
+$R_{(i)}^TR_{(i)} \sim \chi^2(d)$, then $\BE(R_{(i)}^TR_{(i)}) = d$. $\BE(R_{(i)}^T R_{(j)}) = Cov(R_{(i)}^T, R_{(j)}^T) = 0$. Then $\BE (||V||^2) = ||U||^2$.
+
+Let $X = \frac{d}{||U||^2} ||V||^2 = \frac{||R^TU||^2}{||U||^2} = \frac{\sum_{j=1}^{d} (R_j U)^2}{||U||^2} = \sum_{j=1}^{d} X_j^2$, where $X_j = \frac{R_j^T U}{||U||}$. Since $R_j \sim N(0, I_p)$, so $X_i \sim N(0,1)$.
+\[\begin{split}
+	\BP(||V||^2 \geq (1 + \epsilon) ||U||^2) & = \BP(X \geq (1+\epsilon) d) \\
+	&= \BP(e^{\lambda X} \geq e^{\lambda(1+\epsilon)d}) \\
+	&\leq \frac{\BE e^{\lambda X}}{e^{\lambda(1+\epsilon)d}} \\
+	&= \frac{\BE e^{\lambda \sum_{i=1}^{d}X_i^2}}{e^{\lambda(1+\epsilon)d}} \\
+	&= \frac{\Pi_{i=1}^d \BE e^{\lambda X_i^2}}{e^{\lambda (1+\epsilon) d}} \\
+	&= \left( \frac{\BE e^{\lambda X_i^2}}{e^{\lambda (1+\epsilon)}} \right)^d
+\end{split}\]
+
+Similarly, $\BP(||V||^2 \leq (1-\epsilon)||U||^2 ) \leq \left( \frac{\BE e^{-\lambda X_i^2}}{e^{-(1-\epsilon)\lambda}} \right)^d$
+
+$\BE e^{\lambda X_i^2} = \int e^{\lambda x_i^2} \frac{1}{\sqrt{2\pi}} e^{-\frac{x_i^2}{2}} dx_i = \frac{1}{\sqrt{1 - 2\lambda}}$. Thus
+\[
+	\BP(X \geq (1+\epsilon) d) \leq \left( \frac{e^{-2(1+\epsilon)\lambda}}{1-2\lambda} \right)^{\frac{d}{2}}
+\]
+where $\lambda \in (0, \frac{1}{2})$. Let $\lambda = \frac{\epsilon}{2(1+\epsilon)}$, then $\BP(X \geq (1+\epsilon)d) \leq ((1+\epsilon)e^{-\epsilon})^{\frac{d}{2}}$. And $1+\epsilon < e^{\epsilon - \frac{\epsilon^2 - \epsilon^3}{2}}$. So $\BP(X \geq (1 + \epsilon)d ) \leq e^{-(\epsilon^2 -\epsilon^3)\frac{d}{4}}$.
+Thus $\BP( | ||V||^2 - ||U||^2 | \geq \epsilon ||U||^2 ) \leq 2 \exp(-(\epsilon^2 - \epsilon^3)\frac{d}{4})$
+	
+\end{proof}
+
+\begin{theorem}[John-Lidenstrauss lemma]
+$R: \BR^p \to \BR^d$. Let $A$ be finite subset of $\BR^p$ with $|A| = n$. Assume that for some $\nu \geq 1$, $R_{ij} \in G(\nu)$, and $\BE R_{ij} = 0$, $Var(R_{ij}) = 1$. and let $\epsilon, \delta \in (0, 1)$. If $d \geq 100\nu^2 \epsilon^{-2} \log(\frac{n}{\sqrt{\delta}})$. There with probability at least $1-\delta$, 
+\[
+	(1-\epsilon)||X - Y||^2 \leq ||R^T X - R^T Y||^2 \leq  (1+\epsilon)||X - Y||^2
+\]
+for $X, Y \in A$. It is calle $\epsilon$-isometric on $A$.
+\end{theorem}
+
+\begin{proof}
+Let $S$ be the unit sphere of $\BR^p$ and let $T$ be the subset of $S$ defined by $T = \{ \frac{X- Y}{||X-Y||} : X, Y \in A, X \neq Y \}$. Let $|A| = n$, then $|T| = N \leq \frac{n(n-1)}{2}$.
+
+\[
+	\BP \left( ||R^T\frac{(X-Y)}{||X-Y||}||_2^2 - 1 \leq \epsilon \right) \leq \BP \left( \sup_{\alpha\in T} |R^T \alpha - 1| \leq \epsilon \right)
+\]
+
+Let $Z_i(\alpha) = \sum_{j=1}^{p} \alpha_j R_{ji}$, so $\BE (Z_i(\alpha)^2) = Var(Z_i(\alpha)) = \sum_{j=1}^p \alpha_j^2 Var(X_{ji}) = 1$.
+\[\begin{split}
+	\BE \exp(\lambda Z_i(\alpha)) &= \BE \exp(\lambda \sum_{j=1}^{p} \alpha_j X_{ji}) \\
+ 	& = \Pi_{j = 1}^p \BE \exp(\lambda \alpha_j X_{ji}) \\
+	&\leq \exp(\sum_{j=1}^{p} \frac{\lambda^2 \alpha_j^2 \nu}{2}) \\
+	&= \exp(\frac{\lambda^2 \nu}{2})
+\end{split}\] 
+
+Since $\BE (Z_i(\alpha)^{2q}) \leq \frac{q!}{2} 4(2\nu)^q \leq \frac{q!}{2}(4\nu)^q$, so
+$\sum_{j=1}^{d} \BE (Z_i(\alpha)^{2q}) \leq \frac{q!d(4\nu)^q}{2}$.
+
+So according to Bernstein's inequality, $\nu \leftarrow (4\nu)^2 d$, $c \leftarrow 4\nu$, thus
+\[
+	\BP( |\sum_{i=1}^{d}(Z_i(\alpha)^2 - 1) | \geq 4\nu\sqrt{2dt} + 4\nu t ) \leq 2e^{-t}
+\]
+Then
+\[
+	\BP\left( \sup_{\alpha \in T} \sum_{i=1}^{d} (Z_i(\alpha)^2 - 1) \geq 4\nu\sqrt{2dt } + 4\nu t \right) \leq |T|2e^{-t} \leq n^2 e^{-t}
+\]
+Let $t = \log \frac{n^2}{\delta} $, so
+$4\nu\sqrt{2dt} + 4\nu t \leq \epsilon$. Thus
+\[
+	\BP\left( \sup_{\alpha \in T} \sum_{i=1}^{d} (Z_i(\alpha)^2 - 1) \geq \epsilon \right) \leq \delta
+\]
+
+\end{proof}
+
+
+
+\subsection*{Homework}
+\begin{enumerate}
+\item Prove the following one-sided improvement of Chebyshev's inequality: for any real-valued random variable $Y$ and $t>0$, $\BP(Y - \BE Y\geq t) \leq \frac{Var(Y)}{Var(Y) + t^2}$
+\item Show that if $Y$ is nonnegative random variable then for any $\alpha \in (0, 1)$, $\BP(Y \geq \alpha \BE Y) \geq (1-\alpha)^2 \frac{(\BE Y)^2}{\BE (Y^2)}$
+\item Prove that if $Z$ has a centered normal random variable with variance $\sigma^2$ then $\sup_{t>0} \BP (\{ Z \geq t \})$
+\end{enumerate}
+\end{document}
+
+
+
+
+
