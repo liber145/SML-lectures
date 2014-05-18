@@ -1,0 +1,438 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % more modern
+%\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{epsf}
+\usepackage{bm}
+\usepackage{amsmath,amssymb,amsfonts,verbatim}
+\usepackage{subfigure}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{enumerate}
+%\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{fancyref}
+
+
+\def\A{{\bm A}}
+\def\a{{\bm a}}
+\def\B{{\bm B}}
+\def\b{{\bm b}}
+\def\C{{\bm C}}
+\def\c{{\bm c}}
+\def\D{{\bm D}}
+\def\d{{\bm d}}
+\def\E{{\bm E}}
+\def\e{{\bm e}}
+\def\F{{\bm F}}
+\def\f{{\bm f}}
+\def\G{{\bm G}}
+\def\g{{\bm g}}
+\def\k{{\bm k}}
+\def\K{{\bm K}}
+\def\H{{\bm H}}
+\def\I{{\bm I}}
+\def\L{{\bm L}}
+\def\M{{\bm M}}
+\def\m{{\bm m}}
+\def\n{{\bm n}}
+\def\N{{\bm N}}
+\def\BP{{\bm P}}
+\def\R{{\bm R}}
+\def\BS{{\bm S}}
+\def\s{{\bm s}}
+\def\t{{\bm t}}
+\def\T{{\bm T}}
+\def\U{{\bm U}}
+\def\u{{\bm u}}
+\def\V{{\bm V}}
+\def\v{{\bm v}}
+\def\W{{\bm W}}
+\def\w{{\bm w}}
+\def\X{{\bm X}}
+\def\Y{{\bm Y}}
+\def\Q{{\bm Q}}
+\def\x{{\bm x}}
+\def\y{{\bm y}}
+\def\Z{{\bm Z}}
+\def\z{{\bm z}}
+\def\0{{\bm 0}}
+\def\1{{\bm 1}}
+
+
+\def\hx{\hat{\bm x}}
+\def\tx{\tilde{\bm x}}
+\def\ty{\tilde{\bm y}}
+\def\tz{\tilde{\bm z}}
+\def\hd{\hat{d}}
+\def\HD{\hat{\bm D}}
+\def\px {\partial{x}}
+\def\py{\partial{y}}
+
+\def\MA{{\mathcal A}}
+\def\ML{{\mathcal L}}
+\def\MF{{\mathcal F}}
+\def\MR{{\mathcal R}}
+\def\MG{{\mathcal G}}
+\def\MI{{\mathcal I}}
+\def\MN{{\mathcal N}}
+\def\MO{{\mathcal O}}
+\def\MT{{\mathcal T}}
+\def\MX{{\mathcal X}}
+\def\SW{{\mathcal {SW}}}
+\def\MW{{\mathcal W}}
+\def\MY{{\mathcal Y}}
+\def\BR{{\mathbb R}}
+\def\BP{{\mathbb P}}
+\def\BE{{\mathbb E}}
+\def\BN{{\mathbb N}}
+
+\def\bet{\mbox{\boldmath$\beta$\unboldmath}}
+\def\epsi{\mbox{\boldmath$\epsilon$}}
+
+\def\etal{{\em et al.\/}\,}
+\def\tr{\mathrm{tr}}
+\def\rk{\mathrm{rk}}
+\def\diag{\mathrm{diag}}
+\def\dg{\mathrm{dg}}
+\def\argmax{\mathop{\rm argmax}}
+\def\argmin{\mathop{\rm argmin}}
+\def\vecd{\mathrm{vec}}
+
+\def\ph{\mbox{\boldmath$\phi$\unboldmath}}
+\def\vp{\mbox{\boldmath$\varphi$\unboldmath}}
+\def\pii{\mbox{\boldmath$\pi$\unboldmath}}
+\def\Ph{\mbox{\boldmath$\Phi$\unboldmath}}
+\def\pss{\mbox{\boldmath$\psi$\unboldmath}}
+\def\Ps{\mbox{\boldmath$\Psi$\unboldmath}}
+\def\muu{\mbox{\boldmath$\mu$\unboldmath}}
+\def\Si{\mbox{\boldmath$\Sigma$\unboldmath}}
+\def\lam{\mbox{\boldmath$\lambda$\unboldmath}}
+\def\Lam{\mbox{\boldmath$\Lambda$\unboldmath}}
+\def\Gam{\mbox{\boldmath$\Gamma$\unboldmath}}
+\def\Oma{\mbox{\boldmath$\Omega$\unboldmath}}
+\def\De{\mbox{\boldmath$\Delta$\unboldmath}}
+\def\de{\mbox{\boldmath$\delta$\unboldmath}}
+\def\Tha{\mbox{\boldmath$\Theta$\unboldmath}}
+\def\tha{\mbox{\boldmath$\theta$\unboldmath}}
+\def\aph{\mbox{\boldmath$\alpha$\unboldmath}}
+\def\bt{\mbox{\boldmath$\beta$\unboldmath}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{example}{Example}[section]
+
+
+\def\probin{\mbox{\rotatebox[origin=c]{90}{$\vDash$}}}
+
+\def\calA{{\cal A}}
+
+
+
+%this is a comment
+
+%use this as a template only... you may not need the subsections,
+%or lists however they are placed in the document to show you how
+%do it if needed.
+
+
+%THINGS TO REMEMBER
+%to compile a latex document - latex filename.tex
+%to view the document        - xdvi filename.dvi
+%to create a ps document     - dvips filename.dvi
+%to create a pdf document    - dvipdf filename.dvi
+%{\bm TEXT}                  - bold font TEXT
+%{\it TEXT}                  - italic TEXT
+%$ ... $                     - places ... in math mode on same line
+%$$ ... $$                   - places ... in math mode on new line
+%more info at www.cs.wm.edu/~mliskov/cs423_fall04/tex.html
+
+
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textwidth}{6in}
+\setlength{\topmargin}{-0.4in}
+\setlength{\textheight}{8.5in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\notes}[5]{
+	\renewcommand{\thepage}{#1 - \arabic{page}}
+	\noindent
+	\begin{center}
+	\framebox{
+		\vbox{
+		\hbox to 5.78in { { \bf Statistical Machine Learning}
+		\hfill #2}
+		\vspace{4mm}
+		\hbox to 5.78in { {\Large \hfill #5 \hfill} }
+		\vspace{2mm}
+		\hbox to 5.78in { {\it #3 \hfill #4} }
+		}
+	}
+	\end{center}
+	\vspace*{4mm}
+}
+
+\newcommand{\ho}[1]{\notes{#1}{Stochastic Convergence}{Professor: Zhihua Zhang}{Scribe:}{Lecture Notes #1: Stochastic Convergence}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{section}{11}
+%begins a LaTeX document
+
+\begin{document}
+\ho{12}
+\section{Stochastic Convergence}
+\begin{definition}
+A sequence $X_1,\ X_2,\ldots$ of random variables is said to converge in distribution, or converge weakly, or converge in law to a random variable $X$ if
+$$
+    \lim_{n\to\infty} F_n(x) = F(x), 
+$$
+for every number $x \in \R$ at which $F$ is continuous. Here $F_n$ and $F$ are the cumulative distribution functions of random variables $X_n$ and $X$, respectively.
+\end{definition}
+We denote convergence in distribution as $X_n \rightsquigarrow X$.
+\begin{definition}
+A sequence ${X_n}$ of random variables converges in probability towards the random variable $X$ if for all $\varepsilon > 0$
+$$
+    \lim_{n\to\infty}\Pr\big(|X_n-X| \geq \varepsilon\big) = 0. 
+$$
+Formally, pick any $\varepsilon > 0$ and any $\delta > 0$. Let $P_n$ be the probability that $X_n$ is outside the ball of radius $\varepsilon$ centered at $X$. Then for $X_n$ to converge in probability to $X$ there should exist a number $N$ (which will depend on $\varepsilon$ and $\delta$) such that for all $n \geq N$ the probability $Pn$ is less than $\delta$.
+\end{definition}
+Convergence in probability is denoted by adding the letter p over an arrow indicating convergence, or using the "plim" probability limit operator:
+$$
+    X_n \ \xrightarrow{p}\ X,\ \ X_n \ \xrightarrow{P}\ X,\ \ \underset{n\to\infty}{\operatorname{plim}}\, X_n = X. 
+$$
+For random elements ${X_n}$ on a separable metric space $(S, d)$, convergence in probability is defined similarly by
+$$
+    \forall\varepsilon>0, \Pr\big(d(X_n,X)\geq\varepsilon\big) \to 0. 
+$$
+
+\begin{definition}
+To say that the sequence $X_n$ converges almost surely or almost everywhere or with probability $1$ or strongly towards $X$ means that
+$$
+    \operatorname{Pr}\!\left( \lim_{n\to\infty}\! X_n = X \right) = 1. 
+$$
+\end{definition}
+Almost sure convergence is often denoted by adding the letters a.s. over an arrow indicating convergence:
+$$X_n \, \xrightarrow{\mathrm{a.s.}} \, X.$$ 
+Using the probability space $\scriptstyle (\Omega, \mathcal{F}, Pr )$ and the concept of the random variable as a function from $\Omega$ to $R$, for generic random elements ${X_n}$ on a metric space $(S, d)$, convergence almost surely is defined similarly:
+$$
+    \operatorname{Pr}\Big( \omega\in\Omega:\, d\big(X_n(\omega),X(\omega)\big)\,\underset{n\to\infty}{\longrightarrow}\,0 \Big) = 1
+$$
+\begin{definition}
+Given a real number $r \geq 1$, we say that the sequence $X_n$ converges in the r-th mean (or in the Lr-norm) towards the random variable X, if the r-th absolute moments $E(|X_n|^r)$ and $E(|X|^r)$ of $X_n$ and $X$ exist, and
+$$
+    \lim_{n\to\infty} \operatorname{E}\left( |X_n-X|^r \right) = 0, 
+$$
+where the operator E denotes the expected value. Convergence in r-th mean tells us that the expectation of the r-th power of the difference between $X_n$ and $X$ converges to zero.
+\end{definition}
+This type of convergence is often denoted by adding the letter $L_r$ over an arrow indicating convergence:
+$$
+    X_n \, \xrightarrow{L_r} \, X. 
+$$
+The most important cases of convergence in r-th mean are:
+\begin{enumerate}
+\item When $X_n$ converges in r-th mean to $X$ for $r = 1$, we say that $X_n$ converges in mean to $X$.
+\item     When $X_n$ converges in r-th mean to $X$ for $r = 2$, we say that $X_n$ converges in mean square to $X$.
+\end{enumerate}
+\begin{example}
+Let $X_n \sim N(0,\frac{1}{n})$ and let F be distribution function for a point mass at 0, namely, $P(X=0)=1$. Let $Z\sim N(0,1)$,
+\begin{eqnarray*}
+F_n(x) &=& Pr(X_n < x) \\
+&=& Pr(\sqrt{n}X_n < \sqrt{n}x) \\
+&=& Pr(Z < \sqrt{n}x)
+\end{eqnarray*}
+Thus, 
+\begin{enumerate}
+\item For $x<0$, $\sqrt{n}x\longrightarrow -\infty$, $\lim\limits_{n\to\infty}F_n(x) = 0$
+\item For $x>0$, $\sqrt{n}x\longrightarrow \infty$, $\lim\limits_{n\to\infty}F_n(x) = 1$
+\end{enumerate}
+So, for $x\neq 0$, $\lim\limits_{n\to\infty}F_n(x)=F(x)$, $X_n \rightsquigarrow 0$.
+And since $E(X)=0$, by Chebyshev's inequality, 
+$$
+Pr(|X_n|\geq\varepsilon)\le\frac{E(X_n^2)}{\varepsilon} = \frac{1}{n\varepsilon} \longrightarrow 0
+$$
+So, $X_n \ \xrightarrow{p}\ 0$. Note here we use notation $X_n \rightsquigarrow c$ or $X_n \ \xrightarrow{p}\ c$ means $X_n$ convergence to a point mass distribution $P(X=c)=1$.
+\end{example}
+\begin{lemma}[portmanteau lemma]
+The following statement are equivalent:
+\begin{enumerate}
+\item 
+$\lim Pr(X_n \in A) = Pr(X \in A)$ for all continuity sets $A$ of random variable $X$.
+\item $Eg(X_n) \longrightarrow Eg(X)$ for all bounded, continuous functions $g$.
+\item $Eg(X_n) \longrightarrow Eg(X)$ for all bounded, Lipschitz functions $g$. $(\|g(x)-g(y)\| \leq L\|x-y\|)$
+\end{enumerate}
+\end{lemma}
+The portmanteau lemma provides several equivalent definitions of convergence in distribution. Although these definitions are less intuitive, they are used to prove a number of statistical theorems.
+\begin{theorem}[Continuous mapping]
+Let ${X_n}$, $X$ be random elements defined on a metric space $S$. Suppose a function $g: S\longrightarrow S′$ (where $S′$ is another metric space) has the set of discontinuity points $D_g$ such that $Pr[X \in D_g] = 0$. Then
+\begin{eqnarray*}
+X_n \ \rightsquigarrow\ X \quad\Rightarrow\quad g(X_n)\ \rightsquigarrow\ g(X);\\
+X_n \ \xrightarrow{p}\ X \quad\Rightarrow\quad g(X_n)\ \xrightarrow{p}\ g(X);\\
+X_n \ \xrightarrow{\!\!as\!\!}\ X \quad\Rightarrow\quad g(X_n)\ \xrightarrow{\!\!as\!\!}\ g(X).\\
+\end{eqnarray*}
+\end{theorem}
+\begin{theorem}
+Let $X_n$ and $Y_n$ be random variables, then
+\begin{enumerate}
+\item $X_n \ \xrightarrow{\!\!as\!\!}\ X \quad\Rightarrow\quad  X_n \ \xrightarrow{p} X$
+\item $X_n \, \xrightarrow{L_r} X \quad\Rightarrow\quad  X_n \ \xrightarrow{p} X$
+\item $X_n \ \xrightarrow{p} X \quad\Rightarrow\quad X_n\rightsquigarrow X$
+\item $X_n \xrightarrow{p} c \quad\Leftrightarrow\quad X\rightsquigarrow c$
+\item $X_n \rightsquigarrow X, \, d(X_n,Y_n) \xrightarrow{p} 0 \quad\Rightarrow\quad Y_n \rightsquigarrow X$
+\item $X_n \rightsquigarrow X, \, Y_n \xrightarrow{p} c \quad\Rightarrow\quad (X_n, Y_n) \rightsquigarrow (X,c)$
+\item $X_n \xrightarrow{p} X, \, Y_n \xrightarrow{p} Y \quad\Rightarrow\quad (X_n, Y_n)\xrightarrow{p} (X,Y),\, X_n+Y_n\xrightarrow{p} X+Y$
+\end{enumerate}
+\end{theorem}
+Here we give some counter examples to illustrate theorem 12.2.
+\begin{example}
+Consider the probability space $([0,1], B_{[0,1]}, p)$. $B_{[0,1]}$ is $\sigma$-field of Borel set and p is Lebesgue measure. Let $X=0$, for any positive integer $n$, there exist integers $m$ and $k$ such that $n=2^m-2+k$ and $0\leq k \leq 2^{m+1}$. Define
+$$
+X_n(w) = \left\lbrace
+\begin{array}{l}
+1 \quad \frac{k}{2^m}\leq w\leq \frac{k+1}{2^m}\\
+0 \quad \mbox{otherwise}
+\end{array}
+\right.
+$$
+So, we have
+\begin{eqnarray*}
+P(|X_n-X|\geq\varepsilon)&\leq& P(\{w:\,\frac{k}{2^m}\leq w\leq \frac{k+1}{2^m}\}) \\
+&=& \frac{1}{2^m} \\
+&\rightarrow& 0
+\end{eqnarray*}
+That is, $X_n \xrightarrow{p} X$.
+
+On the other hand, for any fixed $w\in[0,1]$ and $m$, there exist $k, 1\leq k\leq 2^m$ such that $\frac{k-1}{2^m}\leq w\leq \frac{k}{2^m}$. So we have a sequence of $X_{n_m}(w) =1$. So $X_n(w) \xrightarrow{\!\!as\!\!} X$ does \textbf{not} hold.
+\end{example}
+\begin{example}
+Let $X=0$, define
+$$
+X_n(w) = \left\lbrace
+\begin{array}{l}
+0 \,\quad \frac{1}{n}< w\leq 1\\
+e^n \quad 0\leq w\leq \frac{1}{n}
+\end{array}
+\right.
+$$
+Then for any $\varepsilon\in(0,1)$,
+\begin{eqnarray*}
+P(|X_n-X|\geq\varepsilon)&=& P(|X_n|\neq 0)=\frac{1}{n}\rightarrow 0
+\end{eqnarray*}
+That is, $X_n \xrightarrow{p} X$.
+
+But for $p>0$, $E|X_n-X|^p=E|X|^p=\frac{e^{np}}{n} \rightarrow \infty$. So $X_n \xrightarrow{p} X$ does \textbf{not} imply $X_n \, \xrightarrow{L_p} X$.
+\end{example}
+\begin{example}
+Define
+$$
+X(w) = \left\lbrace
+\begin{array}{l}
+1 \quad 0\leq w\leq \frac{1}{2}\\
+0 \quad \frac{1}{2}< w\leq 1
+\end{array}
+\right.
+$$
+and 
+$$
+X_n(w) = \left\lbrace
+\begin{array}{l}
+0 \quad 0\leq w\leq \frac{1}{2}\\
+1 \quad \frac{1}{2}< w\leq 1
+\end{array}
+\right.
+$$
+So for any $t$, 
+$$
+P(X<t)=P(X_n\leq t)= \left\lbrace
+\begin{array}{l}
+0 \quad t\geq 1\\
+\frac{1}{2} \quad 0\leq t < 1 \\
+0 \quad t\leq 0
+\end{array}
+\right.
+$$
+That is $X_n \rightsquigarrow X$. But $|X_n-X| = 1, d(|X_n-X|>\varepsilon) = 1$. So  $X_n \rightsquigarrow X$ does \textbf{not} imply $X_n \, \xrightarrow{p} X$.
+\end{example}
+\begin{example}
+Let $g(t) = 1-\bm{1}_{\{0\}}(t)$, $X=0$, $X_n=\frac{1}{n}$. Then $X_n \xrightarrow{p} X$. But $g(X_n)=0, g(X)=1$. So, $g(X_n) \xrightarrow{p} g(X)$ does \textbf{not} hold.
+\end{example}
+\begin{lemma}[Slutsky's theorem]
+Let ${X_n}$, ${Y_n}$ be sequences of random variables. If $X_n$ converges in distribution to a random element X and $Y_n$ converges in probability to a constant c, then
+\begin{enumerate}
+\item $X_n + Y_n \ \rightsquigarrow\ X + c$ ;
+\item $X_nY_n \ \rightsquigarrow\ cX $;
+\item $Y_n^{-1}X_n \ \rightsquigarrow c^{-1}X, \, c\neq 0$
+\end{enumerate}
+\end{lemma}
+\begin{proposition}
+For all $t, x \geq 0$, 
+$$
+\lim_{\lambda \rightarrow \infty} e^{-\lambda t}\sum_{k\leq \lambda x} \frac{(\lambda t)^k}{k!} = \bm{1}_{[0,x]}(t)
+$$
+\end{proposition}
+\begin{proof}
+Assume $X\sim Possion(\lambda t)$, so the proposition is equal to 
+$$
+\lim_{\lambda \rightarrow \infty} P(X\leq \lambda x) = \bm{1}_{[0,x]}(t)
+$$
+We have $E(X) = \lambda t$, $Var(X) = \lambda t$. So for any $t \leq x$,
+\begin{eqnarray*}
+P(X\leq \lambda x) &=& P(X-\lambda t \leq \lambda(x-t)) \\
+&=& 1-P(X-\lambda t > \lambda(x-t)) \\
+&\geq& 1-P(|X-\lambda t| > \lambda(x-t)) \\
+&\geq& 1-\frac{\lambda t}{\lambda^2(t-x)^2} \\
+&\rightarrow& 1\\
+\end{eqnarray*}
+for $t>x$, 
+\begin{eqnarray*}
+P(X\leq \lambda x)&=& P(\lambda t-X > \lambda(t-x)) \\
+&\leq& P(|\lambda t-X| > \lambda(t-x)) \\
+&\leq& \frac{\lambda t}{\lambda^2(t-x)^2} \\
+&\rightarrow& 0 \\
+\end{eqnarray*}
+So, $$
+\lim_{\lambda \rightarrow \infty} P(X\leq \lambda x) = \bm{1}_{[0,x]}(t)
+$$
+\end{proof}
+\begin{theorem}
+Let $X_1, X_2, \cdots$ be iid samples. Let $\mu=E(X_n)$ and $\sigma^2 = Var(X_n).$ Define the sample average $$\overline{X}_n = \frac{1}{n}\sum_{i=1}^{n}X_i,$$ then $\overline{X}_n \xrightarrow{p} \mu$.
+\end{theorem}
+\begin{proof}
+$$
+P(|\overline{X}_n-\mu|>\varepsilon) \leq \frac{\sigma^2}{n\varepsilon^2}\rightarrow 0
+$$
+\end{proof}
+\begin{theorem}[Central limit theorems]
+Let $X_1, X_2, \cdots, X_n$ be iid with mean $\mu$ and variance $\Sigma$. Let $\overline{X}_n = \frac{1}{n}\sum_{i=1}^{n}X_i,$ then 
+$$
+Z_n = \Sigma^{-\frac{1}{2}}(\overline{X}-\mu) \rightsquigarrow N(0,I)
+$$
+\end{theorem}
+\begin{example}[t-statistic]
+Let $X_1, X_2, \cdots, X_n$ be iid with mean 0 and finite variance. The t-statistic $\frac{\sqrt{n}\overline{X}_n}{S_n}$, where $S_n = \frac{1}{n-1}\sum_{i=1}^{n}(X_i-\overline{X}_n)^2$ is asymptotically standard normal.
+\end{example}
+\begin{proof}
+$$
+S_n^2 = \frac{n}{n-1}\left( \frac{1}{n}\sum_{i=1}^{n}X_i^2-\overline{X}_n^2\right) \xrightarrow{p} E(X_i^2)-E(X_i)^2 = Var(X_i)
+$$
+So, $S_n \xrightarrow{p} \sqrt{Var(X_i)}$, hence, $S_n \rightsquigarrow \sqrt{Var(X_i)}$.\\
+And $\sqrt{n}\overline{X}_n \rightsquigarrow N(0,Var(X_i))$, according to Slutslay's lemma, $\frac{\sqrt{n}\overline{X}_n}{S_n} \rightsquigarrow N(0,1)$
+\end{proof}
+\begin{theorem}[The delta method]
+Suppose that $X_n$ is a sequence of random variables such that $\sqrt{n}(X_n-\mu)\rightsquigarrow N(0,\Sigma).$. Let $g:R^k\rightarrow R$ and let $\bigtriangledown g(y)$ denotes the gradient and $\bigtriangledown u$ denotes $\bigtriangledown g(y)$ evaluated at $u$. Assume that the elements of $\bigtriangledown u$ are nonzero. Then
+$$
+\sqrt{n}(g(X_n)-g(\mu))\rightsquigarrow N(0, \bigtriangledown u^T\Sigma\bigtriangledown u)
+$$
+\end{theorem}
+\begin{theorem}
+Let $\phi$ be a map defined on a subset of $R^k$ and differentiable at $\theta$. Let $T_n$ be random vectors taking their values in the domain  of $\phi$. If $r_n(T_n-\theta)\rightsquigarrow T$ for numbers $r_n \rightarrow \infty$, then $r_n(\phi(T_n)-\phi(\theta))\rightsquigarrow \phi'_\theta(T)$. Moreover, the difference between $r_n(\phi(T_n)-\phi(\theta))$ and $\phi'_\theta(r_n(T_n-\theta))$ convergence to 0 with probability 1.
+\end{theorem}
+\end{document}
