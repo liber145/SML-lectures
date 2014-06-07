@@ -1,0 +1,273 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % more modern
+%\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{epsf}
+\usepackage{bm}
+\usepackage{amsmath,amssymb,amsfonts,verbatim}
+\usepackage{subfigure}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{enumerate}
+%\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{fancyref}
+
+
+\def\A{{\bm A}}
+\def\a{{\bm a}}
+\def\B{{\bm B}}
+\def\b{{\bm b}}
+\def\C{{\bm C}}
+\def\c{{\bm c}}
+\def\D{{\bm D}}
+\def\d{{\bm d}}
+\def\E{{\bm E}}
+\def\e{{\bm e}}
+\def\F{{\bm F}}
+\def\f{{\bm f}}
+\def\G{{\bm G}}
+\def\g{{\bm g}}
+\def\k{{\bm k}}
+\def\K{{\bm K}}
+\def\H{{\bm H}}
+\def\I{{\bm I}}
+\def\L{{\bm L}}
+\def\M{{\bm M}}
+\def\m{{\bm m}}
+\def\n{{\bm n}}
+\def\N{{\bm N}}
+\def\BP{{\bm P}}
+\def\R{{\bm R}}
+\def\BS{{\bm S}}
+\def\s{{\bm s}}
+\def\t{{\bm t}}
+\def\T{{\bm T}}
+\def\U{{\bm U}}
+\def\u{{\bm u}}
+\def\V{{\bm V}}
+\def\v{{\bm v}}
+\def\W{{\bm W}}
+\def\w{{\bm w}}
+\def\X{{\bm X}}
+\def\Y{{\bm Y}}
+\def\Q{{\bm Q}}
+\def\x{{\bm x}}
+\def\y{{\bm y}}
+\def\Z{{\bm Z}}
+\def\z{{\bm z}}
+\def\0{{\bm 0}}
+\def\1{{\bm 1}}
+
+
+\def\hx{\hat{\bm x}}
+\def\tx{\tilde{\bm x}}
+\def\ty{\tilde{\bm y}}
+\def\tz{\tilde{\bm z}}
+\def\hd{\hat{d}}
+\def\HD{\hat{\bm D}}
+\def\px {\partial{x}}
+\def\py{\partial{y}}
+
+\def\MA{{\mathcal A}}
+\def\ML{{\mathcal L}}
+\def\MF{{\mathcal F}}
+\def\MR{{\mathcal R}}
+\def\MG{{\mathcal G}}
+\def\MI{{\mathcal I}}
+\def\MN{{\mathcal N}}
+\def\MO{{\mathcal O}}
+\def\MT{{\mathcal T}}
+\def\MX{{\mathcal X}}
+\def\SW{{\mathcal {SW}}}
+\def\MW{{\mathcal W}}
+\def\MY{{\mathcal Y}}
+\def\BR{{\mathbb R}}
+\def\BP{{\mathbb P}}
+\def\BE{{\mathbb E}}
+\def\BN{{\mathbb N}}
+
+\def\bet{\mbox{\boldmath$\beta$\unboldmath}}
+\def\epsi{\mbox{\boldmath$\epsilon$}}
+
+\def\etal{{\em et al.\/}\,}
+\def\tr{\mathrm{tr}}
+\def\rk{\mathrm{rk}}
+\def\diag{\mathrm{diag}}
+\def\dg{\mathrm{dg}}
+\def\argmax{\mathop{\rm argmax}}
+\def\argmin{\mathop{\rm argmin}}
+\def\vecd{\mathrm{vec}}
+
+\def\ph{\mbox{\boldmath$\phi$\unboldmath}}
+\def\vp{\mbox{\boldmath$\varphi$\unboldmath}}
+\def\pii{\mbox{\boldmath$\pi$\unboldmath}}
+\def\Ph{\mbox{\boldmath$\Phi$\unboldmath}}
+\def\pss{\mbox{\boldmath$\psi$\unboldmath}}
+\def\Ps{\mbox{\boldmath$\Psi$\unboldmath}}
+\def\muu{\mbox{\boldmath$\mu$\unboldmath}}
+\def\Si{\mbox{\boldmath$\Sigma$\unboldmath}}
+\def\lam{\mbox{\boldmath$\lambda$\unboldmath}}
+\def\Lam{\mbox{\boldmath$\Lambda$\unboldmath}}
+\def\Gam{\mbox{\boldmath$\Gamma$\unboldmath}}
+\def\Oma{\mbox{\boldmath$\Omega$\unboldmath}}
+\def\De{\mbox{\boldmath$\Delta$\unboldmath}}
+\def\de{\mbox{\boldmath$\delta$\unboldmath}}
+\def\Tha{\mbox{\boldmath$\Theta$\unboldmath}}
+\def\tha{\mbox{\boldmath$\theta$\unboldmath}}
+\def\aph{\mbox{\boldmath$\alpha$\unboldmath}}
+\def\bt{\mbox{\boldmath$\beta$\unboldmath}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{example}{Example}[section]
+
+
+\def\probin{\mbox{\rotatebox[origin=c]{90}{$\vDash$}}}
+
+\def\calA{{\cal A}}
+
+
+
+%this is a comment
+
+%use this as a template only... you may not need the subsections,
+%or lists however they are placed in the document to show you how
+%do it if needed.
+
+
+%THINGS TO REMEMBER
+%to compile a latex document - latex filename.tex
+%to view the document        - xdvi filename.dvi
+%to create a ps document     - dvips filename.dvi
+%to create a pdf document    - dvipdf filename.dvi
+%{\bm TEXT}                  - bold font TEXT
+%{\it TEXT}                  - italic TEXT
+%$ ... $                     - places ... in math mode on same line
+%$$ ... $$                   - places ... in math mode on new line
+%more info at www.cs.wm.edu/~mliskov/cs423_fall04/tex.html
+
+
+\setlength{\oddsidemargin}{.25in}
+\setlength{\evensidemargin}{.25in}
+\setlength{\textwidth}{6in}
+\setlength{\topmargin}{-0.4in}
+\setlength{\textheight}{8.5in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\notes}[5]{
+	\renewcommand{\thepage}{#1 - \arabic{page}}
+	\noindent
+	\begin{center}
+	\framebox{
+		\vbox{
+		\hbox to 5.78in { { \bf Statistical Machine Learning}
+		\hfill #2}
+		\vspace{4mm}
+		\hbox to 5.78in { {\Large \hfill #5 \hfill} }
+		\vspace{2mm}
+		\hbox to 5.78in { {\it #3 \hfill #4} }
+		}
+	}
+	\end{center}
+	\vspace*{4mm}
+}
+
+\newcommand{\ho}[1]{\notes{#1}{MCMC}{Professor: Zhihua Zhang}{Scribe:}{Lecture Notes #1: Markov Chain Mento Carlo Algorithm}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{section}{13}
+%begins a LaTeX document
+\begin{document}
+\ho{14}
+\section{MCMC}
+In statistics, Markov chain Monte Carlo (MCMC) methods are a class of algorithms for sampling from probability distributions based on constructing a Markov chain that has the desired distribution as its equilibrium distribution. The state of the chain after a large number of steps is then used as a sample of the desired distribution.
+\subsection{Metropolis-Hastings Algorithm}
+Suppose we want to sample $f(x)$ and given a proposal distribution $g$. The steps of the algorithm is: \\
+1. Initialize $X^{(0)}=x^{(0)}$ \\
+2. for $t=1,2,\cdots$ \\
+3. \quad\quad Give $X^{(t)}=x^{(t)}$, sample a candidate value $x^{*}$ from a proposal distribution $g(x|x^{(t)})$ \\
+4. \quad\quad Compute the M-H ratio $R(x^{(t)}|x^{*})$ where
+$$
+R(u,v) = \frac{f(v)g(u|v)}{f(u)g(v|u)}
+$$
+5. \quad\quad Sample $x^{(t+1)}$ according to following:
+$$
+x^{(t+1)}=\left\lbrace
+\begin{array}{cc}
+x^{*} & \quad\mbox{with probality }\min(R(x^{(t)}|x^{*}), 1) \\ 
+x^{(t)} & \quad otherwise
+\end{array} \right.
+$$
+Metropolis–Hastings algorithm resides in designing a Markov process (by constructing transition probabilities). Suppose $X_1, X_2$ are two neighbouring states. The derivation of the algorithm starts with the condition of detailed balance:
+$$
+f(x_2)g(x_1|x_2) = f(x_1)g(x_2|x_1)
+$$
+If the condition of detailed balance establishes, then $f(x)$ is the stationary distribution. To make this equation established, we introduce an acceptance coefficient $R$, namely,
+$$
+f(x_2)g(x_1|x_2)R(x_2,x_1) = f(x_1)g(x_2|x_1)R(x_1,x_2)
+$$
+Let $R(x_1,x_2) = \min( \frac{f(x_2)g(x_1|x_2)}{f(x_1)g(x_2|x_1)},1)$.\\
+if $f(x_2)g(x_1|x_2) \geq f(x_1)g(x_2|x_1)$, $R(x_1|x_2)=1$, $R(x_2,x_1) = \frac{f(x_1)g(x_2|x_1)}{f(x_2)g(x_1|x_2)}$, so, $f(x_2)g(x_1|x_2)R(x_2,x_1) = f(x_1)g(x_2|x_1)R(x_1,x_2)$. \\
+if $f(x_2)g(x_1|x_2) \leq f(x_1)g(x_2|x_1)$, the result is same.
+So the detailed balance condition is satisfied. 
+\subsection{Gibbs Sampling}
+Gibbs sampling, in its basic incarnation, is a special case of the Metropolis-Hastings algorithm. The point of Gibbs sampling is that given a multivariate distribution it is simpler to sample from a conditional distribution than to marginalize by integrating over a joint distribution. Suppose we want to obtain $k$ samples of $\mathbf{X} = (x_1, \dots, x_n)$ from a joint distribution $\left.p(x_1, \dots, x_n)\right..$ Denote the $i$th sample by $\mathbf{X}^{(i)} = (x_1^{(i)}, \dots, x_n^{(i)})$. We proceed as follows:
+\begin{enumerate}
+\item    We begin with some initial value $\mathbf{X}^{(0)}$.
+\item    For each sample $i \in \{1 \dots k\}$, sample each variable $x_j^{(i)}$ from the conditional distribution $p(x_j|x_1^{(i)},\dots,x_{j-1}^{(i)},x_{j+1}^{(i-1)},\dots,x_n^{(i-1)})$. That is, sample each variable from the distribution of that variable conditioned on all other variables, making use of the most recent values and updating the variable with its new value as soon as it has been sampled.
+\end{enumerate}
+The samples then approximate the joint distribution of all variables. Furthermore, the marginal distribution of any subset of variables can be approximated by simply examining the samples for that subset of variables, ignoring the rest. In addition, the expected value of any variable can be approximated by averaging over all the samples.
+\subsection{Bayes Linear Models}
+Consider a standard linear regression problem, in which for $i=1,...,n$ we specify the conditional distribution of $y_i$ given a predictor $x_i$:
+$$
+    y_{i} = x_{i}^{\rm T} b + \varepsilon_i
+$$
+where  $\varepsilon_i$ are independent and identical normally distributed random variables:
+$$
+    \varepsilon_i \sim N(0, \sigma^2). 
+$$
+Let $p(b,\sigma^{2}) = p(\sigma^{2})\rho(b|\sigma^{2}), $ 
+where $\rho(\sigma^{2})$ is an inverse-gamma distribution.
+\begin{eqnarray*}
+p(b,\sigma^2) &=& p(\sigma^{2})\rho(b|\sigma^{2}) \\
+&=& N(\mu, \sigma^2v) IG(\alpha,\beta) \\
+&=& \frac{\beta^\alpha\sigma^{2(-\alpha+\frac{p}{2}+1)}}{(2\pi)^{\frac{p}{2}}|v|^{\frac{1}{2}}\Gamma(\alpha)}\exp{\left(-\frac{(b-\mu)^TV^{-1}(b-\mu)+2\beta}{2\sigma^2}\right)}
+\end{eqnarray*}
+Let $D=\{(x_i,y_i)\}_{i=1}^{n}$, thus
+\begin{eqnarray*}
+p(b,\sigma^2|D) &=& \frac{p(D|b,\sigma^2)p(b,\sigma)}{p(D)} \\
+&\propto& \prod_{i=1}^{n}p(\varepsilon_i|b,\sigma^2)p(b,\sigma) \\
+\end{eqnarray*}
+\subsection{Bayes Classification}
+Let $y\in(0,1)$, suppose $p(y|b) = (\mu(b))^y(1-\mu(b))^{1-y}$, where $\mu(b) = h(x^Tb)$. \\$h$ is a function range from 0 to 1, such as sigmoid function( $h(x) = \frac{\exp(x)}{1+exp(x)}$ ) or Gaussian CDF( $h(x) = \Phi(x) = \int_{-\infty}^{x}\frac{1}{\sqrt{2\pi}}\exp(-\frac{t^2}{2})dt$ ).(probit model) 
+
+If give $b$ a Gaussian prior, namely, $b \sim N(\mu, v)$. We have 
+\begin{eqnarray*}
+p(b|D) &\propto& p(D|b)p(b) \\
+&\propto& \prod_{i=1}^{n}(\mu_i(b))^{y_i}(1-\mu_i(b))^{1-y_i}p(b) \\
+\end{eqnarray*}
+It is possible to motivate the probit model as a latent variable model. Suppose there exists an auxiliary random variable. Let $z =x^Tb+\varepsilon$, where $\varepsilon\sim N(0,1)$.
+So, $$p(y=1|z,b) = \left\lbrace\begin{array}{cc}
+1 & z>0 \\ 
+0 & otherwise
+\end{array} \right.$$
+and $p(y=0|z,b) = 1- p(y=1|z,b)$.
+Hence,
+\begin{eqnarray*}
+p(y=1|b) &=& p(y=1|z>0,b)p(z>0|b)+ p(y=1|z\leq0,b)p(z\leq0|b) \\
+&=& p(z>0|b) \\
+&=& p(\varepsilon > -x^Tb|b) \\
+&=& \int_{-x^Tb}^{\infty} \frac{1}{\sqrt{2\pi}}\exp(-\frac{t^2}{2})dt \\
+&=& \int_{-\infty}^{x^Tb} \frac{1}{\sqrt{2\pi}}\exp(-\frac{t^2}{2})dt \\
+&=& \Phi(x^Tb) \\
+\end{eqnarray*}
+\end{document}
